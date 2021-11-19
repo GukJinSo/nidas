@@ -15,6 +15,15 @@ local.properties
 .loadpath
 .recommenders
 
+#classpath
+.classpath
+
+#pom.properties
+pom.properties
+
+#target folder
+target
+
 # External tool builders
 .externalToolBuilders/
 
