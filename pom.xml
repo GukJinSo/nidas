@@ -6,7 +6,7 @@
 	<artifactId>app</artifactId>
 	<name>nidas</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<properties>
 		<java-version>11</java-version>
 		<org.springframework-version>5.3.12</org.springframework-version>

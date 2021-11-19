@@ -4,7 +4,7 @@
 <head>
 <title>Insert title here</title>
 </head>
-<body>1111111
+<body>
 	<jsp:forward page="main.do"></jsp:forward>
 </body>
 </html>
