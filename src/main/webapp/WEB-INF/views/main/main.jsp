@@ -10,6 +10,6 @@
 	Hello world!  
 </h1>
 
-<P>  테스트 메인샂가자 </P>
+<P>  테스트 </P>
 </body>
 </html>
