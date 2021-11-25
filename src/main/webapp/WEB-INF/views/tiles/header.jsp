@@ -13,6 +13,8 @@
 	<sec:authorize access="isAnonymous()">
 		<p>
 			<a href="loginForm.do">로그인</a>
+			<a href="registerForm.do">회원가입</a>
+			
 		</p>
 	</sec:authorize>
 	

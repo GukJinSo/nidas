@@ -28,8 +28,8 @@
 		
 </http>
 
-
 <jdbc-user-service data-source-ref="dataSource" id="userService"
+
  users-by-username-query=
 	"select id as username, password,
 	case when mstate = 'mem0101' then 1
@@ -51,16 +51,13 @@
 />
 
 <authentication-manager>
-	<authentication-provider user-service-ref="customLoginFilter">
+	<authentication-provider user-service-ref="userService">
 		<password-encoder ref="bcryptPasswordEncoder"/>
 	</authentication-provider>
 </authentication-manager>
 
-<beans:bean id="customLoginFilter"
-	 class="com.nidas.app.login.filter.CustomLoginFilter">
-</beans:bean>
 <beans:bean id="bcryptPasswordEncoder"
-	 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+    class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 </beans:bean>
 
 </beans:beans>

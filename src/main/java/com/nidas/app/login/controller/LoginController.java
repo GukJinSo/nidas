@@ -16,4 +16,9 @@ public class LoginController {
 		return "login/loginFail";
 	}
 	
+	@RequestMapping("registerForm.do")
+	public String registerForm() {
+		return "login/registerForm";
+	}
+	
 }
