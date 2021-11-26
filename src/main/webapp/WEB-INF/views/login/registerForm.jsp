@@ -13,7 +13,7 @@
 <script>
 
 // 핸드폰 인증
-function hpCheck() {
+function sendSMS() {
 	$.ajax({
 		url : 'sendSMS.do',
 		data : {
@@ -30,6 +30,10 @@ function hpCheck() {
 			console.log("휴대폰 인증 에러");
 		}
 	})
+}
+
+function checkSMS(){
+	if ($('#hpCode').value != '' 
 }
 
 function frmSubmit(){
@@ -89,7 +93,7 @@ function frmSubmit(){
 									<p id="hpNotice" class="notice"></p>
 								</td>
 								<td>
-									<button type="button" id="hpCheckBtn"class="btn btn-secondary" onclick="hpCheck()">인증번호 전송</button>
+									<button type="button" id="sendSMSBtn"class="btn btn-secondary" onclick="sendSMS()">인증번호 전송</button>
 									<input type="hidden" value="false" id="isHpChecked">
 								</td>
 							</tr>
