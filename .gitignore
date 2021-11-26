@@ -18,10 +18,11 @@ local.properties
 #classpath
 .classpath
 
-#db.properties
-db.properties
 
-#pom.properties
+
+#properties
+db.properties
+coolSMS.properties
 pom.properties
 
 #target folder

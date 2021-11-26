@@ -12,12 +12,5 @@ import com.nidas.app.member.vo.MemberVO;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired MemberMapper memberMapper;
-	@Autowired BCryptPasswordEncoder encoder;
-	
-	@Override
-	public int memberInsert(MemberVO vo) {
-		vo.setPassword(encoder.encode(vo.getPassword()));
-		return memberMapper.memberInsert(vo);
-	}
 
 }

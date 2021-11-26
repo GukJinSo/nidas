@@ -20,5 +20,5 @@ public class MemberVO {
 	private String zipcode;
 	private String authority;
 	private String mState;
-	
+	private int count;
 }

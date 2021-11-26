@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +19,16 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
 public class SMSController {
+
+	// 프로퍼티 로드
+	@Value("${api_key}") private String api_key;
+	@Value("${api_secret}") private String api_secret;
+	
 	
 	@PostMapping("sendSMS.do")
 	@ResponseBody
 	public String SendSMS(HttpServletRequest req) throws IOException {
-		/*
+		
 		HttpSession session = req.getSession();
 		String targetNum = req.getParameter("hp");
 		Random rand = new Random();
@@ -33,8 +39,6 @@ public class SMSController {
 			textCode += ran;
 		}
 		
-		String api_key = "NCS1ZIUBA33Z7UZB";
-		String api_secret = "TV6YEYJSUQYTQY7XGE5LVAMU6TT6WOUC";
 		Message coolsms = new Message(api_key, api_secret);
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", targetNum);
@@ -56,7 +60,6 @@ public class SMSController {
 		session.setAttribute("textCode", textCode);
 		// 문자 전송시 세션 시간 확인
 		session.setAttribute("sessiontime", System.currentTimeMillis());
-		*/
 		return null;
 	}
 

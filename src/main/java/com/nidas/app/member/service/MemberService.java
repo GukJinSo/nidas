@@ -4,6 +4,5 @@ import com.nidas.app.member.vo.MemberVO;
 
 public interface MemberService {
 
-	public int memberInsert(MemberVO vo);
-	
+
 }

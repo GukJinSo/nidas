@@ -20,10 +20,10 @@ function sendSMS() {
 			hp : $('#hp').val(),
 		},
 		type : 'post',
-		success : function(data) {
+		success : function(result) {
 			$('#hpNotice').html('인증번호가 전송되었습니다');
 			$('#hpCheckBtn').html('인증번호 재전송');
-			$('#isHpChecked').value('true');
+			$('#isHpChecked').val('true');
 		},
 		error : function(err) {
 			console.log(err);
@@ -33,7 +33,24 @@ function sendSMS() {
 }
 
 function checkSMS(){
-	if ($('#hpCode').value != '' 
+}
+
+function idExistCheck(){
+	console.log('tqttqt');
+	if ( $('#id').val().length > 5 ){
+		$.ajax({
+			url : 'idExistCheck.do',
+			data : { id : $('#id').val() },
+			type : 'post',
+			success : function(result){
+				$('#idNotice').text(result);
+			},
+			error : function(err) {
+				console.log(err);
+				console.log("idExistCheck err");
+			}
+		});
+	}
 }
 
 function frmSubmit(){
@@ -69,9 +86,9 @@ function frmSubmit(){
 							<tr>
 								<th>아이디</th>
 								<td colspan="2">
-									<input type="text" id="id" name="id" maxlength="15">
+									<input type="text" id="id" name="id" maxlength="15" onchange="idExistCheck()">
+									<p id="idNotice" class="notice"></p>
 								</td>
-								<td></td>
 							</tr>
 							<tr>
 								<th>비밀번호</th>
