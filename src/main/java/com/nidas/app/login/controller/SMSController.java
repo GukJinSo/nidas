@@ -64,7 +64,7 @@ public class SMSController {
 	@ResponseBody
 	public Boolean checkSMS(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String insertCode = request.getParameter("insertCode");
+		String insertCode = request.getParameter("hpCode");
 		// 인증번호 입력값
 		String Code = (String) session.getAttribute("textCode");
 		// 인증번호 세션값

@@ -23,6 +23,7 @@ function hpCheck() {
 		success : function(data) {
 			$('#hpNotice').html('인증번호가 전송되었습니다');
 			$('#hpCheckBtn').html('인증번호 재전송');
+			$('#isHpChecked').value('true');
 		},
 		error : function(err) {
 			console.log(err);
@@ -30,6 +31,13 @@ function hpCheck() {
 		}
 	})
 }
+
+function frmSubmit(){
+	if (isHpChecked) {
+		frm.submit();
+	}
+}
+
 </script>
 </head>
 <body>
@@ -44,7 +52,7 @@ function hpCheck() {
         	</div>
         	
         	<div class="form">
-        		<form action="memberInsert.do" method="post">
+        		<form action="memberInsert.do" method="post" id="frm">
 					<table class="table">
 						<tbody>
 							<tr>
@@ -64,13 +72,13 @@ function hpCheck() {
 							<tr>
 								<th>비밀번호</th>
 								<td colspan="2">
-									<input type="password" id="pw" name="pw" maxlength="20">
+									<input type="password" id="password" name="password" maxlength="20">
 								</td>
 							</tr>
 							<tr>
 								<th>비밀번호 확인</th>
 								<td colspan="2">
-									<input type="password" id="pw2" name="pw2" maxlength="20">
+									<input type="password" id="passwordAgain" name="passwordAgain" maxlength="20">
 								</td>
 							</tr>
 							<tr>
@@ -82,19 +90,20 @@ function hpCheck() {
 								</td>
 								<td>
 									<button type="button" id="hpCheckBtn"class="btn btn-secondary" onclick="hpCheck()">인증번호 전송</button>
+									<input type="hidden" value="false" id="isHpChecked">
 								</td>
 							</tr>
 							
 							<tr>
 								<th>성별</th>
 								<td>
-									<input type="radio" name="gender" value="male"> 남자 
-									<input type="radio" name="gender" value="female"> 여자
+									<input type="radio" name="gender" value="m"> 남자 
+									<input type="radio" name="gender" value="w"> 여자
 								</td>
 							</tr>
 						</tbody>
 					</table>
-					<button type="submit" class="btn btn-secondary">회원가입</button>
+					<button type="button" class="btn btn-secondary" id="registerBtn" onclick="frmSubmit()">회원가입</button>
 				</form>
         	</div>
         </div>
