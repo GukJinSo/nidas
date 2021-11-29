@@ -5,6 +5,6 @@ import com.nidas.app.member.vo.MemberVO;
 public interface LoginService {
 
 	public int memberInsert(MemberVO vo);
-	public String idExistCheck(String id);
+	public boolean idExistCheck(String id);
 	
 }

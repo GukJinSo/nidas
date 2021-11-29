@@ -21,12 +21,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String idExistCheck(String id) {
-		String resultStr = "이미 이용중인 아이디입니다";
+	public boolean idExistCheck(String id) {
 		MemberVO vo = loginMapper.idExistCheck(id);
-		if ( vo.getCount() != 0 ) {
-			resultStr = "이용 가능한 아이디입니다";
-		}
-		return resultStr;
+		return ( vo.getCount() == 0 ) ? true : false;
 	}
+	
 }

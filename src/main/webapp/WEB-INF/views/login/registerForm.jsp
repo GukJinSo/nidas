@@ -12,6 +12,12 @@
 </style>
 <script>
 
+//클라이언트 유효성 검사
+//서버 단에서도 유효성 검사를 진행할 것이다
+var idCheck = false;
+var pwCheck = false;
+var hpCheck = false;
+
 // 핸드폰 인증
 function sendSMS() {
 	$.ajax({
@@ -23,7 +29,6 @@ function sendSMS() {
 		success : function(result) {
 			$('#hpNotice').html('인증번호가 전송되었습니다');
 			$('#hpCheckBtn').html('인증번호 재전송');
-			$('#isHpChecked').val('true');
 		},
 		error : function(err) {
 			console.log(err);
@@ -33,17 +38,34 @@ function sendSMS() {
 }
 
 function checkSMS(){
+	$.ajax({
+		url : 'checkSMS.do',
+		data : {
+			hp : $('#hp').val(),
+			hpCode : $('#hpCode').val();
+		},
+		type : 'post',
+		success : function(result) {
+			$('#hpNotice').html('인증번호가 전송되었습니다');
+			$('#hpCheckBtn').html('인증번호 재전송');
+		},
+		error : function(err) {
+			console.log(err);
+			console.log("휴대폰 인증 에러");
+		}
+	})
+	
 }
 
 function idExistCheck(){
-	console.log('tqttqt');
-	if ( $('#id').val().length > 5 ){
+	if ( $('#id').val().length > 5 ){ // 아이디 6글자 이상
 		$.ajax({
 			url : 'idExistCheck.do',
 			data : { id : $('#id').val() },
 			type : 'post',
 			success : function(result){
-				$('#idNotice').text(result);
+				let idText = result ? '사용 가능한 아이디입니다'; idCheck = true : '이미 사용중인 아이디입니다'; idCheck = false;
+				$('#idNotice').text(idText);
 			},
 			error : function(err) {
 				console.log(err);
@@ -54,9 +76,27 @@ function idExistCheck(){
 }
 
 function frmSubmit(){
-	if (isHpChecked) {
-		frm.submit();
+	if ( frm.id.value == "" || idCheck == false ){
+		frm.id.focus();
+		return;
 	}
+	if ( frm.password.value == "" ){
+		frm.password.focus();
+		return;
+	}
+	if ( frm.passwordAgain.value == "" || pwCheck == false ){
+		frm.passwordAgain.focus();
+		return;
+	}
+	if ( frm.hp.value == "" || hpCheck == false ){
+		frm.hp.focus();
+		return;
+	}
+	if ( frm.gender.value == "" ){
+		frm.gender.focus();
+		return;
+	}
+	frm.submit();
 }
 
 </script>
@@ -86,7 +126,7 @@ function frmSubmit(){
 							<tr>
 								<th>아이디</th>
 								<td colspan="2">
-									<input type="text" id="id" name="id" maxlength="15" onchange="idExistCheck()">
+									<input type="text" id="id" name="id" maxlength="15" onkeyup="idExistCheck();">
 									<p id="idNotice" class="notice"></p>
 								</td>
 							</tr>
@@ -106,12 +146,11 @@ function frmSubmit(){
 								<th>핸드폰 번호</th>
 								<td>
 									<input type="text" id="hp" name="hp" maxlength="11">
-									<input type="text" id="hpCode" name="hpCode" maxlength="4" placeholder="인증번호 입력란">
+									<input type="text" id="hpCode" name="hpCode" maxlength="4" placeholder="인증번호 입력란" onkeyup="checkSMS()">
 									<p id="hpNotice" class="notice"></p>
 								</td>
 								<td>
 									<button type="button" id="sendSMSBtn"class="btn btn-secondary" onclick="sendSMS()">인증번호 전송</button>
-									<input type="hidden" value="false" id="isHpChecked">
 								</td>
 							</tr>
 							
