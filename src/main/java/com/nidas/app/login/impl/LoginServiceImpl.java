@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.nidas.app.login.mapper.LoginMapper;
 import com.nidas.app.login.service.LoginService;
+import com.nidas.app.login.vo.LoginVO;
 import com.nidas.app.member.vo.MemberVO;
 
 @Repository("loginDAO")
@@ -15,14 +16,14 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired BCryptPasswordEncoder encoder;
 	
 	@Override
-	public int memberInsert(MemberVO vo) {
+	public int memberInsert(LoginVO vo) {
 		vo.setPassword(encoder.encode(vo.getPassword()));
 		return loginMapper.memberInsert(vo);
 	}
 
 	@Override
 	public boolean idExistCheck(String id) {
-		MemberVO vo = loginMapper.idExistCheck(id);
+		LoginVO vo = loginMapper.idExistCheck(id);
 		return ( vo.getCount() == 0 ) ? true : false;
 	}
 	

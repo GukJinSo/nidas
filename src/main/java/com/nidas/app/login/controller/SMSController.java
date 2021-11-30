@@ -56,10 +56,11 @@ public class SMSController {
 			System.out.println(e.getMessage());
 			System.out.println(e.getCode());
 		}
-
+		session.removeAttribute("textCode");
 		session.setAttribute("textCode", textCode);
 		// 문자 전송시 세션 시간 확인
-		session.setAttribute("sessiontime", System.currentTimeMillis());
+		session.removeAttribute("sessionTime");
+		session.setAttribute("sessionTime", System.currentTimeMillis());
 		return null;
 	}
 
@@ -67,25 +68,27 @@ public class SMSController {
 	@ResponseBody
 	public Boolean checkSMS(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String insertCode = request.getParameter("hpCode");
-		// 인증번호 입력값
-		String Code = (String) session.getAttribute("textCode");
-		// 인증번호 세션값
-		Long sessiontime = (Long) session.getAttribute("sessiontime");
-		Long realtime = System.currentTimeMillis();
-		// 문자 전송 후 시간과 현재 시간 계산하여 3분의 유효 기간
-		Long difftime = (realtime - sessiontime) / 1000 / 60;
-
-		boolean YorN = false;
-		if (difftime > 3) {
-			// 세션에서 인증번호 삭제
-			session.removeAttribute("textCode");
-		} else {
-			if(insertCode.equals(Code)) {
-				YorN = true;
+		String clientCode = request.getParameter("hpCode");
+		String serverCode = (String) session.getAttribute("textCode");
+		if (serverCode != null) {
+			// 문자 전송 후 시간과 현재 시간 계산하여 3분의 유효 기간을 계산할 것
+			Long sessiontime = (Long) session.getAttribute("sessionTime");
+			Long realTime = System.currentTimeMillis();
+			Long diffTime = (realTime - sessiontime) / 1000 / 60;
+			
+			if( diffTime <= 3 ) { // 세션 시간이 살아있고, 인증번호가 일치하면 return true;
+				if ( clientCode.equals(serverCode) ) {
+					session.removeAttribute("sessionTime");
+					session.removeAttribute("textCode");
+					session.setAttribute("isHpChecked", true);
+					return true;
+				}
+			} else { // 세션 시간이 만료된 경우
+				session.removeAttribute("sessionTime");
+				session.removeAttribute("textCode");
 			}
 		}
-		return YorN;
+		return false;
 	}
 
 }

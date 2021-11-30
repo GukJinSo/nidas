@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nidas.app.login.mapper.LoginMapper">
 
-<insert id="memberInsert" parameterType="com.nidas.app.member.vo.MemberVO">
+<insert id="memberInsert" parameterType="com.nidas.app.login.vo.LoginVO">
 	insert into member (memNo, id, password, name, gender, hp, authority, mstate)
 	values (MEMNO_SEQ.nextval, #{id}, #{password}, #{name}, #{gender}, #{hp}, 'ROLE_USER', 'mem0101')
 </insert>
 
-<select id="idExistCheck" parameterType="String" resultType="com.nidas.app.member.vo.MemberVO">
+<select id="idExistCheck" parameterType="String" resultType="com.nidas.app.login.vo.LoginVO">
 	select count(*) as count from member where lower(id) = lower(#{id})
 </select>
 

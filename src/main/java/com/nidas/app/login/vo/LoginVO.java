@@ -14,11 +14,25 @@ import lombok.Setter;
 public class LoginVO {
 	
 	private int memNo;
-	@NotBlank @Length(min=6, max=20) private String id;
-	@NotBlank @Pattern(regexp="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,}") private String password;
-	@NotBlank @Length(min=2, max=10)private String name;
-	@NotBlank private String gender;
-	@NotBlank private String hp;
+	
+	@NotBlank(groups = LoginInsertValid.class) 
+	@Length(min=6, max=20, groups = LoginInsertValid.class)
+	private String id;
+	
+	@Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$", groups = LoginInsertValid.class)
+	private String password;
+	
+	@NotBlank(groups = LoginInsertValid.class)
+	@Length(min=2, max=10)
+	private String name;
+	
+	@NotBlank(groups = LoginInsertValid.class)
+	private String gender;
+	
+	@NotBlank(groups = LoginInsertValid.class)
+	@Length(min=11, max=11, groups = LoginInsertValid.class)
+	private String hp;
+	
 	private Date birth;
 	private Date regDate;
 	private String address;

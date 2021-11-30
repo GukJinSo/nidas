@@ -1,10 +1,10 @@
 package com.nidas.app.login.mapper;
 
-import com.nidas.app.member.vo.MemberVO;
+import com.nidas.app.login.vo.LoginVO;
 
 public interface LoginMapper {
 	
-	public int memberInsert(MemberVO vo);
-	public MemberVO idExistCheck(String id);
+	public int memberInsert(LoginVO vo);
+	public LoginVO idExistCheck(String id);
 	
 }
