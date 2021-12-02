@@ -9,9 +9,6 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -40,5 +37,9 @@
    
     <!-- Root Context: defines shared resources visible to all other web components -->
 	<context:property-placeholder location="/WEB-INF/property/*.properties" />
+   	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	<default-servlet-handler />
    	
 </beans:beans>

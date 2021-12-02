@@ -1,4 +1,4 @@
-package com.nidas.app.login.controller;
+package com.nidas.app.etc.controller;
 
 import java.io.IOException;
 import java.util.HashMap;

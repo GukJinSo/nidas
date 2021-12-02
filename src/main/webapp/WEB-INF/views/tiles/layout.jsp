@@ -5,8 +5,8 @@
 <html>
 <head>
 <title></title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- bootstrap.min css -->
+<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
 <!-- jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- Popper JS -->
@@ -16,11 +16,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
-
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png" />
+<!-- Themefisher Icon font -->
+<link rel="stylesheet" href="/plugins/themefisher-font/style.css">
+<!-- Animate css -->
+<link rel="stylesheet" href="/plugins/animate/animate.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="/plugins/slick/slick.css">
+<link rel="stylesheet" href="/plugins/slick/slick-theme.css">
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/test.css">
 </head>
 <body>
-<body> 
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="body" />
 	<tiles:insertAttribute name="footer" />
