@@ -4,30 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
-<!-- bootstrap.min css -->
-<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+<title>NIDAS</title>
 <!-- jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<!-- favicon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<!-- font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png" />
-<!-- Themefisher Icon font -->
-<link rel="stylesheet" href="/plugins/themefisher-font/style.css">
-<!-- Animate css -->
-<link rel="stylesheet" href="/plugins/animate/animate.css">
-<!-- Slick Carousel -->
-<link rel="stylesheet" href="/plugins/slick/slick.css">
-<link rel="stylesheet" href="/plugins/slick/slick-theme.css">
-<!-- Main Stylesheet -->
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/test.css">
 </head>
 <body>
 	<tiles:insertAttribute name="header" />

@@ -21,8 +21,8 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class SMSController {
 
 	// 프로퍼티 로드
-	@Value("${api_key}") private String api_key;
-	@Value("${api_secret}") private String api_secret;
+	@Value("${api.key}") private String apiKey;
+	@Value("${api.secret}") private String apiSecret;
 	
 	
 	@PostMapping("sendSMS.do")
@@ -39,7 +39,7 @@ public class SMSController {
 			textCode += ran;
 		}
 		
-		Message coolsms = new Message(api_key, api_secret);
+		Message coolsms = new Message(apiKey, apiSecret);
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", targetNum);
 		params.put("from", "01082017731");
