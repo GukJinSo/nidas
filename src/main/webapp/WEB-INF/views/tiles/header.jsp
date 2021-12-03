@@ -7,52 +7,61 @@
 <head>
 <title>Insert title here</title>
 <style>
-	#bannerDiv{
-		text-align: center;
+	.hMenuDiv{
+		text-align:right;
+		margin-top:10px;
+		font-size: 12px;
 	}
-	#searchBar{
+	.hLogoDiv{
+	}
+	.hSearchDiv{
+		margin-top:20px;
+		text-align: center;		
+	}
+	.hSearchBar{
 		border: none;
+		width:50%;
 		border-bottom: 2px solid black;
+	}
+	.hSearchBtn{
+		background:none;
+		border:0px;
 	}
 </style>
 </head>
 <body>
 
 
-<div id="header">
+<div class="header">
 <div class="container">
-<div class="row">
-	<div class="col-lg-2" id="bannerDiv">
-		<img src="resources/images/headerlogo.png"/>
-	</div> 
-	<div class="col-lg-8">
-		<input type="text" id="searchBar" placeholder="누오보 윈터 컬렉션"/>
-		<i class="fas fa-search"></i>
+<div class="row" >
+
+	<div class="col-lg-12 hMenuDiv">
+		<sec:authorize access="isAnonymous()">
+			<a href="loginForm.do">로그인</a>
+			<a href="registerForm.do">회원가입</a>
+		</sec:authorize>
+		<a href="">고객센터</a>
+		<a href="">매장찾기</a>
 	</div>
+	
+	<div class="col-lg-2 hLogoDiv">
+		<a href="main.do"> <img src="resources/images/headerlogo.png"> </a>
+	</div> 
+	
+	<div class="col-lg-8 hSearchDiv">
+		<form action="search.do">
+			<input type="text" class="hSearchBar" placeholder="누오보 윈터 컬렉션"/>
+			<button type="submit" class="hSearchBtn"><i class="fas fa-search"></i></button>
+		</form>
+		<div class="col-lg-8 hMenuDiv">
+		</div>
+	</div>
+	
 	<div class="col-lg-2">
 	</div>
 </div>
 </div>
 </div>
-
-
-	<sec:authorize access="isAnonymous()">
-		<p>
-			<a href="loginForm.do">로그인</a>
-			<a href="registerForm.do">회원가입</a>
-			
-		</p>
-	</sec:authorize>
-	
-	<sec:authorize access="isAuthenticated()">
-		<form:form action="${pageContext.request.contextPath}/logout.do" method="POST">
-			<input type="submit" value="로그아웃" />
-		</form:form>
-	</sec:authorize>
-	
-	<h3>
-		<a href="main.do">메인</a>
-	</h3>
-
 </body>
 </html>
