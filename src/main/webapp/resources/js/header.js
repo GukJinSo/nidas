@@ -1,9 +1,7 @@
-function cateFade(target){
-	let reset = $('.hCateWrap').children();
-	reset.css('display', 'none');
-	let targetFade = $('.'+target);
+function cateFade(){
+	let target = $('.hCateDiv');
 	$('.hCateWrap').css('display', 'block');
-	targetFade.fadeIn();
+	target.fadeIn();
 }
 function cateFadeOut(){
 	let reset = $('.hCateWrap').children();

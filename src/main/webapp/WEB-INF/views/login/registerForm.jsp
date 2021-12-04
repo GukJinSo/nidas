@@ -4,10 +4,10 @@
 <script src="resources/js/registerForm.js"></script>
 
 <div class="body">
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
         	<div class="title" align="center">
 	        	<h4 class="title">나이다스 멤버십 회원가입</h4>
     	    	<p class="description">멤버가 되어 나이다스가 제공하는 최고의 제품과 혜택을 만나보세요</p>
@@ -71,7 +71,7 @@
 				</form>
         	</div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-lg-4"></div>
     </div>
 </div>
 </div>

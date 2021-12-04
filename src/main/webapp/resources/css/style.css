@@ -74,8 +74,8 @@
 	.hCateDiv{
 		margin-top:20px;
 		padding-top:20px;
-		padding-left:80px;
-		padding-right:80px;
+		padding-left:120px;
+		padding-right:120px;
 		padding-bottom:40px;
 		display:none;
 		font-size: 13px;
@@ -111,4 +111,8 @@
 	.slideArrBtn{
 		width:50px;
 		z-index: 0;
+	}
+	.seeAll{
+		font-size: 18px;
+		padding-bottom: 10px; 
 	}

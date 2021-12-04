@@ -5,7 +5,7 @@
 		
 <script src="resources/js/header.js"></script>
 		
-<div class="header">
+<div class="header" onmouseleave="cateFadeOut()" >
 <div class="container">
 <div class="row">
 
@@ -38,18 +38,17 @@
 	</div>
 	
 	<div class="col-lg-12 hCateBar">
-		<Button class="hCateBtn" onmouseover="cateFade('cateAll')">카테고리</Button>
-		<Button class="hCateBtn" onmouseover="cateFade('cateBrand')">브랜드 라인업</Button>
+		<Button class="hCateBtn" onmouseover="cateFade()">카테고리</Button>
 		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='customPage.do'">커스터마이즈</Button>
+		<Button class="hCateBtn" onmouseover="cateFadeOut()">랭킹</Button>
 		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='sales.do'">세일</Button>
 	</div>
 	
 </div>
 </div>
-		<div class="hCateWrap" onmouseleave="cateFadeOut()">
-		
+		<div class="hCateWrap">
 			<div class="hCateDiv cateAll">
-				<h5><a href=""><i class="fas fa-chevron-right smallIcon"></i>모두 보기</a></h5>
+				<p class="seeAll"><a href=""><i class="fas fa-chevron-right smallIcon"></i>모두 보기</a></p>
 				<div class="hCateInDiv">
 					<ul class="ul">
 					<li>신발</li>
@@ -80,28 +79,16 @@
 					<li><a href="">스포츠 장비</a></li>
 					</ul>
 				</div>
-
-				
-			</div>
-			<div class="hCateDiv cateBrand">
-				<h5><a href=""><i class="fas fa-chevron-right smallIcon"></i>모두 보기</a></h5>
 				<div class="hCateInDiv">
-					<h6 align="center">나이키</h6>
-					<a href="">Air Force</a>
-					<a href="">Air Max</a>
-					<a href="">Air Vapormax</a>
-					<a href="">Jordan</a>
-				</div>
-				<div class="hCateInDiv">
-					<h6 align="center">아디다스</h6>
-					<a href="">Stan Smith</a>
-					<a href="">Superstar</a>
-					<a href="">Ultraboost</a>
-				</div>
-				<div class="hCateInDiv">
-					<h6 align="center">컨버스</h6>
-					<a href="">Chuck 70 Classic</a>
-					<a href="">Allstar</a>
+					<ul class="ul">
+					<li>아이콘</li>
+					<li><a href="">나이키 에어 포스</a></li>
+					<li><a href="">나이키 에어 맥스</a></li>
+					<li><a href="">아디다스 스탠 스미스</a></li>
+					<li><a href="">아디다스 슈퍼스타</a></li>
+					<li><a href="">컨버스 척 70 클래식</a></li>
+					<li><a href="">반스 올드스쿨</a></li>
+					</ul>
 				</div>
 			</div>
 			<div class="clear">
