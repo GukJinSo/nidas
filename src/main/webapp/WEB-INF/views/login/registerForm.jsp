@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<head>
-<style>
-	body{
-		font-family: 'Noto Sans KR', sans-serif;
-	}
-	.notice{
-		color: red;
-	}
 
-</style>
 <script>
 
 // 클라이언트 유효성 검사
@@ -160,10 +151,7 @@ function frmSubmit(){
 }
 
 </script>
-</head>
-<body>
 
-<div class="container-fluid">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -232,5 +220,3 @@ function frmSubmit(){
         </div>
         <div class="col-md-4"></div>
     </div>
-</div>
-</body>

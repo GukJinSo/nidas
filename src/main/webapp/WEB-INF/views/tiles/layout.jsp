@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>NIDAS</title>
+<meta charset="UTF-8">
 <!-- jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- Popper JS -->
@@ -18,10 +19,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+
 </head>
 <body>
-	<tiles:insertAttribute name="header" />
-	<tiles:insertAttribute name="body" />
-	<tiles:insertAttribute name="footer" />
+	<div class="header">
+		<div class="container">
+			<tiles:insertAttribute name="header" />
+		</div>
+	</div>
+	
+	<div class="body">
+		<div class="container">
+			<tiles:insertAttribute name="body" />
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div class="container">
+			<tiles:insertAttribute name="footer" />
+		</div>
+	</div>
 </body>
 </html>

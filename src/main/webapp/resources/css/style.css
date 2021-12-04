@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+	body{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	.header{
+		width: 100%;
+		position: fixed;
+		background: white;
+		z-index: 1;
+	}
+	.body{
+		padding-top: 130px;
+		z-index: 0;
+	}
+	.hMenuDiv{
+		text-align:le;
+		margin:auto;
+		font-size: 12px;
+	}
+	.hMenuDiv a{
+		margin-left:3px;
+		margin-right:3px;
+	}
+	.hSearchDiv{
+		margin-top:25px;
+		text-align: center;		
+	}
+	.hSearchBar{
+		border: none;
+		width:50%;
+		border-bottom: 2px solid black;
+		padding: 5px 10px;
+		font-size: 15px;
+	}
+	.hSearchBar:focus{
+		outline: none;
+	}
+	.hSearchBtn{
+		background:none;
+		border:0px;
+	}
+	.hCategoryBar{
+		padding-bottom: 10px;
+	}
+	.hCategoryBar a{
+		margin:0px 35px;
+	}
+	.notice{
+		color: red;
+	}
+	.middleIcon{
+		font-size: 24px;
+		color: black;
+	}
+	.submitIconBtn{
+		background: none;
+		border: none;
+	}
