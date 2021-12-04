@@ -2,8 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
-<div class="row" >
+		
+<script src="resources/js/header.js"></script>
+		
+<div class="header">
+<div class="container">
+<div class="row">
 
 	
 	<div class="col-lg-2 hLogoDiv">
@@ -15,8 +19,6 @@
 			<input type="text" class="hSearchBar" placeholder="누오보 윈터 컬렉션" onfocus="this.placeholder=''"/>
 			<button type="submit" class="hSearchBtn"><i class="fas fa-search"></i></button>
 		</form>
-									<div class="col-lg-8">
-		</div>
 	</div>
 	
 	<div class="col-lg-2 hMenuDiv">
@@ -35,11 +37,74 @@
 		<a href="" title="매장위치"><i class="far fa-map middleIcon"></i></a>
 	</div>
 	
-	<div class="col-lg-12 hCategoryBar">
-		<a href="" title="카테고리별">CATEGORY</a>
-		<a href="" title="신상품">NEW</a>
-		<a href="" title="커스터마이즈">CUSTOM</a>
-		<a href="" title="할인중">SALE</a>
+	<div class="col-lg-12 hCateBar">
+		<Button class="hCateBtn" onmouseover="cateFade('cateAll')">카테고리</Button>
+		<Button class="hCateBtn" onmouseover="cateFade('cateBrand')">브랜드 라인업</Button>
+		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='customPage.do'">커스터마이즈</Button>
+		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='sales.do'">세일</Button>
 	</div>
 	
-</div>	
+</div>
+</div>
+		<div class="hCateWrap" onmouseleave="cateFadeOut()">
+		
+			<div class="hCateDiv cateAll">
+				<h5><a href=""><i class="fas fa-chevron-right smallIcon"></i>모두 보기</a></h5>
+				<div class="hCateInDiv">
+					<ul class="ul">
+					<li>신발</li>
+					<li><a href="">캔버스/스웨이드</a>
+					<li><a href="">캐주얼</a>
+					<li><a href="">러닝/스포츠</a></li>
+					<li><a href="">농구화</a>
+					<li><a href="">슬리퍼</a>
+					</ul>
+				</div>
+				<div class="hCateInDiv">
+					<ul class="ul">
+					<li>의류</li>
+					<li><a href="">티셔츠</a></li>
+					<li><a href="">맨투맨/후드</a></li>
+					<li><a href="">바지</a></li>
+					<li><a href="">반바지</a></li>
+					<li><a href="">레플리카</a></li>
+					<li><a href="">트랙탑</a></li>
+					<li><a href="">재킷</a></li>
+					</ul>
+				</div>
+				<div class="hCateInDiv">
+					<ul class="ul">
+					<li>악세서리</li>
+					<li><a href="">모자</a></li>
+					<li><a href="">가방</a></li>
+					<li><a href="">스포츠 장비</a></li>
+					</ul>
+				</div>
+
+				
+			</div>
+			<div class="hCateDiv cateBrand">
+				<h5><a href=""><i class="fas fa-chevron-right smallIcon"></i>모두 보기</a></h5>
+				<div class="hCateInDiv">
+					<h6 align="center">나이키</h6>
+					<a href="">Air Force</a>
+					<a href="">Air Max</a>
+					<a href="">Air Vapormax</a>
+					<a href="">Jordan</a>
+				</div>
+				<div class="hCateInDiv">
+					<h6 align="center">아디다스</h6>
+					<a href="">Stan Smith</a>
+					<a href="">Superstar</a>
+					<a href="">Ultraboost</a>
+				</div>
+				<div class="hCateInDiv">
+					<h6 align="center">컨버스</h6>
+					<a href="">Chuck 70 Classic</a>
+					<a href="">Allstar</a>
+				</div>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+</div>

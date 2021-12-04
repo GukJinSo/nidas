@@ -24,22 +24,8 @@
 
 </head>
 <body>
-	<div class="header">
-		<div class="container">
-			<tiles:insertAttribute name="header" />
-		</div>
-	</div>
-	
-	<div class="body">
-		<div class="container">
-			<tiles:insertAttribute name="body" />
-		</div>
-	</div>
-	
-	<div class="footer">
-		<div class="container">
-			<tiles:insertAttribute name="footer" />
-		</div>
-	</div>
+	<tiles:insertAttribute name="header" />
+	<tiles:insertAttribute name="body" />
+	<tiles:insertAttribute name="footer" />
 </body>
 </html>

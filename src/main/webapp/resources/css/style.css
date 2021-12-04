@@ -3,6 +3,10 @@
 	body{
 		font-family: 'Noto Sans KR', sans-serif;
 	}
+	.container-fluid{
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}
 	.header{
 		width: 100%;
 		position: fixed;
@@ -40,14 +44,19 @@
 		background:none;
 		border:0px;
 	}
-	.hCategoryBar{
+	.hCateBar{
 		padding-bottom: 10px;
 	}
-	.hCategoryBar a{
+	.hCateBtn {
+		border:none;
 		margin:0px 35px;
+		padding-bottom: 4px;
 	}
 	.notice{
 		color: red;
+	}
+	.smallIcon{
+		font-size: 15px;
 	}
 	.middleIcon{
 		font-size: 24px;
@@ -56,4 +65,50 @@
 	.submitIconBtn{
 		background: none;
 		border: none;
+
+	}
+	.hCateBtn:hover{
+		padding-bottom: 2px;
+		border-bottom: 2px solid red;
+	}
+	.hCateDiv{
+		margin-top:20px;
+		padding-top:20px;
+		padding-left:80px;
+		padding-right:80px;
+		padding-bottom:40px;
+		display:none;
+		font-size: 13px;
+		box-shadow: 0px 5px 10px grey;
+		display:none;
+		height:400px;
+	}
+	.hCateInDiv{
+		display:block;
+		float:left;
+		width:15%;
+		height:300px;
+		padding-left:20px;
+		padding-right:20px;
+	}
+	.hCateInDiv:not(:last-child){
+		border-right: 1px solid #DFDFDF;
+	}
+	.hCateDiv a:hover{
+		color:#BC4747;
+		text-decoration: underline;
+	}
+	.clear{
+		clear:both;
+	}
+	.ul{
+   		list-style:none;
+   		padding-left:0px;
+	}
+	.ul li{
+		margin-bottom:5px; 
+	}
+	.slideArrBtn{
+		width:50px;
+		z-index: 0;
 	}
