@@ -36,7 +36,9 @@
 	</div>
 </div>
 <div class="mainBestSeller">
-	<p>베스트 셀러</p>
+	<p>베스트 셀러
+		<a href="" class="seeMore" title="더 보기">MORE</a>
+	</p>
 	<div class="bestSellerWrap">
 		<a href="">
 			<div class="mainProduct">
@@ -192,16 +194,32 @@
 
 <div class="mainBestBrand">
 	<p>베스트 브랜드</p>
-	<div class="imgDiv"><img src="resources/images/mainNike.jpg" width="33%;" height="400px;"><span class="imgFont">NIKE</span></div>
-	<div class="imgDiv"><img src="resources/images/mainVans.jpg" width="33%;" height="400px;"><span class="imgFont">VANS</span></div>
-	<div class="imgDiv"><img src="resources/images/mainConverse.jpg" width="33%;" height="400px;"><span class="imgFont">CONVERSE</span></div>
+	<div class="imgDivWrap">
+		<div class="imgDiv">
+			<img src="resources/images/mainNike.jpg" width="30%;" height="400px;">
+			<span class="imgFont">NIKE</span>
+			<span class="imgsubFont">Just Do It!</span>
+		</div>
+		<div class="imgDiv">
+			<img src="resources/images/mainVans.jpg" width="30%;" height="400px;">
+			<span class="imgFont">VANS</span>
+			<span class="imgsubFont">스케이트 슈즈에서 클래식으로</span>
+		</div>
+		<div class="imgDiv">
+			<img src="resources/images/mainConverse.jpg" width="30%;" height="400px;">
+			<span class="imgFont">CONVERSE</span>
+			<span class="imgsubFont">디자인 헤리티지를 더한 프리미엄 컴포트 스니커즈</span>
+		</div>
+	</div>
+	<div class="clear"></div>
 </div>
 
-
-
+<div class="mainReview">
+	<p>새로운 리뷰</p>
+	<div class="reviewDivWrap">
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 
-
-
+</div>
 </div>
 
