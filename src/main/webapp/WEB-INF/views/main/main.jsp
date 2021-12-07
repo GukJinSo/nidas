@@ -35,6 +35,62 @@
  		</ul>
 	</div>
 </div>
+<div class="mainBestSeller">
+	<p>베스트 셀러</p>
+	<div class="bestSellerWrap">
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes1.jpg">
+				</div>
+				<div class="mainProductText">
+					신발 내용
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes1.jpg">
+				</div>
+				<div class="mainProductText">
+					신발 내용
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes1.jpg">
+				</div>
+				<div class="mainProductText">
+					신발 내용
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes1.jpg">
+				</div>
+				<div class="mainProductText">
+					신발 내용
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes1.jpg">
+				</div>
+				<div class="mainProductText">
+					신발 내용
+				</div>
+			</div>
+		</a>
+		<div class="clear"></div>
+	</div>
+</div>
 
 <div class="mainBestBrand">
 	<p>베스트 브랜드</p>

@@ -20,7 +20,7 @@
 			<button type="submit" class="hSearchBtn"><i class="fas fa-search"></i></button>
 		</form>
 	</div>
-	
+
 	<div class="col-lg-2 hMenuDiv">
 		<sec:authorize access="isAnonymous()">
 			<a href="loginForm.do" title="로그인"><i class="far fa-user middleIcon"></i></a>
