@@ -151,8 +151,13 @@
 		float:left;
 		width:240px;
 		height:240px;
-		margin:1%;
+		margin:2%;
 		
+	}
+	@media (max-width:1536px){
+	.bestSellerWrap a{
+			margin:1%;
+		}
 	}
 	.mainProductImage img{
 		width:100%;
