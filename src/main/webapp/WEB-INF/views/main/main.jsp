@@ -4,8 +4,8 @@
 
 
 <div class="body">
-<div class="container-fluid">
 
+<div class="container-fluid">
 <div id="slide" class="carousel slide" data-ride="carousel">
 	<!-- 슬라이드 쇼 -->
 	<div class="carousel-inner"> 
@@ -34,8 +34,19 @@
 	  		<li data-target="#slide" data-slide-to="1"></li> 
  		</ul>
 	</div>
-	<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈<br>줄바꿈
 </div>
 
+<div class="mainBestBrand">
+	<p>베스트 브랜드</p>
+	<div class="imgDiv"><img src="resources/images/mainNike.jpg" width="33%;" height="400px;"><span class="imgFont">NIKE</span></div>
+	<div class="imgDiv"><img src="resources/images/mainVans.jpg" width="33%;" height="400px;"><span class="imgFont">VANS</span></div>
+	<div class="imgDiv"><img src="resources/images/mainConverse.jpg" width="33%;" height="400px;"><span class="imgFont">CONVERSE</span></div>
 </div>
+
+
 </div>
+
+
+
+</div>
+
