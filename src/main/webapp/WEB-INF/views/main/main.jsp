@@ -11,12 +11,12 @@
 	<div class="carousel-inner"> 
 		<div class="carousel-item active">
 			<a href=""> 
-				<img class="d-block w-100" src="resources/images/mainBanner1.jpg">
+				<img class="d-block w-100" src="resources/images/mainBanner2.jpg">
 			</a> 
 		</div>
 		<div class="carousel-item">
 			<a href="">
-				<img class="d-block w-100" src="resources/images/mainBanner2.jpg">
+				<img class="d-block w-100" src="resources/images/mainBanner1.jpg">
       		</a>
 		</div> 
 		<!-- 왼쪽 오른쪽 화살표 버튼 -->
@@ -44,7 +44,68 @@
 					<img src="resources/images/shoes1.jpg">
 				</div>
 				<div class="mainProductText">
-					신발 내용
+					<div class="prodBrand">나이키</div>
+					<div class="prodName">와플 트레이너</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">59,000</span>
+						<span class="prodSalePrice">53,100</span>원
+					</div>
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes2.jpg">
+				</div>
+				<div class="mainProductText">
+					<div class="prodBrand">아디다스</div>
+					<div class="prodName">스탠 스미스</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">109,000</span>원
+					</div>
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes3.jpg">
+				</div>
+				<div class="mainProductText">
+					<div class="prodBrand">반스</div>
+					<div class="prodName">올드스쿨</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">69,000</span>원
+					</div>
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes4.jpg">
+				</div>
+				<div class="mainProductText">
+					<div class="prodBrand">컨버스</div>
+					<div class="prodName">척 테일러 70</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">89,000</span>
+					</div>
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes5.jpg">
+				</div>
+				<div class="mainProductText">
+					<div class="prodBrand">나이키</div>
+					<div class="prodName">에어 포스 1</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">129,000</span>원
+					</div>
 				</div>
 			</div>
 		</a>
@@ -54,42 +115,79 @@
 					<img src="resources/images/shoes1.jpg">
 				</div>
 				<div class="mainProductText">
-					신발 내용
+					<div class="prodBrand">나이키</div>
+					<div class="prodName">와플 트레이너</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">59,000</span>
+						<span class="prodSalePrice">53,100</span>원
+					</div>
 				</div>
 			</div>
 		</a>
 		<a href="">
 			<div class="mainProduct">
 				<div class="mainProductImage">
-					<img src="resources/images/shoes1.jpg">
+					<img src="resources/images/shoes2.jpg">
 				</div>
 				<div class="mainProductText">
-					신발 내용
+					<div class="prodBrand">아디다스</div>
+					<div class="prodName">스탠 스미스</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">109,000</span>원
+					</div>
 				</div>
 			</div>
 		</a>
 		<a href="">
 			<div class="mainProduct">
 				<div class="mainProductImage">
-					<img src="resources/images/shoes1.jpg">
+					<img src="resources/images/shoes3.jpg">
 				</div>
 				<div class="mainProductText">
-					신발 내용
+					<div class="prodBrand">반스</div>
+					<div class="prodName">올드스쿨</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">69,000</span>원
+					</div>
 				</div>
 			</div>
 		</a>
 		<a href="">
 			<div class="mainProduct">
 				<div class="mainProductImage">
-					<img src="resources/images/shoes1.jpg">
+					<img src="resources/images/shoes4.jpg">
 				</div>
 				<div class="mainProductText">
-					신발 내용
+					<div class="prodBrand">컨버스</div>
+					<div class="prodName">척 테일러 70</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">89,000</span>
+					</div>
+				</div>
+			</div>
+		</a>
+		<a href="">
+			<div class="mainProduct">
+				<div class="mainProductImage">
+					<img src="resources/images/shoes5.jpg">
+				</div>
+				<div class="mainProductText">
+					<div class="prodBrand">나이키</div>
+					<div class="prodName">에어 포스 1</div>
+					<div class="prodPrice">
+						<span class="prodNormalPrice">129,000</span>원
+					</div>
 				</div>
 			</div>
 		</a>
 		<div class="clear"></div>
 	</div>
+</div>
+
+<div class="saleBanner">
+	<a href="">
+	<img src="resources/images/saleBanner.png" width="100%;" height="150px;">
+	</a>
 </div>
 
 <div class="mainBestBrand">
@@ -98,6 +196,7 @@
 	<div class="imgDiv"><img src="resources/images/mainVans.jpg" width="33%;" height="400px;"><span class="imgFont">VANS</span></div>
 	<div class="imgDiv"><img src="resources/images/mainConverse.jpg" width="33%;" height="400px;"><span class="imgFont">CONVERSE</span></div>
 </div>
+
 
 
 </div>

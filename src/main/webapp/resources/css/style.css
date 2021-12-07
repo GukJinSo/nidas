@@ -145,23 +145,40 @@
 	}
 	.bestSellerWrap{
 		text-align: center;
-		padding:auto;
+		padding:20px;
+	}
+	.bestSellerWrap a:hover{
+		text-decoration: none;
+		color:black;
 	}
 	.bestSellerWrap a{
 		float:left;
 		width:240px;
 		height:240px;
 		margin:2%;
-		
+		color:black;
+		margin-bottom:70px;
 	}
 	@media (max-width:1536px){
 	.bestSellerWrap a{
 			margin:1%;
 		}
 	}
+	
 	.mainProductImage img{
 		width:100%;
 		height:100%;
 	}
 	.mainProductText{
+		text-align:left;
+	}
+	.prodName{
+		color:grey;
+	}
+	.prodNormalPrice, .prodSalePrice{
+		font-size: 20px;
+		font-family: 'Catamaran', sans-serif;
+	}
+	.saleBanner{
+		margin-top: 20px;
 	}
