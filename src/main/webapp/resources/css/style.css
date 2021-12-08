@@ -11,7 +11,7 @@
 		width: 100%;
 		position: fixed;
 		background: white;
-		z-index: 1;
+		z-index: 99;
 	}
 	.body{
 		padding-top: 130px;
@@ -95,14 +95,14 @@
 	.hCateInDiv:not(:last-child){
 		border-right: 1px solid #DFDFDF;
 	}
-	.hCateDiv a:hover{
+	.hCateDiv a:hover, .seeMore:hover{
 		color:#BC4747;
 		text-decoration: none;
 	}
 	.clear{
 		clear:both;
 	}
-	.ul{
+	ul{
    		list-style:none;
    		padding-left:0px;
 	}
@@ -205,14 +205,21 @@
 	.seeMore{
 		font-size: 16px;
 	}
-	
-	.seeMore:hover{
-		color:red;
-		text-decoration: none;
-	}
 	.mainReview{
 		background: #EBEBEB;
 	}
-	.reviewDivWrap{
-		
-	}
+    .swiper {
+    	overflow:visible;
+      	width: 100%;
+      	height: 400px;
+    }
+    .swiper-slide {
+    	display:inline-block;
+      	font-size: 18px;
+      	background: white;
+      	width:250px !important;
+    }
+    .swiper-slide img {
+      	width: 100%;
+      	height: 300px;
+    }

@@ -3,6 +3,20 @@
 <%@ page session="false" %>
 
 
+<script>
+$(function() {
+  var swiper = new Swiper(".mySwiper", {
+	slidesPerView: 'auto',
+    spaceBetween: 60,
+    freeMode: true,
+    loop:true,
+    autoplay: {
+        delay: 3000,
+      }
+  });
+});
+</script>
+
 <div class="body">
 
 <div class="container-fluid">
@@ -196,30 +210,47 @@
 	<p>베스트 브랜드</p>
 	<div class="imgDivWrap">
 		<div class="imgDiv">
+			<a href="">
 			<img src="resources/images/mainNike.jpg" width="30%;" height="400px;">
 			<span class="imgFont">NIKE</span>
 			<span class="imgsubFont">Just Do It!</span>
+			</a>
 		</div>
 		<div class="imgDiv">
+			<a href="">
 			<img src="resources/images/mainVans.jpg" width="30%;" height="400px;">
 			<span class="imgFont">VANS</span>
 			<span class="imgsubFont">스케이트 슈즈에서 클래식으로</span>
+			</a>
 		</div>
 		<div class="imgDiv">
+			<a href="">
 			<img src="resources/images/mainConverse.jpg" width="30%;" height="400px;">
 			<span class="imgFont">CONVERSE</span>
 			<span class="imgsubFont">디자인 헤리티지를 더한 프리미엄 컴포트 스니커즈</span>
+			</a>
 		</div>
 	</div>
 	<div class="clear"></div>
 </div>
 
 <div class="mainReview">
-	<p>새로운 리뷰</p>
-	<div class="reviewDivWrap">
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<p>새로운 리뷰<p>
+	<div class="swiper mySwiper">
+	  <div class="swiper-wrapper">
+	    <div class="swiper-slide"><img src="resources/images/shoes1.jpg"></div>
+	    <div class="swiper-slide">Slide 2</div>
+	    <div class="swiper-slide">Slide 3</div>
+	    <div class="swiper-slide">Slide 4</div>
+	    <div class="swiper-slide">Slide 5</div>
+	    <div class="swiper-slide">Slide 6</div>
+	    <div class="swiper-slide">Slide 7</div>
+	    <div class="swiper-slide">Slide 8</div>
+	    <div class="swiper-slide">Slide 9</div>
+	    <div class="swiper-slide">Slide 10</div>
+	  </div>
+	</div>
 </div>
 
-</div>
 </div>
 
