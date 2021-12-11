@@ -18,8 +18,8 @@ $(function() {
 </script>
 
 <div class="body">
-
 <div class="container-fluid">
+
 <div id="slide" class="carousel slide" data-ride="carousel">
 	<!-- 슬라이드 쇼 -->
 	<div class="carousel-inner"> 
@@ -49,9 +49,10 @@ $(function() {
  		</ul>
 	</div>
 </div>
+
 <div class="mainBestSeller">
 	<p>베스트 셀러
-		<a href="" class="seeMore" title="더 보기">MORE</a>
+		<a href="productList.do" class="seeMore" title="더 보기">MORE</a>
 	</p>
 	<div class="bestSellerWrap">
 		<a href="">
@@ -253,4 +254,4 @@ $(function() {
 </div>
 
 </div>
-
+</div>
