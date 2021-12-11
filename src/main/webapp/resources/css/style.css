@@ -223,3 +223,15 @@
       	width: 100%;
       	height: 300px;
     }
+	.nav{
+		padding:20px;
+		display:inline-block;
+		width:18%;
+		height:100%;
+	}
+	.prodList{
+		padding:20px;
+		display:inline-block;
+		width:auto;
+		height:100%;
+	}

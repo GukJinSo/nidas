@@ -3,10 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="body">
-<c:forEach var="vo" items="${map.prodList }">
-	${vo.serial }
-</c:forEach>
-${map.paging }
+<div class="container-fluid">
+	<div class="nav">
+		내비바
+	</div>
+	<div class="prodList">
+		<div class="sortWrap"></div>
+		<p>총 ${map.paging.totalCount }개의 상품이 있습니다
+		<hr>
+	</div>
 
-
+</div>
+</div>
 </div>
