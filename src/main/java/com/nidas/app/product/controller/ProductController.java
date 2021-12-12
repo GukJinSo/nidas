@@ -17,6 +17,7 @@ public class ProductController {
 	// 페이징 번호(디폴트값 또는 쿼리스트링), 배열 컬러, 브랜드, 사이즈, 가격
 	private String productList(ProductVO vo, Model model){
 		model.addAttribute("map", prodDAO.selectProdList(vo));
+		model.addAttribute("pCategory", vo.getPCategory());
 		return "product/productList";		
 	}
 }
