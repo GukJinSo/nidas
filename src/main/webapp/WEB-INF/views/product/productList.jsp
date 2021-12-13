@@ -3,6 +3,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
+	
+	$(function() {
+		$.ajax({
+			url:'productListAjax.do',
+			data:{pCategory:'${pCategory}'},
+			success:function(data){
+				$('.prodCount').text(data.paging.totalCount);
+				var addHtml = '';
+				addHtml += '<tr>';
+				for(var i = 0; i < data.prodList.length; i++){
+					addHtml += '<td>';
+					addHtml += '<div class="prod">';
+					addHtml += '<a href="productDetail.do">';
+					addHtml += '<img src="resources/ima	ges/shoes1.jpg">';
+					//addHtml += '<img src="resources/images/'+data.prodList[i].img+'">';
+					addHtml += '</a>';
+					addHtml += '</div>';
+					addHtml += '</td>';
+					if ((i+1) % 4 == 0 ){ // 4건 마다 개행
+						addHtml += '</tr><tr>';
+					}
+				}
+				
+				addHtml += '</tr>';
+				$('.prodWrap table').append(addHtml);
+				
+				
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});
+	});
 
 	function filterShow(target, action, clickedBtn){
 		if (action == 'show'){
@@ -60,7 +93,7 @@
 	</div>
 	<div class="prodList eqHeight">
 		<div class="path">
-			<a href="main.do">HOME</a>
+			<a href="main.do"><i class="fas fa-home"></i> HOME</a>
 			>
 			<c:if test="${pCategory eq null }">
 				신발
@@ -128,7 +161,7 @@
 		</div>
 		<div class="pagingOptions">
 			<span>
-				총 <span>${map.paging.totalCount }</span>개의 상품이 있습니다
+				총 <span class="prodCount"></span>개의 상품이 있습니다
 			</span>
 		    <select name="pagePer">
 		        <option value="20">20개씩 보기</option>
@@ -141,12 +174,10 @@
 				<option value="highPrice">높은가격순</option>
 			</select>
 	    	<div class="clear"></div>
-			<hr>
 		</div>
 		<div class="prodWrap">
-			상품설명란
-			<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
-			상품설명란
+			<table>
+			</table>
 		</div>
 		<div class="paging">
 			${map.paging }

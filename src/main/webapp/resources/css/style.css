@@ -11,7 +11,7 @@
 		width: 100%;
 		position: fixed;
 		background: white;
-		border-bottom: 1px solid #DFDFDF;
+		border-bottom: 1px solid #CECECE;
 		z-index: 99;
 	}
 	.body{
@@ -90,7 +90,7 @@
 		font-size: 13px;
 		display:none;
 		height:400px;
-		border-bottom: 1px solid #DFDFDF;
+		border-bottom: 1px solid #CECECE;
 	}
 	.hCateInDiv{
 		display:block;
@@ -101,7 +101,7 @@
 		padding-right:20px;
 	}
 	.hCateInDiv:not(:last-child){
-		border-right: 1px solid #DFDFDF;
+		border-right: 1px solid #CECECE;
 	}
 	.hCateDiv a:hover, .seeMore:hover, .path a:hover {
 		color:#BC4747;
@@ -238,6 +238,7 @@
 		
 	}
 	.prodList{
+		padding-right:130px;
 		float:right;
 		width:80%;
 		height:100%;
@@ -254,7 +255,7 @@
 	.prodcategory a:not(:last-child):after{
 		margin:30px;
 		content:"";
-		border-right: 1px solid #DFDFDF;
+		border-right: 1px solid #CECECE;
 	}
 	.prodcategory span:hover {
 		text-decoration:none;
@@ -266,7 +267,9 @@
 		padding-top:20px;
 	}
 	.pagingOptions{
+		padding:0px 8px;
 		margin: 15px 0px;
+		border-bottom: 2px solid black;
 	}
 	.pagingOptions select{
 		font-size:14px;
@@ -281,8 +284,16 @@
 	.pagingOptions select:focus{
 		outline: none;
 	}
-	.pagingOptions span span{
+	.pagingOptions span{
+		font-size:14px;
+	}
+	.prodCount{
+		font-size:16px;
 		color:red;
+	}
+	.paging{
+		margin-top:50px;
+		text-align:center;
 	}
 	.path{
 		font-size:14px;
@@ -293,7 +304,7 @@
 		margin-bottom:20px;
 	}
 	.filter{
-		border-bottom:1px solid #DFDFDF;
+		border-bottom:1px solid #CECECE;
 		font-size:16px;
 		margin-top:16px;
 		padding-left:20px;
@@ -324,7 +335,7 @@
 		padding-left:20px;
 		padding-top:10px;
 		padding-bottom:50px;
-		border:1px solid #DFDFDF;
+		border:1px solid #CECECE;
 		border-bottom:none;
 		width:90%;
 	}
@@ -333,12 +344,13 @@
 		margin:0px;
 		width:90%;
 		text-align: center;
-		border:1px solid #DFDFDF;
+		border:1px solid #CECECE;
 	}
 	.filterBtn{
 		width:49%;
 		border-radius: 0px;
 	}
+	
 	.innFilter{
 		font-size:14px;
 		display:block;
@@ -349,4 +361,17 @@
 	}
 	.hide{
 		display:none;
+	}
+	table{
+		width:100%;
+		height:100%;
+	}
+	.prodWrap{
+		padding:0px 30px;
+	}
+	.prod{
+		display:inline-block;
+	}
+	.prod img{
+		width:236px;
 	}

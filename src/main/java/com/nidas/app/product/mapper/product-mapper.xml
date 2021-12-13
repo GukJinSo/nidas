@@ -13,7 +13,7 @@ where 1=1
 and pCategory = #{pCategory}
 </if>
 <if test='search != null and search != ""'>
-and (pnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%'))
+and (pnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%') or bnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%') )
 </if>
 	<if test='brands != null'> 
 and brand in
@@ -38,11 +38,15 @@ and
 <!-- 페이징 쿼리 -->
 <select id="selectProdList" parameterType="com.nidas.app.product.vo.ProductVO" resultType="com.nidas.app.product.vo.ProductVO">
 
+/* 제일 안쪽 셀렉트 쿼리에서 모든 요소를 필터하고 정렬하며, 바깥쪽의 두 셀렉트는 순전히 rn 표시를 하기 위한 쿼리임 */  
+
 select *
 from
-  (select a.*, rownum rn
-  from V_NOWONSALE a
-  where 1=1
+  (select inv.*, rownum as rn
+  from
+    (select v.*, price*(1-nvl(disrate, 0)) as disPrice
+    from V_NOWONSALE v
+    where 1=1
 	<if test='pCategory != null and pCategory != ""'>
 	and pCategory = #{pCategory}
 	</if>
@@ -66,16 +70,18 @@ from
 		<foreach collection="sizes" item="si" open="(" close=")" separator="or">
 		${si} != 0 
 		</foreach>
-	</if>
+	</if>  
+    order by reldate desc) inv
   order by rn)
 where rn between #{pageStart} and #{pageEnd}
+
 
 </select>
 
 
 <!-- 라인코드 쿼리 -->
 <select id="selectSameLine" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
-select * from product where linecode = (select linecode from product where serial = #{serial}) and not serial = #{serial}
+select * from product where stylecode = (select stylecode from product where serial = #{serial}) and not serial = #{serial}
 </select>
 
 
