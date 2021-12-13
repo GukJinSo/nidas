@@ -13,7 +13,7 @@ public class ProductVO {
 	private String serial;
 	private String brand;
 	private String pCategory;
-	private String linecode;
+	private String styleCode;
 	private String pnameKor;
 	private String pnameEng;
 	private String color;
@@ -24,6 +24,9 @@ public class ProductVO {
 	private String img;
 	
 	// 쿼리 관련
+	private String disPrice;
+	private String bnameKor;
+	private String bnameEng;
 	private String search;
 	private int page;
 	private int pagePer;

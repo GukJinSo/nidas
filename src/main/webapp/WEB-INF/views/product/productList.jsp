@@ -14,12 +14,24 @@
 				addHtml += '<tr>';
 				for(var i = 0; i < data.prodList.length; i++){
 					addHtml += '<td>';
-					addHtml += '<div class="prod">';
-					addHtml += '<a href="productDetail.do">';
-					addHtml += '<img src="resources/ima	ges/shoes1.jpg">';
-					//addHtml += '<img src="resources/images/'+data.prodList[i].img+'">';
-					addHtml += '</a>';
-					addHtml += '</div>';
+						addHtml += '<div class="prod">';
+							addHtml += '<a href="productDetail.do">';
+								addHtml += '<img src="resources/images/shoes1.jpg">';
+								addHtml += '<div class="productText">';
+									addHtml += '<div class="prodBrand">'+data.prodList[i].bnameKor+'</div>';
+									addHtml += '<div class="prodName">'+data.prodList[i].pnameKor+'</div>';
+									addHtml += '<div class="prodPrice">';
+										if ( data.prodList[i].disRate != null ){
+											addHtml += '<span class="prodNormalPrice faint">'+data.prodList[i].price+'</span>';
+											addHtml += '<span class="prodSalePrice">'+data.prodList[i].disPrice+'원</span>';
+										} else {
+											addHtml += '<span class="prodNormalPrice">'+data.prodList[i].price+'원</span>';
+										}
+									addHtml += '</div>';
+								addHtml += '</div>';
+								//addHtml += '<img src="resources/images/'+data.prodList[i].img+'">';
+							addHtml += '</a>';
+						addHtml += '</div>';
 					addHtml += '</td>';
 					if ((i+1) % 4 == 0 ){ // 4건 마다 개행
 						addHtml += '</tr><tr>';

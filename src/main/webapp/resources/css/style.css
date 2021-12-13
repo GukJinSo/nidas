@@ -204,8 +204,7 @@
 		color:grey;
 	}
 	.prodNormalPrice, .prodSalePrice{
-		font-size: 20px;
-		font-family: 'Catamaran', sans-serif;
+		font-family: 'Cabin', sans-serif;
 	}
 	.saleBanner{
 		margin-top: 20px;
@@ -355,8 +354,8 @@
 		font-size:14px;
 		display:block;
 		padding-top:0px;
-		padding-left:20px;
-		padding-right:20px;
+		padding-left:30px;
+		padding-right:30px;
 		padding-bottom:16px;
 	}
 	.hide{
@@ -374,4 +373,16 @@
 	}
 	.prod img{
 		width:236px;
+	}
+	.prod a:hover{
+		text-decoration: none;
+	}
+	.faint{
+		font-size: 16px;
+		text-decoration: line-through;
+		color:grey;
+	}
+	.prodSalePrice{
+		font-size:22px;
+		color:red;
 	}
