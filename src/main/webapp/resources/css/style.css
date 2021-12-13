@@ -325,6 +325,7 @@
 		padding-top:10px;
 		padding-bottom:50px;
 		border:1px solid #DFDFDF;
+		border-bottom:none;
 		width:90%;
 	}
 	.filterBtns{
@@ -332,11 +333,20 @@
 		margin:0px;
 		width:90%;
 		text-align: center;
+		border:1px solid #DFDFDF;
 	}
 	.filterBtn{
 		width:49%;
 		border-radius: 0px;
 	}
-	.filter show{
-		content:"멀바시발아";
+	.innFilter{
+		font-size:14px;
+		display:block;
+		padding-top:0px;
+		padding-left:20px;
+		padding-right:20px;
+		padding-bottom:16px;
+	}
+	.hide{
+		display:none;
 	}
