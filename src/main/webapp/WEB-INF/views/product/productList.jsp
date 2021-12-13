@@ -2,13 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <div class="body">
 <div class="container-fluid">
 <div class="prodListWrap">
-	<div class="nav">
-		내비바
+	<div class="nav eqHeight">
+		<div class="filterWrap">
+			<div class="filter filterTitle">FILTER</div>
+			<div class="filter brands hide">브랜드
+				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+			<div class="filter sizes show">사이즈
+				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+			<div class="filter colors hide">컬러
+				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+			<div class="filter search hide">검색어
+				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+			<div class="filter price hide">가격
+				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+		</div>
+		<div class="filterBtns">
+			<button type="button" class="btn btn-light filterBtn">초기화</button>
+			<button type="button" class="btn btn-dark filterBtn">검색</button>
+		</div>
 	</div>
-	<div class="prodList">
+	<div class="prodList eqHeight">
 		<div class="path">
 			<a href="main.do">HOME</a>
 			>
@@ -45,38 +62,36 @@
 				슬리퍼/뮬
 			</c:if>
 			<c:if test="${pCategory eq null }">
-				&nbsp;
+				신발
 			</c:if>
 		</h3>
 		<div class="prodcategory">
 			<c:if test="${pCategory eq 'cate01cv'}">
-				<a href="productList.do?pCategory=cate01cs">캐주얼</a>
-				<a href="productList.do?pCategory=cate01rn">러닝/스포츠</a>
-				<a href="productList.do?pCategory=cate01sl">슬리퍼/뮬</a>
+				<a href="productList.do?pCategory=cate01cs"><span>캐주얼</span></a>
+				<a href="productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
+				<a href="productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
 			</c:if>
 			<c:if test="${pCategory eq 'cate01cs'}">
-				<a href="productList.do?pCategory=cate01cv">캔버스/스웨이드</a>
-				<a href="productList.do?pCategory=cate01rn">러닝/스포츠</a>
-				<a href="productList.do?pCategory=cate01sl">슬리퍼/뮬</a>
+				<a href="productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
+				<a href="productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
+				<a href="productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
 			</c:if>
 			<c:if test="${pCategory eq 'cate01rn'}">
-				<a href="productList.do?pCategory=cate01cv">캔버스/스웨이드</a>
-				<a href="productList.do?pCategory=cate01cs">캐주얼</a>
-				<a href="productList.do?pCategory=cate01sl">슬리퍼/뮬</a>
+				<a href="productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
+				<a href="productList.do?pCategory=cate01cs"><span>캐주얼</span></a>
+				<a href="productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
 			</c:if>
 			<c:if test="${pCategory eq 'cate01sl'}">
-				<a href="productList.do?pCategory=cate01cv">캔버스/스웨이드</a>
-				<a href="productList.do?pCategory=cate01cs">캐주얼</a>
-				<a href="productList.do?pCategory=cate01rn">러닝/스포츠</a>
+				<a href="productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
+				<a href="productList.do?pCategory=cate01cs"><span>캐주얼</span></a>
+				<a href="productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
 			</c:if>
 			<c:if test="${pCategory eq null }">
-				<a href="productList.do?pCategory=cate01cv">캔버스/스웨이드</a>
-				<a href="productList.do?pCategory=cate01cs">캐주얼</a>
-				<a href="productList.do?pCategory=cate01rn">러닝/스포츠</a>
-				<a href="productList.do?pCategory=cate01sl">슬리퍼/뮬</a>
+				<a href="productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
+				<a href="productList.do?pCategory=cate01cs"><span>캐주얼</span></a>
+				<a href="productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
+				<a href="productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
 			</c:if>
-
-
 		</div>
 		<div class="pagingOptions">
 			<span>
@@ -97,11 +112,14 @@
 		</div>
 		<div class="prodWrap">
 			상품설명란
-			<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
+			<hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>
 			상품설명란
 		</div>
+		<div class="paging">
+			${map.paging }
+		</div>
 	</div>
-	<div class="clear"></div>
 </div>
+<div class="clear"></div>
 </div>
 </div>

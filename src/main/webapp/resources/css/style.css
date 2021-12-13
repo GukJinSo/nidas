@@ -17,6 +17,7 @@
 	.body{
 		padding-top: 127px;
 		z-index: 0;
+		padding-bottom:127px;
 	}
 	.footer{
 		background:black;
@@ -102,7 +103,7 @@
 	.hCateInDiv:not(:last-child){
 		border-right: 1px solid #DFDFDF;
 	}
-	.hCateDiv a:hover, .seeMore:hover{
+	.hCateDiv a:hover, .seeMore:hover, .path a:hover {
 		color:#BC4747;
 		text-decoration: none;
 	}
@@ -231,6 +232,7 @@
       	height: 300px;
     }
 	.nav{
+		padding-top:30px;
 		float:left;
 		width:20%;
 		
@@ -247,26 +249,31 @@
 	.prodcategory a {
 		font-size:18px;
 		color:black;
-		margin:30px;
+		text-decoration:none;
 	}
-	.prodcategory a:hover {
+	.prodcategory a:not(:last-child):after{
+		margin:30px;
+		content:"";
+		border-right: 1px solid #DFDFDF;
+	}
+	.prodcategory span:hover {
 		text-decoration:none;
 		padding-bottom: 2px;
 		border-bottom: 2px solid red;
 	}
 	.prodListWrap{
-		margin:30px;
-		padding-top:40px;
+		margin:10px;
+		padding-top:20px;
 	}
 	.pagingOptions{
 		margin: 15px 0px;
 	}
 	.pagingOptions select{
+		font-size:14px;
 		padding:0px 5px;
 		padding-bottom:5px;
 		width:150px;
 		border:none;
-		border-bottom:1px solid #DFDFDF;
 		margin-left:30px;
 		float:right;
 		text-align:left;	
@@ -281,6 +288,55 @@
 		font-size:14px;
 	}
 	.prodList h3{
+		font-weight:800;
 		text-align: center;
 		margin-bottom:20px;
+	}
+	.filter{
+		border-bottom:1px solid #DFDFDF;
+		font-size:16px;
+		margin-top:16px;
+		padding-left:20px;
+		padding-right:20px;
+		padding-bottom:40px;
+		margin-right:50px;
+		width:100%;
+		height:30px;
+	}
+	.filterTitle{
+		padding-left:10px;
+		font-weight:800;
+		font-size:20px;
+		border-bottom:3px solid black;
+		padding-bottom:45px;
+	}
+	.filterShowBtn{
+		color:grey;
+		float:right;
+		text-align: right;
+		border:none;
+		outline: none;
+		background:none;
+	}
+	.filterWrap{
+		width:100%;
+		padding-right:20px;
+		padding-left:20px;
+		padding-top:10px;
+		padding-bottom:50px;
+		border:1px solid #DFDFDF;
+		width:90%;
+	}
+	.filterBtns{
+		padding:0px;
+		margin:0px;
+		width:90%;
+		text-align: center;
+	}
+	.filterBtn{
+		width:49%;
+		border-radius: 0px;
+	}
+	.filter show{
+		content:"멀바시발아";
 	}
