@@ -24,6 +24,7 @@ public class ProductVO {
 	private String img;
 	
 	// 쿼리 관련
+	private String orderBy;
 	private String disPrice;
 	private String bnameKor;
 	private String bnameEng;

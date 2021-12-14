@@ -19,6 +19,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public Map<String, Object> selectProdList(ProductVO vo) {
+		
 		// 기본값
 		if (vo.getPage() == 0) vo.setPage(1);
 		if (vo.getPagePer() == 0 ) vo.setPagePer(20);

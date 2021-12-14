@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@500;600&family=Raleway:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <!-- swiper js -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

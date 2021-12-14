@@ -70,8 +70,15 @@ from
 		<foreach collection="sizes" item="si" open="(" close=")" separator="or">
 		${si} != 0 
 		</foreach>
-	</if>  
-    order by reldate desc) inv
+	</if>
+	order by
+    <if test="orderBy != null">
+   	 #{orderBy}
+    </if>
+    <if test="orderBy == null">
+    relDate desc
+    </if>
+     ) inv
   order by rn)
 where rn between #{pageStart} and #{pageEnd}
 

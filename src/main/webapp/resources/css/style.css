@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: "gmarket";
+  src: url("../font/GmarketSansTTFMedium.ttf");
+}
+@font-face {
+  font-family: "gmarket bold";
+  src: url("../font/GmarketSansTTFBold.ttf");
+}
+
+
 	body{
 		font-family: 'Noto Sans KR', sans-serif;
 	}
@@ -201,10 +211,14 @@
 		text-align:left;
 	}
 	.prodName{
+		font-size:14px;
 		color:grey;
 	}
+	.prodPrice{
+	    margin-top: 10px;
+ 		font-family: "gmarket";
+	}
 	.prodNormalPrice, .prodSalePrice{
-		font-family: 'Cabin', sans-serif;
 	}
 	.saleBanner{
 		margin-top: 20px;
@@ -267,7 +281,8 @@
 	}
 	.pagingOptions{
 		padding:0px 8px;
-		margin: 15px 0px;
+		margin=top: 15px;
+		margin-bottom:40px;
 		border-bottom: 2px solid black;
 	}
 	.pagingOptions select{
@@ -365,24 +380,40 @@
 		width:100%;
 		height:100%;
 	}
+	
 	.prodWrap{
 		padding:0px 30px;
 	}
 	.prod{
+		margin-bottom:30px;
 		display:inline-block;
 	}
 	.prod img{
 		width:236px;
 	}
+	.prodBrand{
+		margin-bottom:5px;
+	    font-weight: 800;
+	    color: black;
+	}
+	.prod a{
+		color:black;
+	}
 	.prod a:hover{
 		text-decoration: none;
 	}
+	.prodDisRate{
+	    color: red;
+    	font-size: 12px;
+	}
 	.faint{
-		font-size: 16px;
 		text-decoration: line-through;
 		color:grey;
 	}
 	.prodSalePrice{
-		font-size:22px;
 		color:red;
 	}
+	.prodText{
+		padding:10px;
+	}
+}
