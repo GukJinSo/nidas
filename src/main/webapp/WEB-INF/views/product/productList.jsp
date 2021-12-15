@@ -153,11 +153,41 @@
 				</div>
 			</div>
 			<div class="filter">가격
-				<button class="filterShowBtn">
+				<button class="filterShowBtn" onclick="filterShow('priceRange', 'show', this)">
 					<i class="fas fa-chevron-down"></i>
 					<i class="fas fa-chevron-up hide"></i>
 				</button>
 			</div>
+			<div class="innFilter priceRange hide">
+				<div class="PriceFilterElement filterElement ">
+					<div class="middle">
+					<div class="multi-range-slider">
+						<!-- 진짜 슬라이더 -->
+						<input type="range" id="input-left" min="10000" max="500000" value="10000" />
+						<input type="range" id="input-right" min="10000" max="500000" value="500000" />
+						<!-- 커스텀 슬라이더 --> 
+						<div class="slider"> 
+							<div class="track"></div>
+							<div class="range"></div>
+							<div class="thumb left">
+								<div class="inThumb"></div>
+							</div>
+							<div class="thumb right">
+								<div class="inThumb"></div>
+							</div>
+						</div>
+						<div class="sliderPrice">
+							<span class="sliderLeftPrice">100,000</span>
+							<span> ~ </span>
+							<span class="sliderRightPrice">500,000</span>
+							<span style="font-size:13px;">원</span>
+						</div>
+						
+					</div>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 		<div class="filterBtns">
 			<button type="button" class="btn btn-light filterBtn">초기화</button>
@@ -259,3 +289,6 @@
 <div class="clear"></div>
 </div>
 </div>
+
+
+<script src="resources/js/priceSlider.js"></script>

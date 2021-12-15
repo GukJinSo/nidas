@@ -281,7 +281,7 @@
 	}
 	.pagingOptions{
 		padding:0px 8px;
-		margin=top: 15px;
+		margin-top: 15px;
 		margin-bottom:40px;
 		border-bottom: 2px solid black;
 	}
@@ -462,12 +462,98 @@
 		height:22px;
 		border:1px solid black;
 	} 
-	
 	.colorFilterElement input[type="checkbox"]:checked + span{
 		box-shadow:3px 3px 3px grey;
+	}
+	.PriceFilterElement{
+		padding-left:0px;
+		padding-right:0px;
+	}
+	.middle {
+	  position: relative;
+	  width: 100%;
 	}	
-	.colorFilterElement input[id="cBLK"]:checked + span{
-	}	
+	.slider {
+	  position: relative;
+	  z-index: 1;
+	  height: 10px;
+	}
+	.slider > .track {
+		position: absolute;
+		z-index: 1;
+		height:3px;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		border-radius: 5px;
+		background-color: #CECECE;
+	}
+	.slider > .range {
+		position: absolute;
+		z-index: 2;
+		height:3px;
+		right:0%;
+		left:0%;
+		top: 0;
+		bottom: 0;
+		border-radius: 5px;
+		background-color: red;
+	}
+	.slider > .thumb {
+		display: flex;
+		position: absolute;
+		z-index: 3; 
+		width: 12px;
+		height: 12px;
+		background-color: red;
+		border-radius: 50%;
+	}
+	.inThumb{
+		background:white;
+		width:8px;
+		height:8px;
+		margin:auto;
+		border-radius: 100%;
+	}
+	.slider > .thumb.left {
+		left:0%;
+		transform: translate(-7px, -4px);
+	}
+	.slider > .thumb.right {
+		right:0%;
+		transform: translate(9px, -4px);
+	}
+	input[type="range"] {
+		position: absolute;
+		 /* opacity로 가린 것을 이벤트도 비활성화하기 위해 */
+		 pointer-events: none;
+		 -webkit-appearance: none;
+		 z-index: 2;
+		 height: 10px;
+		 width: 100%;
+		 opacity: 0;
+	} 
+	input[type="range"]::-webkit-slider-thumb { 
+	/* 겹쳐진 두 thumb를 모두 활성화 */ 
+		pointer-events: all;
+		width: 30px; 
+		height: 30px;
+		border-radius: 0;
+		border: 0 none;
+		background-color: red;
+		cursor: pointer;
+		/* appearance를 해야 위의 스타일들을 볼 수 있음 */ 
+		-webkit-appearance: none;
+	}
+	.sliderPrice{
+		margin-top:10px;
+		position: relative;
+	}
+	.sliderLeftPrice, .sliderLeftPrice + span, .sliderRightPrice {
+		font-size:13px;
+		font-family: "gmarket";
+		color:red;
+		font-weight:800;
+	}
 
-
-}

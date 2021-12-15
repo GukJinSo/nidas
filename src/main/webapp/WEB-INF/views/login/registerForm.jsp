@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<script src="resources/js/registerForm.js"></script>
-
 <div class="body">
 <div class="container-fluid">
     <div class="row">
@@ -75,3 +73,5 @@
     </div>
 </div>
 </div>
+
+<script src="resources/js/registerForm.js"></script>
