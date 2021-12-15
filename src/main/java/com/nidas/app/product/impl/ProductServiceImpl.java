@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.nidas.app.etc.Paging;
 import com.nidas.app.product.mapper.ProductMapper;
 import com.nidas.app.product.service.ProductService;
+import com.nidas.app.product.vo.FilterVO;
 import com.nidas.app.product.vo.ProductVO;
 
 @Repository("prodDAO")
@@ -36,6 +37,11 @@ public class ProductServiceImpl implements ProductService {
 		map.put("prodList", mapper.selectProdList(vo));
 
 		return map;
+	}
+
+	@Override
+	public List<FilterVO> selectBrandFilter(String pCategory) {
+		return mapper.selectBrandFilter(pCategory);
 	}
 	
 }

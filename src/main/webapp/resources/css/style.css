@@ -120,11 +120,11 @@
 	.clear{
 		clear:both;
 	}
-	ul{
+	.header ul{
    		list-style:none;
    		padding-left:0px;
 	}
-	.ul li{
+	.header .li{
 		margin-bottom:5px; 
 	}
 	.slideArrBtn{
@@ -302,6 +302,7 @@
 		font-size:14px;
 	}
 	.prodCount{
+		font-family:"gmarket";
 		font-size:16px;
 		color:red;
 	}
@@ -367,6 +368,7 @@
 	
 	.innFilter{
 		font-size:14px;
+		color:grey;
 		display:block;
 		padding-top:0px;
 		padding-left:30px;
@@ -416,4 +418,56 @@
 	.prodText{
 		padding:10px;
 	}
+	.filterElement{
+		margin:5px 0px;
+	}
+	.filterElement label{
+		cursor:pointer;
+	}
+	.filterElement input[type="checkbox"]{
+		display:none;
+	}
+	.filterElement input[type="checkbox"]:checked + span {
+		color:red;
+	}
+	.brandFilterElement.filterElement input[type="checkbox"]:checked + span:after{
+		font-family: 'Font Awesome\ 5 Free';
+		content:' \f00c';
+		font-weight: 900;
+	}
+	.textCenter{
+		text-align: center;
+	}
+	.textLeft{
+		text-align:left;
+	}
+	.sizeFilterElement span{
+		padding:2px 12px;
+		border:1px solid #CECECE;
+	}
+	.sizeFilterElement input[type="checkbox"]:checked + span {
+		border:1px solid red;
+	}
+	.fullPerWidth{
+		width:100%;
+	}
+	.colorFilterElement label{
+		margin:5px;
+		width:22px;
+		height:22px;
+	} 
+	.colorFilterElement span{
+		display:inline-block;
+		width:22px;
+		height:22px;
+		border:1px solid black;
+	} 
+	
+	.colorFilterElement input[type="checkbox"]:checked + span{
+		box-shadow:3px 3px 3px grey;
+	}	
+	.colorFilterElement input[id="cBLK"]:checked + span{
+	}	
+
+
 }

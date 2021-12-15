@@ -3,9 +3,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
+
 	function addComma(value){
 		return Number(value).toLocaleString();
 	}
+	function filterShow(target, action, clickedBtn){
+		if (action == 'show'){
+			$('.'+target).removeClass('hide');
+			$(clickedBtn).children().first().addClass('hide');
+			$(clickedBtn).children().eq(1).removeClass('hide');
+			$(clickedBtn).attr("onclick", "filterShow("+"'"+target+"','hide', this);");
+			$(clickedBtn).parent().css('border-bottom', 'none');
+			$(clickedBtn).parent().next().css('border-bottom', '1px solid #CECECE');
+		} else {
+			$('.'+target).addClass('hide');
+			$(clickedBtn).children().first().removeClass('hide');
+			$(clickedBtn).children().eq(1).addClass('hide');
+			$(clickedBtn).attr("onclick", "filterShow("+"'"+target+"','show', this);");
+			$(clickedBtn).parent().next().css('border-bottom', 'none');
+			$(clickedBtn).parent().css('border-bottom', '1px solid #CECECE');
+		}
+	}
+	function getProdList(){
+	}
+	
 	
 	$(function() {
 		$.ajax({
@@ -44,7 +65,7 @@
 				
 				addHtml += '</tr>';
 				$('.prodWrap table').append(addHtml);
-				
+				$('.paging').append(data.paging);
 				
 			},
 			error:function(err){
@@ -52,25 +73,6 @@
 			}
 		});
 	});
-
-
-	
-	function filterShow(target, action, clickedBtn){
-		if (action == 'show'){
-			$('.'+target).removeClass('hide');
-			$(clickedBtn).children().first().addClass('hide');
-			$(clickedBtn).children().eq(1).removeClass('hide');
-			$(clickedBtn).attr("onclick", "filterShow("+"'"+target+"','hide', this);");
-			$(clickedBtn).parent().css('border-bottom', 'none');
-			$(clickedBtn).parent().next().css('border-bottom', '1px solid #DFDFDF');
-		} else {
-			$('.'+target).addClass('hide');
-			$(clickedBtn).children().first().removeClass('hide');
-			$(clickedBtn).children().eq(1).addClass('hide');
-			$(clickedBtn).attr("onclick", "filterShow("+"'"+target+"','show', this);");
-			$(clickedBtn).parent().next().css('border-bottom', 'none');
-		}
-	}
 
 </script>
 
@@ -87,22 +89,75 @@
 				</button>
 			</div>
 			<div class="innFilter brands hide">
-				<span>나이키</span>
-				<span>나이키</span>
-				<span>나이키</span>
-				<span>나이키</span>
-				<span>나이키</span>
-				<span>나이키</span>
-				
+				<c:forEach items="${brandFilters }" var="vo">
+					<div class="brandFilterElement filterElement">
+						<label for="${vo.brand }Label"><input type="checkbox" id="${vo.brand }Label"value="${vo.brand }" placeholder="땡땡"><span>${vo.brand }</span></label>
+					</div>
+				</c:forEach>
 			</div>
 			<div class="filter">사이즈
-				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+				<button class="filterShowBtn" onclick="filterShow('sizes', 'show', this)">
+					<i class="fas fa-chevron-down"></i>
+					<i class="fas fa-chevron-up hide"></i>
+				</button>
+			</div>
+			<div class="innFilter sizes hide textCenter">
+				<div class="sizeFilterElement filterElement">
+					<label for="s220"><input type="checkbox" value="s220" id="s220"><span>220</span></label>
+					<label for="s225"><input type="checkbox" value="s225" id="s225"><span>225</span></label>
+					<label for="s230"><input type="checkbox" value="s230" id="s230"><span>230</span></label>
+					<label for="s235"><input type="checkbox" value="s235" id="s235"><span>235</span></label>
+					<label for="s240"><input type="checkbox" value="s240" id="s240"><span>240</span></label>
+					<label for="s245"><input type="checkbox" value="s245" id="s245"><span>245</span></label>
+					<label for="s250"><input type="checkbox" value="s250" id="s250"><span>250</span></label>
+					<label for="s255"><input type="checkbox" value="s255" id="s255"><span>255</span></label>
+					<label for="s260"><input type="checkbox" value="s260" id="s260"><span>260</span></label>
+					<label for="s265"><input type="checkbox" value="s265" id="s265"><span>265</span></label>
+					<label for="s270"><input type="checkbox" value="s270" id="s270"><span>270</span></label>
+					<label for="s275"><input type="checkbox" value="s275" id="s275"><span>275</span></label>
+					<label for="s280"><input type="checkbox" value="s280" id="s280"><span>280</span></label>
+					<label for="s285"><input type="checkbox" value="s285" id="s285"><span>285</span></label>
+					<label for="s290"><input type="checkbox" value="s290" id="s290"><span>290</span></label>
+				</div>
+			</div>
 			<div class="filter">컬러
-				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+				<button class="filterShowBtn" onclick="filterShow('colors', 'show', this)">
+					<i class="fas fa-chevron-down"></i>
+					<i class="fas fa-chevron-up hide"></i>
+				</button>
+			</div>
+			<div class="innFilter colors hide textCenter">
+				<div class="colorFilterElement filterElement textLeft">
+					<label for="cBLK" style="background:black;"><input type="checkbox" value="BLK" id="cBLK"><span></span></label>
+					<label for="cWHT" style="background:white;"><input type="checkbox" value="WHT" id="cWHT"><span></span></label>
+					<label for="cRED" style="background:red;"><input type="checkbox" value="RED" id="cRED"><span></span></label>
+					<label for="cBLU" style="background:blue;"><input type="checkbox" value="BLU" id="cBLU"><span></span></label>
+					<label for="cYEL" style="background:yellow;"><input type="checkbox" value="YEL" id="cYEL"><span></span></label>
+					<label for="cGRN" style="background:green;"><input type="checkbox" value="GRN" id="cGRN"><span></span></label>
+					<label for="cPNK" style="background:pink;"><input type="checkbox" value="PNK" id="cPNK"><span></span></label>
+					<label for="cGRY" style="background:#DFDFDF;"><input type="checkbox" value="GRY" id="cGRY"><span></span></label>
+					<label for="cPTN" style="background:black;"><input type="checkbox" value="PTN" id="cPTN"><span></span></label>
+				</div>
+			</div>
+	
+			
 			<div class="filter">검색어
-				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+				<button class="filterShowBtn" onclick="filterShow('search', 'show', this)">
+					<i class="fas fa-chevron-down"></i>
+					<i class="fas fa-chevron-up hide"></i>
+				</button>
+			</div>
+			<div class="innFilter search hide">
+				<div class="filterElement">
+					<input type="text" class="hSearchBar smallSearchBar fullPerWidth" placeholder="검색어" onfocus="this.placeholder=''">
+				</div>
+			</div>
 			<div class="filter">가격
-				<button class="filterShowBtn"><i class="fas fa-chevron-down"></i></button></div>
+				<button class="filterShowBtn">
+					<i class="fas fa-chevron-down"></i>
+					<i class="fas fa-chevron-up hide"></i>
+				</button>
+			</div>
 		</div>
 		<div class="filterBtns">
 			<button type="button" class="btn btn-light filterBtn">초기화</button>
@@ -181,12 +236,12 @@
 			<span>
 				총 <span class="prodCount"></span>개의 상품이 있습니다
 			</span>
-		    <select name="pagePer">
-		        <option value="20">20개씩 보기</option>
+		    <select name="pagePer" onchange="getProdList">
+		        <option value="20" selected="selected">20개씩 보기</option>
 		        <option value="40">40개씩 보기</option>
 		    </select>
-			<select name="orderBy">
-				<option value="relDate">신상품순</option>
+			<select name="orderBy" onchange="getProdList()">
+				<option value="relDate" selected="selected">신상품순</option>
 				<option value="bestSeller">베스트상품순</option>
 				<option value="lowPrice">낮은가격순</option>
 				<option value="highPrice">높은가격순</option>
@@ -198,7 +253,6 @@
 			</table>
 		</div>
 		<div class="paging">
-			${map.paging }
 		</div>
 	</div>
 </div>

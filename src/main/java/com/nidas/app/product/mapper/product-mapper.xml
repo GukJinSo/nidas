@@ -85,6 +85,16 @@ where rn between #{pageStart} and #{pageEnd}
 
 </select>
 
+<!-- 필터 검색 쿼리 -->
+<select id="selectBrandFilter" parameterType="String" resultType="com.nidas.app.product.vo.FilterVO">
+	select distinct b.bnamekor as brand 
+	from product p, brand b 
+	where p.brand = b.bnameeng
+	and pstate = 'prod0101'
+	<if test="pCategory != null">
+	and pcategory = #{pCategory}
+	</if>
+</select>
 
 <!-- 라인코드 쿼리 -->
 <select id="selectSameLine" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
