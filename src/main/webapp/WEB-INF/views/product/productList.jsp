@@ -25,6 +25,7 @@
 		}
 	}
 	function drawProdList(data){
+		$('.prodWrap table').html('');
 		$('.prodCount').text(data.paging.totalCount);
 		var addHtml = '';
 		addHtml += '<tr>';
@@ -59,6 +60,44 @@
 		$('.paging').append(data.paging);
 	}
 	
+	function prodListByFilter(){
+		var param = {};
+		var priceRange = [];
+		var brands = [];
+		var colors = [];
+		var sizes = [];
+		$.each ( $('.PriceFilterElement input[type="range"]'), function(index, value){
+			priceRange.push(value.value);
+			});
+		$.each ( $('.sizeFilterElement input[type="checkbox"]:checked'), function(index, value){
+			sizes.push(value.value);
+			});
+		$.each ( $('.brandFilterElement input[type="checkbox"]:checked'), function(index, value){
+			brands.push(value.value);
+			});
+		$.each ( $('.colorFilterElement input[type="checkbox"]:checked'), function(index, value){
+			colors.push(value.value);
+			});
+		param = {
+					pCategory:'${pCategory}',
+					search:$('#filterSearchBar').val(),
+					sizes:sizes,
+					colors:colors,
+					brands:brands,
+					priceRange:priceRange
+				}
+		$.ajax({
+			url:'productListAjax.do',
+			data:param,
+			success:function(data){
+				drawProdList(data);
+				console.log(data);
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});
+	}	
 	
 	$(function() {
 		$.ajax({
@@ -73,19 +112,6 @@
 		});
 	});
 	
-	function prodListByFilter(){
-		
-		$.ajax({
-			url:'productListAjax.do',
-			data:{pCategory:'${pCategory}'},
-			success:function(data){
-				drawProdList(data);
-			},
-			error:function(err){
-				console.log(err);
-			}
-		});
-	}
 
 </script>
 
@@ -104,7 +130,7 @@
 			<div class="innFilter brands hide">
 				<c:forEach items="${brandFilters }" var="vo">
 					<div class="brandFilterElement filterElement">
-						<label for="${vo.brand }Label"><input type="checkbox" id="${vo.brand }Label"value="${vo.brand }" placeholder="땡땡"><span>${vo.brand }</span></label>
+						<label for="${vo.brand }Label"><input type="checkbox" id="${vo.brand }Label"value="${vo.brand }"><span>${vo.brand }</span></label>
 					</div>
 				</c:forEach>
 			</div>
@@ -162,7 +188,7 @@
 			</div>
 			<div class="innFilter search hide">
 				<div class="filterElement">
-					<input type="text" class="hSearchBar smallSearchBar fullPerWidth" placeholder="검색어" onfocus="this.placeholder=''">
+					<input type="text" id="filterSearchBar" class="hSearchBar smallSearchBar fullPerWidth" placeholder="검색어" onfocus="this.placeholder=''">
 				</div>
 			</div>
 			<div class="filter">가격
@@ -190,7 +216,7 @@
 							</div>
 						</div>
 						<div class="sliderPrice">
-							<span class="sliderLeftPrice">100,000</span>
+							<span class="sliderLeftPrice">10,000</span>
 							<span> ~ </span>
 							<span class="sliderRightPrice">500,000</span>
 							<span style="font-size:13px;">원</span>
@@ -204,7 +230,7 @@
 		</div>
 		<div class="filterBtns">
 			<button type="button" class="btn btn-light filterBtn">초기화</button>
-			<button type="button" class="btn btn-dark filterBtn">검색</button>
+			<button type="button" class="btn btn-dark filterBtn" onclick="prodListByFilter()">검색</button>
 		</div>
 	</div>
 	<div class="prodList eqHeight">

@@ -13,10 +13,10 @@ where 1=1
 and pCategory = #{pCategory}
 </if>
 <if test='search != null and search != ""'>
-and (pnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%') or bnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%') )
+and (pnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%') or bnamekor like '%'||#{search}||'%' or upper(bnameEng) like upper('%'||#{search}||'%') )
 </if>
 	<if test='brands != null'> 
-and brand in
+and bnamekor in
 	<foreach collection="brands" item="br" open="(" close=")" separator=",">
 	#{br}
 	</foreach>
@@ -51,10 +51,19 @@ from
 	and pCategory = #{pCategory}
 	</if>
 	<if test='search != null and search != ""'>
-	and (pnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%') or bnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%') )
+	and (pnamekor like '%'||#{search}||'%' or upper(pnameEng) like upper('%'||#{search}||'%') or bnamekor like '%'||#{search}||'%' or upper(bnameEng) like upper('%'||#{search}||'%') )
+	</if>
+	<if test='priceRange != null'>
+	and (price*(1-nvl(disrate, 0))
+		<![CDATA[ > ]]>
+		<foreach collection="priceRange" item="pr" index="i" separator="and">
+			#{pr}
+		</foreach>
+		<![CDATA[ > ]]>
+		 price*(1-nvl(disrate, 0)))
 	</if>
  	<if test="brands != null"> 
-	and brand in
+	and bnamekor in
 		<foreach collection="brands" item="br" open="(" close=")" separator=",">
 		#{br}
 		</foreach>
@@ -67,7 +76,7 @@ from
 	</if>
 	<if test="sizes != null">
 	and
-		<foreach collection="sizes" item="si" open="(" close=")" separator="or">
+		<foreach collection="sizes" item="si" open="(" close=")" index="i" separator="or">
 		${si} != 0 
 		</foreach>
 	</if>
@@ -86,7 +95,7 @@ where rn between #{pageStart} and #{pageEnd}
 </select>
 
 <!-- 필터 검색 쿼리 -->
-<select id="selectBrandFilter" parameterType="String" resultType="com.nidas.app.product.vo.FilterVO">
+<select id="selectBrandFilter" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
 	select distinct b.bnamekor as brand 
 	from product p, brand b 
 	where p.brand = b.bnameeng

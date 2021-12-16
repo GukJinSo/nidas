@@ -556,4 +556,8 @@
 		color:red;
 		font-weight:800;
 	}
+	td{
+		display: inline-block;
+	}
 
+	

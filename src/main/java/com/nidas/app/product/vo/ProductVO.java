@@ -34,6 +34,7 @@ public class ProductVO {
 	private int pageStart;
 	private int pageEnd;
 	private int count;
+	private int[] priceRange;
 	private String[] colors;
 	private String[] brands;
 	private String[] sizes;
