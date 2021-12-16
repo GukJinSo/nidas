@@ -24,7 +24,39 @@
 			$(clickedBtn).parent().css('border-bottom', '1px solid #CECECE');
 		}
 	}
-	function getProdList(){
+	function drawProdList(data){
+		$('.prodCount').text(data.paging.totalCount);
+		var addHtml = '';
+		addHtml += '<tr>';
+		for(var i = 0; i < data.prodList.length; i++){
+			addHtml += '<td>';
+				addHtml += '<div class="prod">';
+					addHtml += '<a href="productDetail.do?serial="'+data.prodList[i].serial+'">';
+						addHtml += '<img src="resources/images/shoes1.jpg">';
+						addHtml += '<div class="prodText">';
+							addHtml += '<div class="prodBrand">'+data.prodList[i].bnameKor+'</div>';
+							addHtml += '<div class="prodName">'+data.prodList[i].pnameKor+'</div>';
+							addHtml += '<div class="prodPrice">';
+								if ( data.prodList[i].disRate != null ){
+									addHtml += '<span class="prodNormalPrice faint">'+addComma(data.prodList[i].price)+'원</span>';
+									addHtml += '&nbsp;<span class="prodSalePrice">'+addComma(data.prodList[i].disPrice)+'원</span>';
+									addHtml += '<span class="prodDisRate">['+data.prodList[i].disRate*100+'%]</span>'
+								} else {
+									addHtml += '<span class="prodNormalPrice">'+addComma(data.prodList[i].price)+'원</span>';
+								}
+							addHtml += '</div>';
+						addHtml += '</div>';
+						//addHtml += '<img src="resources/images/'+data.prodList[i].img+'">';
+					addHtml += '</a>';
+				addHtml += '</div>';
+			addHtml += '</td>';
+			if ((i+1) % 4 == 0 ){ // 4건 마다 개행
+				addHtml += '</tr><tr>';
+			}
+		}
+		addHtml += '</tr>';
+		$('.prodWrap table').append(addHtml);
+		$('.paging').append(data.paging);
 	}
 	
 	
@@ -33,46 +65,27 @@
 			url:'productListAjax.do',
 			data:{pCategory:'${pCategory}'},
 			success:function(data){
-				$('.prodCount').text(data.paging.totalCount);
-				var addHtml = '';
-				addHtml += '<tr>';
-				for(var i = 0; i < data.prodList.length; i++){
-					addHtml += '<td>';
-						addHtml += '<div class="prod">';
-							addHtml += '<a href="productDetail.do?serial="'+data.prodList[i].serial+'">';
-								addHtml += '<img src="resources/images/shoes1.jpg">';
-								addHtml += '<div class="prodText">';
-									addHtml += '<div class="prodBrand">'+data.prodList[i].bnameKor+'</div>';
-									addHtml += '<div class="prodName">'+data.prodList[i].pnameKor+'</div>';
-									addHtml += '<div class="prodPrice">';
-										if ( data.prodList[i].disRate != null ){
-											addHtml += '<span class="prodNormalPrice faint">'+addComma(data.prodList[i].price)+'원</span>';
-											addHtml += '&nbsp;<span class="prodSalePrice">'+addComma(data.prodList[i].disPrice)+'원</span>';
-											addHtml += '<span class="prodDisRate">['+data.prodList[i].disRate*100+'%]</span>'
-										} else {
-											addHtml += '<span class="prodNormalPrice">'+addComma(data.prodList[i].price)+'원</span>';
-										}
-									addHtml += '</div>';
-								addHtml += '</div>';
-								//addHtml += '<img src="resources/images/'+data.prodList[i].img+'">';
-							addHtml += '</a>';
-						addHtml += '</div>';
-					addHtml += '</td>';
-					if ((i+1) % 4 == 0 ){ // 4건 마다 개행
-						addHtml += '</tr><tr>';
-					}
-				}
-				
-				addHtml += '</tr>';
-				$('.prodWrap table').append(addHtml);
-				$('.paging').append(data.paging);
-				
+				drawProdList(data);
 			},
 			error:function(err){
 				console.log(err);
 			}
 		});
 	});
+	
+	function prodListByFilter(){
+		
+		$.ajax({
+			url:'productListAjax.do',
+			data:{pCategory:'${pCategory}'},
+			success:function(data){
+				drawProdList(data);
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});
+	}
 
 </script>
 
