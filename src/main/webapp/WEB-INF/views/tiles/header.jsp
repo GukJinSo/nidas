@@ -5,18 +5,21 @@
 		
 <script src="resources/js/header.js"></script>
 		
+<script>
+	
+</script>
+		
 <div class="header" onmouseleave="cateFadeOut()" >
 <div class="container">
 <div class="row">
-
 	
 	<div class="col-lg-2 hLogoDiv">
 		<a href="main.do"> <img src="resources/images/headerlogo.png"> </a>
 	</div> 
 	
 	<div class="col-lg-8 hSearchDiv">
-		<form action="search.do">
-			<input type="text" class="hSearchBar" placeholder="누오보 윈터 컬렉션" onfocus="this.placeholder=''"/>
+		<form action="productList.do" method="get">
+			<input type="text" class="hSearchBar" name="search" placeholder="누오보 윈터 컬렉션" onfocus="this.placeholder=''"/>
 			<button type="submit" class="hSearchBtn"><i class="fas fa-search"></i></button>
 		</form>
 	</div>

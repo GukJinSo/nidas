@@ -81,10 +81,13 @@ from
 		</foreach>
 	</if>
 	order by
-    <if test="orderBy != null">
-   	 #{orderBy}
+    <if test="orderBy == 'lowPrice'">
+   	 disprice asc
     </if>
-    <if test="orderBy == null">
+    <if test="orderBy == 'highPrice'">
+   	 disprice desc
+    </if>
+    <if test="orderBy == 'relDate'">
     relDate desc
     </if>
      ) inv

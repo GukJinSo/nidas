@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
-
+	var nowPage;
+	
 	function addComma(value){
 		return Number(value).toLocaleString();
 	}
@@ -24,26 +25,44 @@
 			$(clickedBtn).parent().css('border-bottom', '1px solid #CECECE');
 		}
 	}
-	function drawProdList(data){
+	
+	function filterSelectedReset(){
+		$.each ( $('.filterWrap input[type="checkbox"]'), function(i, e){
+			e.checked = false;
+		});
+		$('#input-left').val('10000');
+		$('#input-left').css('left', '0%');
+		$('.thumb.left').css('left', '0%');
+		$('#input-right').val('500000');
+		$('#input-right').css('right', '0%');
+		$('.thumb.right').css('right', '0%');
+		$('.range').css('left', '0%');
+		$('.sliderLeftPrice').text('10,000');
+		$('.sliderRightPrice').text('500,000');
+		$('#filterSearchBar').val('');
+		$('#filterSearchBar').attr('placeholder', '검색어');
+		
+	}
+	
+	function drawProdList(prodList){
 		$('.prodWrap table').html('');
-		$('.prodCount').text(data.paging.totalCount);
 		var addHtml = '';
 		addHtml += '<tr>';
-		for(var i = 0; i < data.prodList.length; i++){
+		for(var i = 0; i < prodList.length; i++){
 			addHtml += '<td>';
 				addHtml += '<div class="prod">';
-					addHtml += '<a href="productDetail.do?serial="'+data.prodList[i].serial+'">';
+					addHtml += '<a href="productDetail.do?serial="'+prodList[i].serial+'">';
 						addHtml += '<img src="resources/images/shoes1.jpg">';
 						addHtml += '<div class="prodText">';
-							addHtml += '<div class="prodBrand">'+data.prodList[i].bnameKor+'</div>';
-							addHtml += '<div class="prodName">'+data.prodList[i].pnameKor+'</div>';
+							addHtml += '<div class="prodBrand">'+prodList[i].bnameKor+'</div>';
+							addHtml += '<div class="prodName">'+prodList[i].pnameKor+'</div>';
 							addHtml += '<div class="prodPrice">';
-								if ( data.prodList[i].disRate != null ){
-									addHtml += '<span class="prodNormalPrice faint">'+addComma(data.prodList[i].price)+'원</span>';
-									addHtml += '&nbsp;<span class="prodSalePrice">'+addComma(data.prodList[i].disPrice)+'원</span>';
-									addHtml += '<span class="prodDisRate">['+data.prodList[i].disRate*100+'%]</span>'
+								if ( prodList[i].disRate != null ){
+									addHtml += '<span class="prodNormalPrice faint">'+addComma(prodList[i].price)+'원</span>';
+									addHtml += '&nbsp;<span class="prodSalePrice">'+addComma(prodList[i].disPrice)+'원</span>';
+									addHtml += '<span class="prodDisRate">['+prodList[i].disRate*100+'%]</span>'
 								} else {
-									addHtml += '<span class="prodNormalPrice">'+addComma(data.prodList[i].price)+'원</span>';
+									addHtml += '<span class="prodNormalPrice">'+addComma(prodList[i].price)+'원</span>';
 								}
 							addHtml += '</div>';
 						addHtml += '</div>';
@@ -57,10 +76,31 @@
 		}
 		addHtml += '</tr>';
 		$('.prodWrap table').append(addHtml);
-		$('.paging').append(data.paging);
 	}
 	
-	function prodListByFilter(){
+	function drawPaging(paging){
+		$('.prodCount').text(paging.totalCount);
+		$('.paging').html('');
+		var addHtml = '';
+		addHtml += '<a href="javascript:getProdList('+paging.firstPageNo+')" class="first pagingFirstBtn">first</a>';
+		addHtml += '<a href="javascript:getProdList('+paging.prevPageNo+')" class="prev pagingPrevBtn">←prev</a>';
+		addHtml += '<span>';
+		for(i = paging.startPageNo; i <= paging.endPageNo; i++){
+			if (nowPage == paging.pageNo){
+				addHtml += '<a href="javascript:" class="active">'+i+'</a>';
+			} else {
+				addHtml += '<a href="javascript:getProdList('+i+')">'+i+'</a>';
+			} 
+		}
+		addHtml += '</span>';
+		addHtml += '<a href="javascript:getProdList('+paging.nextPageNo+')" class="next pagingNextBtn">next→</a>';
+		addHtml += '<a href="javascript:getProdList('+paging.finalPageNo+')" class="next pagingFinalBtn">last</a>';
+		$('.paging').append(addHtml);
+		
+	}
+	
+	function getProdList(page){
+		nowPage = page;
 		var param = {};
 		var priceRange = [];
 		var brands = [];
@@ -79,6 +119,9 @@
 			colors.push(value.value);
 			});
 		param = {
+					page:page,
+					orderBy:$("select[name='orderBy'] option:selected").val(),
+					pagePer:$("select[name='pagePer'] option:selected").val(),
 					pCategory:'${pCategory}',
 					search:$('#filterSearchBar').val(),
 					sizes:sizes,
@@ -90,8 +133,9 @@
 			url:'productListAjax.do',
 			data:param,
 			success:function(data){
-				drawProdList(data);
 				console.log(data);
+				drawProdList(data.prodList);
+				drawPaging(data.paging);
 			},
 			error:function(err){
 				console.log(err);
@@ -100,16 +144,17 @@
 	}	
 	
 	$(function() {
-		$.ajax({
-			url:'productListAjax.do',
-			data:{pCategory:'${pCategory}'},
-			success:function(data){
-				drawProdList(data);
-			},
-			error:function(err){
-				console.log(err);
-			}
-		});
+		// 사용자가 header에서 검색해서 들어온 것이라면 필터에 검색어 입력값을 넣어주고 드랍다운 메뉴 열어줌
+		if($('#headerSearchKeyword').val() != ''){
+			$('#filterSearchBar').val( $('#headerSearchKeyword').val() );
+			filterShow('search', 'show', $('.searchShowBtn'));
+		}
+			
+			
+		// 이외 신발 카테고리로 들어온 경우
+		var nowPage = 1;
+		getProdList(1);
+		
 	});
 	
 
@@ -174,14 +219,13 @@
 					<label for="cYEL" style="background:yellow;"><input type="checkbox" value="YEL" id="cYEL"><span></span></label>
 					<label for="cGRN" style="background:green;"><input type="checkbox" value="GRN" id="cGRN"><span></span></label>
 					<label for="cPNK" style="background:pink;"><input type="checkbox" value="PNK" id="cPNK"><span></span></label>
-					<label for="cGRY" style="background:#DFDFDF;"><input type="checkbox" value="GRY" id="cGRY"><span></span></label>
-					<label for="cPTN" style="background:black;"><input type="checkbox" value="PTN" id="cPTN"><span></span></label>
+					<label for="cGRY" style="background:grey;"><input type="checkbox" value="GRY" id="cGRY"><span></span></label>
 				</div>
 			</div>
 	
 			
 			<div class="filter">검색어
-				<button class="filterShowBtn" onclick="filterShow('search', 'show', this)">
+				<button class="filterShowBtn searchShowBtn" onclick="filterShow('search', 'show', this)">
 					<i class="fas fa-chevron-down"></i>
 					<i class="fas fa-chevron-up hide"></i>
 				</button>
@@ -229,8 +273,8 @@
 			
 		</div>
 		<div class="filterBtns">
-			<button type="button" class="btn btn-light filterBtn">초기화</button>
-			<button type="button" class="btn btn-dark filterBtn" onclick="prodListByFilter()">검색</button>
+			<button type="button" class="btn btn-light filterBtn" onclick="filterSelectedReset()">초기화</button>
+			<button type="button" class="btn btn-dark filterBtn" onclick="getProdList('1')">검색</button>
 		</div>
 	</div>
 	<div class="prodList eqHeight">
@@ -305,13 +349,12 @@
 			<span>
 				총 <span class="prodCount"></span>개의 상품이 있습니다
 			</span>
-		    <select name="pagePer" onchange="getProdList">
+		    <select name="pagePer" onchange="filterSelectedReset(); getProdList('1');">
 		        <option value="20" selected="selected">20개씩 보기</option>
 		        <option value="40">40개씩 보기</option>
 		    </select>
-			<select name="orderBy" onchange="getProdList()">
+			<select name="orderBy" onchange="filterSelectedReset(); getProdList('1');">
 				<option value="relDate" selected="selected">신상품순</option>
-				<option value="bestSeller">베스트상품순</option>
 				<option value="lowPrice">낮은가격순</option>
 				<option value="highPrice">높은가격순</option>
 			</select>
@@ -321,11 +364,12 @@
 			<table>
 			</table>
 		</div>
-		<div class="paging">
+		<div class="paging textCenter">
 		</div>
 	</div>
 </div>
 <div class="clear"></div>
+<input type="hidden" value="${search }" id="headerSearchKeyword">
 </div>
 </div>
 
