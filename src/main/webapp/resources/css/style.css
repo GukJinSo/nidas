@@ -310,6 +310,7 @@
 		text-align:center;
 	}
 	.path{
+	    padding-bottom: 30px;
 		font-size:14px;
 	}
 	.prodList h3{
@@ -427,7 +428,7 @@
 	.filterElement{
 		margin:5px 0px;
 	}
-	.filterElement label{
+	.filterElement label, .details label{
 		cursor:pointer;
 	}
 	.filterElement input[type="checkbox"]{
@@ -562,7 +563,7 @@
 		color:red;
 		font-weight:800;
 	}
-	td{
+	.prodWrap table td{
 		display: inline-block;
 	}
 
@@ -613,6 +614,7 @@
 		width:49%;
 	}
 	.detailsRight{
+		padding-left:20px;
 		float:right;
 		width:49%;
 	}
@@ -661,5 +663,39 @@
 		border-right: 1px solid #CECECE;
 	}
 	.price{
+		margin-top:15px;
+		margin-bottom:15px;
+		font-family: "gmarket";
+	}
+	.detailsHeader .prodDisRate{
+		font-size:15px;
+	}
+	.top-line-bold {
+		border-top:2px solid black;
+	}
+	
+	.details table{
+		line-height: 3rem;
+	}
+	.details td input[type="checkbox"] + span {
+		font-size:14px;
+		color:grey;
+		font-family:"gmarket";
+		border:1px solid grey;
+		padding:2px 12px;
+	}
+	.details td input[type="checkbox"]:checked + span {
+		color:black;
+		border:1px solid red;
+	}
+	.details td input[type="checkbox"]{
+		display:none;
+	}
+	.details td:first-child{
+		padding-left:10px;
+	}
+	.lastPrice{
+		font-weight:800;
+		font-size:26px;
 	}
 	

@@ -5,9 +5,6 @@
 <script>
 	var nowPage;
 	
-	function addComma(value){
-		return Number(value).toLocaleString();
-	}
 	function filterShow(target, action, clickedBtn){
 		if (action == 'show'){
 			$('.'+target).removeClass('hide');
