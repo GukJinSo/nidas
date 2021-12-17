@@ -11,5 +11,6 @@ public interface ProductMapper {
 	public List<ProductVO> selectProdList(ProductVO vo);
 	public int selectProdCnt(ProductVO vo);
 	public List<FilterVO> selectBrandFilter(String pCategory);
-	
+	public ProductVO selectProdDetail(String serial);
+	public List<ProductVO> selectSameLine(String serial);
 }

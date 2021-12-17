@@ -10,4 +10,6 @@ public interface ProductService {
 
 	public Map<String, Object> selectProdList(ProductVO vo);
 	public List<FilterVO> selectBrandFilter(String pCategory);
+	public Map<String, Object> selectProdDetail(String serial);
+	
 }

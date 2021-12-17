@@ -29,11 +29,11 @@ public class ProductController {
 	private Map<String, Object> productListAjax(ProductVO vo) {
 		return prodDAO.selectProdList(vo);
 	}
-/*	
-	@GetMapping("productListSearch.do")
-	private String productListSearch(Model model) {
-		model.addAttribute("brandFilters", prodDAO.selectBrandFilter(null));		
-		return "product/productList";
+	
+	@GetMapping("productDetail.do")
+	private String productDetail(ProductVO vo, Model model) {
+		model.addAttribute("prod", prodDAO.selectProdDetail(vo.getSerial()));
+		return "product/productDetail";
 	}
-*/
+	
 }

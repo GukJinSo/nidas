@@ -51,7 +51,7 @@
 		for(var i = 0; i < prodList.length; i++){
 			addHtml += '<td>';
 				addHtml += '<div class="prod">';
-					addHtml += '<a href="productDetail.do?serial="'+prodList[i].serial+'">';
+					addHtml += '<a href="productDetail.do?serial='+prodList[i].serial+'">';
 						addHtml += '<img src="resources/images/shoes1.jpg">';
 						addHtml += '<div class="prodText">';
 							addHtml += '<div class="prodBrand">'+prodList[i].bnameKor+'</div>';
@@ -150,15 +150,14 @@
 	}	
 	
 	$(function() {
+		var nowPage = 1;
+		
 		// 사용자가 header에서 검색해서 들어온 것이라면 필터에 검색어 입력값을 넣어주고 드랍다운 메뉴 열어줌
 		if($('#headerSearchKeyword').val() != ''){
 			$('#filterSearchBar').val( $('#headerSearchKeyword').val() );
 			filterShow('search', 'show', $('.searchShowBtn'));
 		}
 			
-			
-		// 이외 신발 카테고리로 들어온 경우
-		var nowPage = 1;
 		getProdList(1);
 		
 	});

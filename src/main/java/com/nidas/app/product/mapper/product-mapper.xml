@@ -113,5 +113,8 @@ where rn between #{pageStart} and #{pageEnd}
 select * from product where stylecode = (select stylecode from product where serial = #{serial}) and not serial = #{serial}
 </select>
 
+<select id="selectProdDetail" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
+select v.*, price*(1-nvl(disrate, 0)) as disprice from v_nowonsale v where serial = #{serial}
+</select>
 
 </mapper>

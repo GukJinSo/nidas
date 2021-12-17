@@ -43,5 +43,13 @@ public class ProductServiceImpl implements ProductService {
 	public List<FilterVO> selectBrandFilter(String pCategory) {
 		return mapper.selectBrandFilter(pCategory);
 	}
+
+	@Override
+	public Map<String, Object> selectProdDetail(String serial) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("details", mapper.selectProdDetail(serial));
+		map.put("styleCodes", mapper.selectSameLine(serial));
+		return map;
+	}
 	
 }
