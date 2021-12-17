@@ -81,6 +81,12 @@
 	function drawPaging(paging){
 		$('.prodCount').text(paging.totalCount);
 		$('.paging').html('');
+		
+		if (paging.totalCount == 0){ // 가져올 상품 없으면 실행하지 않음
+			$('.prodWrap').append('<span class="noProdList">등록된 상품이 없습니다</span>');
+			return false;
+		}
+		
 		var addHtml = '';
 		addHtml += '<a href="javascript:getProdList('+paging.firstPageNo+')" class="first pagingFirstBtn">first</a>';
 		addHtml += '<a href="javascript:getProdList('+paging.prevPageNo+')" class="prev pagingPrevBtn">←prev</a>';

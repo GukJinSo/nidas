@@ -586,3 +586,14 @@
 	
 	.paging a:hover:not(.active) {background-color: #ddd;}
 	
+	.noProdList{
+		text-align:center;
+		margin:120px auto;
+		padding-top:100px;
+		display:block;
+	    background: url(../images/noProdList.png) no-repeat top center;
+	    font-size: 20px;
+	    letter-spacing: -1px;
+	    font-weight: 500;
+	}
+	
