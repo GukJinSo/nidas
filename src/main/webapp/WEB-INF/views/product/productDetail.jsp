@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="body">
 <div class="container-fluid">
 <div class="prodDetailWrap">
@@ -64,6 +64,16 @@
 					</div>
 					<div class="top-line-bold">
 						<table>
+						<c:if test="${prod.styleCodes != null }">
+							<tr>
+								<th style="word-break:break-all" width="29%">스타일 컬러</th>
+								<th style="word-break:break-all" width="70%">
+									<c:forEach items="${prod.styleCodes }" var="vo">
+										${vo.img }
+									</c:forEach>
+								</th>
+							</tr>
+						</c:if>
 							<tr>
 								<td style="word-break:break-all" width="29%">색상 코드</td>
 								<td style="word-break:break-all" width="70%">YEL</td>
@@ -74,23 +84,14 @@
 								<td style="word-break:break-all">일반 배송</td>
 							</tr>
 							<tr>
-								<td style="word-break:break-all">사이즈 선택</td>
+								<td style="word-break:break-all; vertical-align: top;">사이즈 재고</td>
 								<td style="word-break:break-all; line-height: 2em;">
-									<label for="s220"><input type="checkbox" value="s220" id="s220"><span>220</span></label>
-									<label for="s225"><input type="checkbox" value="s225" id="s225"><span>225</span></label>
-									<label for="s230"><input type="checkbox" value="s230" id="s230"><span>230</span></label>
-									<label for="s235"><input type="checkbox" value="s235" id="s235"><span>235</span></label>
-									<label for="s240"><input type="checkbox" value="s240" id="s240"><span>240</span></label>
-									<label for="s245"><input type="checkbox" value="s245" id="s245"><span>245</span></label>
-									<label for="s250"><input type="checkbox" value="s250" id="s250"><span>250</span></label>
-									<label for="s255"><input type="checkbox" value="s255" id="s255"><span>255</span></label>
-									<label for="s260"><input type="checkbox" value="s260" id="s260"><span>260</span></label>
-									<label for="s265"><input type="checkbox" value="s265" id="s265"><span>265</span></label>
-									<label for="s270"><input type="checkbox" value="s270" id="s270"><span>270</span></label>
-									<label for="s275"><input type="checkbox" value="s275" id="s275"><span>275</span></label>
-									<label for="s280"><input type="checkbox" value="s280" id="s280"><span>280</span></label>
-									<label for="s285"><input type="checkbox" value="s285" id="s285"><span>285</span></label>
-									<label for="s290"><input type="checkbox" value="s290" id="s290"><span>290</span></label>
+									<c:forEach items="${prod.stocks }" var="sizeStocks" begin="">
+										<c:if test="${sizeStocks.value != 0}">
+											<label for="s${sizeStocks.key }"><input type="checkbox" value="${sizeStocks.key }" id="s${sizeStocks.key }">
+											<span>${sizeStocks.key }</span></label>
+										</c:if>
+									</c:forEach>
 								</td>
 							</tr>
 						</table>

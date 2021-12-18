@@ -39,6 +39,8 @@ public class ProductVO {
 	private String[] brands;
 	private String[] sizes;
 	
+	StockVO stockVO;
+
 	private int s220;
 	private int s225;
 	private int s230;
@@ -48,10 +50,13 @@ public class ProductVO {
 	private int s250;
 	private int s255;
 	private int s260;
+	private int s265;
+	private int s270;
 	private int s275;
 	private int s280;
 	private int s285;
 	private int s290;
+	
 	
 	
 }

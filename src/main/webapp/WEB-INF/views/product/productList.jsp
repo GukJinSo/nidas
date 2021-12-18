@@ -80,6 +80,7 @@
 		$('.paging').html('');
 		
 		if (paging.totalCount == 0){ // 가져올 상품 없으면 실행하지 않음
+			$('.noProdList').remove();
 			$('.prodWrap').append('<span class="noProdList">등록된 상품이 없습니다</span>');
 			return false;
 		}

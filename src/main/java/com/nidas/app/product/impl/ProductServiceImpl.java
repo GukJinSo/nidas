@@ -1,6 +1,7 @@
 package com.nidas.app.product.impl;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.nidas.app.product.mapper.ProductMapper;
 import com.nidas.app.product.service.ProductService;
 import com.nidas.app.product.vo.FilterVO;
 import com.nidas.app.product.vo.ProductVO;
+import com.nidas.app.product.vo.StockVO;
 
 @Repository("prodDAO")
 public class ProductServiceImpl implements ProductService {
@@ -47,7 +49,28 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Map<String, Object> selectProdDetail(String serial) {
 		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("details", mapper.selectProdDetail(serial));
+		ProductVO pvo = mapper.selectProdDetail(serial);
+		// 앞단에서 foreach 시 순서 보장을 위해 linkedHashMap 사용
+		LinkedHashMap<String, String> stockMap = new LinkedHashMap<String,String>();
+		
+		stockMap.put("220", Integer.toString(pvo.getS220()));
+		stockMap.put("225", Integer.toString(pvo.getS225()));
+		stockMap.put("230", Integer.toString(pvo.getS230()));
+		stockMap.put("235", Integer.toString(pvo.getS235()));
+		stockMap.put("240", Integer.toString(pvo.getS240()));
+		stockMap.put("245", Integer.toString(pvo.getS245()));
+		stockMap.put("250", Integer.toString(pvo.getS250()));
+		stockMap.put("255", Integer.toString(pvo.getS255()));
+		stockMap.put("260", Integer.toString(pvo.getS260()));
+		stockMap.put("265", Integer.toString(pvo.getS265()));
+		stockMap.put("270", Integer.toString(pvo.getS270()));
+		stockMap.put("275", Integer.toString(pvo.getS275()));
+		stockMap.put("280", Integer.toString(pvo.getS280()));
+		stockMap.put("285", Integer.toString(pvo.getS285()));
+		stockMap.put("290", Integer.toString(pvo.getS290()));
+		
+		map.put("details", pvo);
+		map.put("stocks", stockMap);
 		map.put("styleCodes", mapper.selectSameLine(serial));
 		return map;
 	}
