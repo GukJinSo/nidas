@@ -29,13 +29,6 @@
 			$('.addedStock.s'+size+'Div input').trigger('onchange');
 		}
 		
-		// 최종 가격 div가 hide이면 show
-		if($('.totalPrice').hasClass('hide')){
-			$('.totalPrice').removeClass('hide');
-			$('.totalPrice').addClass('flex');
-		}
-		
-		
 	}
 	
 	function sumChange(target){
@@ -58,8 +51,7 @@
 			$(target).next().val( parseInt($(target).next().val())-1 );
 			$(target).next().trigger('onchange');
 		} else {
-			console.log( $(target).next().val() );
-			sumChange(target);
+			sumChange(target); // target을 찾을 수 없기에 sumChange의 times는 0이 됨. 결국 0을 곱하게 되어 가격이 사라짐 
 			$(target).closest('.addedStock').remove();
 		}
 	}
@@ -108,9 +100,6 @@
 						${prod.details.pnameEng }
 					</div>
 					<div class="codes">
-						<div class="stylecode">
-							상품코드 : ${prod.details.serial }
-						</div>
 						<div class="serial">
 							상품코드 : ${prod.details.serial }
 						</div>
@@ -159,7 +148,16 @@
 						</table>
 					</div>
 					<div class="addedStockWrap"></div>
-					<div class="totalPrice hide"><span>총 결제 가격</span><span class="sums"></span></div>
+					<div class="totalPrice flex">
+						<span>총 결제 가격</span>
+						<span class="sums">0</span>
+					</div>
+					<div class="totalPriceBtns flex">
+						<button class="">장바구니
+						</button>
+						<button class="">바로구매
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
