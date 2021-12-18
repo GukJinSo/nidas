@@ -38,6 +38,10 @@ public class ProductVO {
 	private String[] colors;
 	private String[] brands;
 	private String[] sizes;
+	private String filePath;
+	private String fileName;
+	
+	
 	
 	StockVO stockVO;
 

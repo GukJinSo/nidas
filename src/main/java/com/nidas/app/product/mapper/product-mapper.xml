@@ -44,7 +44,7 @@ select *
 from
   (select inv.*, rownum as rn
   from
-    (select v.*, price*(1-nvl(disrate, 0)) as disPrice
+    (select v.*
     from V_NOWONSALE v
     where 1=1
 	<if test='pCategory != null and pCategory != ""'>
@@ -99,23 +99,29 @@ where rn between #{pageStart} and #{pageEnd}
 
 <!-- 필터 검색 쿼리 -->
 <select id="selectBrandFilter" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
-	select distinct b.bnamekor as brand 
-	from product p, brand b 
-	where p.brand = b.bnameeng
-	and pstate = 'prod0101'
+	select distinct bnamekor as brand 
+	from v_nowonsale
 	<if test="pCategory != null">
-	and pcategory = #{pCategory}
+	where pcategory = #{pCategory}
 	</if>
 </select>
 
 <!-- 라인코드 쿼리 -->
 <select id="selectSameLine" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
-select * from product where stylecode = (select stylecode from product where serial = #{serial}) and not serial = #{serial}
+select * from v_nowonsale where stylecode = (select stylecode from product where serial = #{serial}) and not serial = #{serial}
 </select>
 
 
 <select id="selectProdDetail" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
 select v.*, price*(1-nvl(disrate, 0)) as disprice from v_nowonsale v where serial = #{serial}
+</select>
+
+<select id="selectProdImages" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
+select pi.*
+from v_nowonsale, prod_image pi
+where pi.serial = #{serial}
+and pi.serial = v_nowonsale.serial
+order by decode (pi.filename, 'main', 1)
 </select>
 
 </mapper>

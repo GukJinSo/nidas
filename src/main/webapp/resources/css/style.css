@@ -702,8 +702,10 @@
 		margin:0px;
 	}
 	.details table th img{
-		width:30px;
+		width:48px;
 	}
+	.details table th img:hover {
+}
 	.details table th {
 		font-weight:100;
 		border-bottom:1px solid #CECECE;
@@ -794,5 +796,4 @@
 		background:#111;
 		border:none;
 		color:white;
-	
 	}

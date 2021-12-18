@@ -82,7 +82,7 @@
 		<div class="details">
 			<div class="detailsLeft">
 				<div class="bigImage">
-					<img src="resources/images/shoes1.jpg">
+					<img src="resources/images/product/${prod.details.filePath }">
 				</div>
 				<div class="sliders">
 					슬라이더
@@ -116,20 +116,19 @@
 					</div>
 					<div class="tableDiv">
 						<table>
-						<c:if test="${prod.styleCodes != null }">
+						<c:if test="${fn:length(prod.styleCodes) != 0 }">
 							<tr>
 								<th style="word-break:break-all" width="29%">스타일 컬러</th>
 								<th style="word-break:break-all" width="70%">
 									<c:forEach items="${prod.styleCodes }" var="vo">
-										${vo.img }
+										<img src="resources/images/product/${vo.filePath }">
 									</c:forEach>
 								</th>
 							</tr>
 						</c:if>
 							<tr>
-								<td style="word-break:break-all" width="29%">색상 코드</td>
-								<td style="word-break:break-all" width="70%">YEL</td>
-								
+								<td style="word-break:break-all; padding-top: 10px;" width="29%" >색상 코드</td>
+								<td style="word-break:break-all; padding-top: 10px;" width="70%">${prod.details.color }</td>
 							</tr>
 							<tr>
 								<td style="word-break:break-all">배송 방법</td>
