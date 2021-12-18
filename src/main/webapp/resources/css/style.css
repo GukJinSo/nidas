@@ -8,6 +8,10 @@
   font-family: "gmarket bold";
   src: url("../font/GmarketSansTTFBold.ttf");
 }
+@font-face {
+  font-family: "gmarket light";
+  src: url("../font/GmarketSansTTFLight.ttf");
+}
 
 
 	body{
@@ -670,11 +674,8 @@
 	.detailsHeader .prodDisRate{
 		font-size:15px;
 	}
-	.top-line-bold {
-		border-top:2px solid black;
-	}
-	
 	.details table{
+		font-size:14px;
 		line-height: 3rem;
 	}
 	.details td input[type="checkbox"] + span {
@@ -691,11 +692,10 @@
 	.details td input[type="checkbox"]{
 		display:none;
 	}
-	.details td:first-child{
+	.details td:first-child, .details th:first-child{
 		padding-left:10px;
 	}
 	.lastPrice{
-		font-weight:800;
 		font-size:26px;
 	}
 	.details label{
@@ -703,4 +703,76 @@
 	}
 	.details table th img{
 		width:30px;
+	}
+	.details table th {
+		font-weight:100;
+		border-bottom:1px solid #CECECE;
+		padding-bottom:10px;
+		padding-top:10px;
+	}
+	.details .tableDiv{
+		border-top:2px solid black;
+		padding-bottom:30px;
+		border-bottom:1px solid #CECECE;
+	}
+	.addedStock{
+		display:flex;
+		justify-content:space-between;
+		align-items:center;
+	    font-size: 14px;
+	    padding: 20px 20px 20px 20px;
+	    border-bottom: 1px solid #CECECE;
+	    font-family: "gmarket light";
+	    font-weight: 600;
+	    color: grey;
+	}
+	.addedStock input[type="number"]{
+		border:none;
+		width:30px;
+		text-align:center;
+	}
+	.addedStock input[type=number]::-webkit-inner-spin-button, 
+	.addedStock input[type=number]::-webkit-outer-spin-button { 
+		 -webkit-appearance: none; 
+	}
+	.addedStock button{
+		border:none;
+	}
+	
+	.inline-block{
+		display:inline-block;
+	}
+	.border-grey-right{
+		border:1px solid #CECECE;
+	}
+	.padding-5all{
+		padding:5px;
+	}
+	.tableDiv button{
+		margin:2px 0px;
+		padding:0px 12px;
+		border:1px solid grey;
+		color:grey;
+	}
+	.tableDiv button:focus{
+		border:1px solid red;
+		color:black;
+	}
+	.details .totalPrice{
+	    justify-content: space-between;
+	    align-items: center;
+	    padding: 30px 20px;
+	}
+	.sums{
+	    color: red;
+	    font-family: "gmarket";
+	    font-size: 34px;
+	}
+	.sums:after{
+		font-size:18px;
+		color:black;
+		content:'원';
+	}
+	.flex{
+		display: flex;
 	}
