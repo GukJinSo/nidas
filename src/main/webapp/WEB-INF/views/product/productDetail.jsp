@@ -152,7 +152,7 @@
 						<span class="sums">0</span>
 					</div>
 					<div class="totalPriceBtns flex">
-						<button class="">장바구니
+						<button class="" onclick="addCart()">장바구니
 						</button>
 						<button class="">바로구매
 						</button>
