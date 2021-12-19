@@ -21,13 +21,10 @@ public class ProductVO {
 	private String price;
 	private String disRate;
 	private String pstate;
-	private String img;
 	
-	// 쿼리 관련
+	//ParameterVO
 	private String orderBy;
 	private String disPrice;
-	private String bnameKor;
-	private String bnameEng;
 	private String search;
 	private int page;
 	private int pagePer;
@@ -38,13 +35,16 @@ public class ProductVO {
 	private String[] colors;
 	private String[] brands;
 	private String[] sizes;
+	
+	//brandVO
+	private String bnameKor;
+	private String bnameEng;
+	
+	//prodImageVO
 	private String filePath;
 	private String fileName;
 	
-	
-	
-	StockVO stockVO;
-
+	//stockVO
 	private int s220;
 	private int s225;
 	private int s230;

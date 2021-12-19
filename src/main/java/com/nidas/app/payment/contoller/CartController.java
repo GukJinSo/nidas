@@ -11,9 +11,6 @@ import com.nidas.app.product.vo.ProductVO;
 @Controller
 public class CartController {
 
-	@PostMapping
-	private String addCart(HttpServletRequest req){
-		return null;
-	}
+	
 	
 }

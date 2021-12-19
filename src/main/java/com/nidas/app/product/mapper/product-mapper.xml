@@ -99,7 +99,7 @@ where rn between #{pageStart} and #{pageEnd}
 
 <!-- 필터 검색 쿼리 -->
 <select id="selectBrandFilter" parameterType="String" resultType="com.nidas.app.product.vo.ProductVO">
-	select distinct bnamekor as brand 
+	select distinct bnamekor 
 	from v_nowonsale
 	<if test="pCategory != null">
 	where pcategory = #{pCategory}

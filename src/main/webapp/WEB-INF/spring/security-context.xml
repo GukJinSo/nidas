@@ -21,13 +21,15 @@
 		login-page="/loginForm.do"
 		authentication-failure-url="/loginFail.do"
 		login-processing-url="/login.do"
-		default-target-url="/main.do" />
+		 />
   
 	<logout
 		logout-url="/logout.do"
 		logout-success-url="/main.do" />
 		
 </http>
+
+
 
 <jdbc-user-service data-source-ref="dataSource" id="userService"
 
@@ -59,6 +61,8 @@
 
 <beans:bean id="bcryptPasswordEncoder"
     class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+</beans:bean>
+<beans:bean id="loginSuccessHandler" class="com.nidas.app.login.handler.LoginSuccessHandler">
 </beans:bean>
 
 </beans:beans>

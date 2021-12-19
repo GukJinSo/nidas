@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 		
-<script src="resources/js/header.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
 		
 <script>
 	
@@ -14,11 +14,11 @@
 <div class="row">
 	
 	<div class="col-lg-2 hLogoDiv">
-		<a href="main.do"> <img src="resources/images/headerlogo.png"> </a>
+		<a href="${pageContext.request.contextPath}/main.do"> <img src="${pageContext.request.contextPath}/resources/images/headerlogo.png"> </a>
 	</div> 
 	
 	<div class="col-lg-8 hSearchDiv">
-		<form action="productList.do" method="get">
+		<form action="${pageContext.request.contextPath}/productList.do" method="get">
 			<input type="text" class="hSearchBar" name="search" placeholder="누오보 윈터 컬렉션" onfocus="this.placeholder=''"/>
 			<button type="submit" class="hSearchBtn"><i class="fas fa-search"></i></button>
 		</form>
@@ -26,8 +26,8 @@
 
 	<div class="col-lg-2 hMenuDiv">
 		<sec:authorize access="isAnonymous()">
-			<a href="loginForm.do" title="로그인"><i class="far fa-user middleIcon"></i></a>
-			<a href="registerForm.do" title="회원가입"><i class="fas fa-user-plus middleIcon"></i></a>
+			<a href="${pageContext.request.contextPath}/loginForm.do" title="로그인"><i class="far fa-user middleIcon"></i></a>
+			<a href="${pageContext.request.contextPath}/registerForm.do" title="회원가입"><i class="fas fa-user-plus middleIcon"></i></a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 			<form:form action="${pageContext.request.contextPath}/logout.do" method="POST" style="display:inline;">
@@ -42,9 +42,9 @@
 	
 	<div class="col-lg-12 hCateBar">
 		<Button class="hCateBtn" onmouseover="cateFade()">카테고리</Button>
-		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='customPage.do'">커스터마이즈</Button>
+		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='${pageContext.request.contextPath}/customPage.do'">커스터마이즈</Button>
 		<Button class="hCateBtn" onmouseover="cateFadeOut()">랭킹</Button>
-		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='sales.do'">세일</Button>
+		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='${pageContext.request.contextPath}/sales.do'">세일</Button>
 	</div>
 	
 </div>

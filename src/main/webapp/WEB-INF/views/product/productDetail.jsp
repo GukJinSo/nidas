@@ -7,6 +7,12 @@
 
 <script>
 
+	function addCart(){
+		location.href='member/addCart.do';
+	}
+
+
+
 	function selectStock(target){
 		var size = target.innerText;
 		var addHtml = '';
@@ -28,8 +34,8 @@
 			$('.addedStock.s'+size+'Div input').val( parseInt($('.addedStock.s'+size+'Div input').val())+1 );
 			$('.addedStock.s'+size+'Div input').trigger('onchange');
 		}
-		
 	}
+	
 	
 	function sumChange(target){
 		var times = $(target).val();
@@ -62,9 +68,9 @@
 <div class="container-fluid">
 <div class="prodDetailWrap">
 		<div class="path">
-			<a href="main.do"><i class="fas fa-home"></i> HOME</a>
+			<a href="${pageContext.request.contextPath}/main.do"><i class="fas fa-home"></i> HOME</a>
 			>
-			<a href="productList.do">신발</a>
+			<a href="${pageContext.request.contextPath}/productList.do">신발</a>
 			>
 			<c:if test="${prod.details.PCategory eq 'cate01cv' }">
 				캔버스/스웨이드
@@ -82,7 +88,7 @@
 		<div class="details">
 			<div class="detailsLeft">
 				<div class="bigImage">
-					<img src="resources/images/product/${prod.details.filePath }">
+					<img src="${pageContext.request.contextPath}/resources/images/product/${prod.details.filePath }">
 				</div>
 				<div class="sliders">
 					슬라이더
@@ -91,7 +97,7 @@
 			<div class="detailsRight">
 				<div class="detailsHeader">
 					<div class="brand">
-						<a href="productList.do?search=${prod.details.bnameKor }">${prod.details.bnameKor } ></a>
+						<a href="${pageContext.request.contextPath}/productList.do?search=${prod.details.bnameKor }">${prod.details.bnameKor } ></a>
 					</div>
 					<div class="pnameKor">
 						${prod.details.pnameKor }
@@ -121,7 +127,7 @@
 								<th style="word-break:break-all" width="29%">스타일 컬러</th>
 								<th style="word-break:break-all" width="70%">
 									<c:forEach items="${prod.styleCodes }" var="vo">
-										<img src="resources/images/product/${vo.filePath }">
+										<img src="${pageContext.request.contextPath}/resources/images/product/${vo.filePath }">
 									</c:forEach>
 								</th>
 							</tr>

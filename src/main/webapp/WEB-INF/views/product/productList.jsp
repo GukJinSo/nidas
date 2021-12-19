@@ -48,7 +48,7 @@
 		for(var i = 0; i < prodList.length; i++){
 			addHtml += '<td>';
 				addHtml += '<div class="prod">';
-					addHtml += '<a href="productDetail.do?serial='+prodList[i].serial+'">';
+					addHtml += '<a href="${pageContext.request.contextPath}/productDetail.do?serial='+prodList[i].serial+'">';
 						addHtml += '<img src="resources/images/shoes1.jpg">';
 						addHtml += '<div class="prodText">';
 							addHtml += '<div class="prodBrand">'+prodList[i].bnameKor+'</div>';
@@ -178,7 +178,7 @@
 			<div class="innFilter brands hide">
 				<c:forEach items="${brandFilters }" var="vo">
 					<div class="brandFilterElement filterElement">
-						<label for="${vo.brand }Label"><input type="checkbox" id="${vo.brand }Label"value="${vo.brand }"><span>${vo.brand }</span></label>
+						<label for="${vo.bnameKor }Label"><input type="checkbox" id="${vo.bnameKor }Label"value="${vo.bnameKor }"><span>${vo.bnameKor }</span></label>
 					</div>
 				</c:forEach>
 			</div>
@@ -282,13 +282,13 @@
 	</div>
 	<div class="prodList eqHeight">
 		<div class="path">
-			<a href="main.do"><i class="fas fa-home"></i> HOME</a>
+			<a href="${pageContext.request.contextPath}/main.do"><i class="fas fa-home"></i> HOME</a>
 			>
 			<c:if test="${pCategory eq null }">
 				신발
 			</c:if>
 			<c:if test="${pCategory ne null }">
-				<a href="productList.do">신발</a>
+				<a href="${pageContext.request.contextPath}/productList.do">신발</a>
 			</c:if>
 			<c:if test="${pCategory eq 'cate01cv'}">
 				> 캔버스/스웨이드
@@ -322,30 +322,30 @@
 		</h3>
 		<div class="prodcategory">
 			<c:if test="${pCategory eq 'cate01cv'}">
-				<a href="productList.do?pCategory=cate01ca"><span>캐주얼</span></a>
-				<a href="productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
-				<a href="productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01ca"><span>캐주얼</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
 			</c:if>
 			<c:if test="${pCategory eq 'cate01ca'}">
-				<a href="productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
-				<a href="productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
-				<a href="productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
 			</c:if>
 			<c:if test="${pCategory eq 'cate01rn'}">
-				<a href="productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
-				<a href="productList.do?pCategory=cate01ca"><span>캐주얼</span></a>
-				<a href="productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01ca"><span>캐주얼</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
 			</c:if>
 			<c:if test="${pCategory eq 'cate01sl'}">
-				<a href="productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
-				<a href="productList.do?pCategory=cate01ca"><span>캐주얼</span></a>
-				<a href="productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01ca"><span>캐주얼</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
 			</c:if>
 			<c:if test="${pCategory eq null }">
-				<a href="productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
-				<a href="productList.do?pCategory=cate01ca"><span>캐주얼</span></a>
-				<a href="productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
-				<a href="productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01cv"><span>캔버스/스웨이드</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01ca"><span>캐주얼</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01rn"><span>러닝/스포츠</span></a>
+				<a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01sl"><span>슬리퍼/뮬</span></a>
 			</c:if>
 		</div>
 		<div class="pagingOptions">
@@ -377,4 +377,4 @@
 </div>
 
 
-<script src="resources/js/priceSlider.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/priceSlider.js"></script>
