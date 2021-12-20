@@ -21,6 +21,7 @@
 		login-page="/loginForm.do"
 		authentication-failure-url="/loginFail.do"
 		login-processing-url="/login.do"
+		authentication-success-handler-ref="loginSuccessHandler"
 		 />
   
 	<logout

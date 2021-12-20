@@ -9,11 +9,7 @@ public class Test {
 
 	@org.junit.Test
 	public void test() {
-		String[] colors = {"blk", "grn", "wht"};
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("colors", colors);
-		System.out.println( ((String[])map.get("colors"))[1] );
-		
+
 	}
 
 }
