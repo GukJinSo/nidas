@@ -1,5 +1,7 @@
 package com.nidas.app.payment.vo;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,4 +12,5 @@ public class CartVO {
 	private String serial;
 	private String shoeSize;
 	private int quantity;
+	
 }

@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,13 +27,23 @@ import com.nidas.app.payment.vo.CartVO;
 @Controller
 public class PaymentController {
 
-	Authentication authen = SecurityContextHolder.getContext().getAuthentication();
-	Object authenObj = authen.getPrincipal();
 
+	Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 	@Autowired PaymentService payDAO;
 	
 	@GetMapping("cart.do")
-	private String cart(){
+	private String cart(HttpServletRequest req, Model model){
+		// 회원 처리
+		Object authenObj = authen.getPrincipal();
+		if (authenObj instanceof User) {
+			String userName = ((User)authenObj).getUsername();
+			model.addAttribute(payDAO.selectCart(userName));
+		// 비회원 처리
+		} else {
+			HttpSession session = req.getSession();
+			List<CartVO> anonymCart = (List<CartVO>)session.getAttribute("anonymCart");
+			model.addAttribute(anonymCart);
+		}
 		return "payment/cart";
 	}
 
@@ -40,6 +51,7 @@ public class PaymentController {
 	private String addCart(HttpServletRequest req, @RequestParam(value="cartList") List<CartVO> inputCart ){
 		
 		// 회원 처리. DB insert 혹은 update
+		Object authenObj = authen.getPrincipal();
 		if (authenObj instanceof User) {
 			String userName = ((User)authenObj).getUsername();
 			payDAO.insertCart(userName, inputCart);
@@ -53,8 +65,7 @@ public class PaymentController {
 				session.setAttribute("anonymCart", CartCombiner.combine(anonymCart, inputCart));
 			}
 		}
-		return null;
+		return "??";
 	}
-	
 	
 }

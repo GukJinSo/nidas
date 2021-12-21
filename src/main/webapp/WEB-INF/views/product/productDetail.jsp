@@ -9,12 +9,33 @@
 
 	function addCart(){
 		
-		location.href='addCart.do';
-        if (confirm("장바구니에 등록되었습니다.\n장바구니 페이지로 이동할까요?") == true) {
-        	
-        } else {
-        	
-        }
+		var cartList = [];
+		$.each( $('input[type="hidden"]'), function(index, e){
+				var obj = new Object();
+				obj.serial = '${prod.details.serial }';
+				obj.shoeSize = e.id;
+				obj.quantity = e.value;
+				cartList.push(obj);
+			});
+		console.log(cartList);
+		$.ajax({
+			url:'addCart.do',
+			data:{cartList:cartList},
+			success:function(result){
+				console.log('done');
+				/*
+		        if (confirm("장바구니에 등록되었습니다.\n장바구니 페이지로 이동할까요?") == true) {
+		        	
+		        } else {
+		        	
+		        }
+				*/
+			}, error:function(err){
+				console.log('fail');
+			}
+		});
+		
+
 		
 	}
 
@@ -27,11 +48,12 @@
 		// 사이즈 버튼 클릭마다 div 생성하거나, 이미 있는 경우 갯수만 추가
 		if($('.addedStock.s'+size+'Div').length == 0){
 			addHtml += '<div class="addedStock '+'s'+size+'Div">';
-				addHtml += '<div class="">'+size+'</div>';
+				addHtml += '<div class="size">'+size+'</div>';
 				addHtml += '<div class="border-grey-right padding-5all">';
 					addHtml += '<button onclick="sumMinus(this)">-</button>';
-					addHtml += '<input type="number" value="1" onchange="sumChange(this)">';
+					addHtml += '<input type="number" value=1 onchange="sumChange(this)">';
 					addHtml += '<button onclick="sumPlus(this)">+</button>';
+					addHtml += '<input type="hidden" id="s'+size+'"value="1">';
 				addHtml += '</div>';
 		    	addHtml += '<div class="sum"></div>';
 		    addHtml += '</div>';
@@ -48,6 +70,7 @@
 		var times = $(target).val();
 		var totalPrice = 0;
 		$(target).parent().siblings('.sum').html(addComma('${prod.details.disPrice }'*times)+'원');
+		$(target).next().next().val(times);
 		$.each( $('.addedStockWrap .sum'), function(index, span){
 				totalPrice += removeKorSc(span.innerText);
 			});
