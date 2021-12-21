@@ -1,9 +1,15 @@
 package com.nidas.app.login.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,7 +47,7 @@ public class LoginController {
 		return "login/registerForm";
 	}
 	
-	@PostMapping("memberInsert.do")
+	@PostMapping("memberInsert.do") @SuppressWarnings("finally")
 	public String memberInsert(@Validated(LoginInsertValid.class) LoginVO vo, BindingResult bResult, HttpServletRequest req){
 		String returnPage = "redirect:/main.do";
 		// 정규식 검증
@@ -53,15 +59,16 @@ public class LoginController {
 		}
 		// 세션 검증
 		session = req.getSession();
-		try { // 잘못된 접근으로 세션에 boolean 값이 없는 경우 nullpointer가 반드시 발생 == 인증 실패와 같으므로 에러 페이지 return
+		try { // 잘못된 접근으로 세션에 boolean 값이 없는 경우 nullpointer가 반드시 발생 == 값 인증 실패와 같으므로 에러 페이지 return
 			boolean isIdChecked = ((Boolean) session.getAttribute("isIdChecked")).booleanValue();
 			boolean isHpChecked = ((Boolean) session.getAttribute("isHpChecked")).booleanValue();
 			if ( isIdChecked == true && isHpChecked == true ) {
-				loginDAO.memberInsert(vo);
+				loginDAO.memberInsert(vo); // 회원 가입
+				loginDAO.LoginAfterMemberInsert(vo); // 로그인 처리
 			}
 		} catch (NullPointerException ne){
 			returnPage = "redirect:/errorPage.do";
-		} finally { // finally절에 return을 기재하는 경우, catch절에 return 값이 있더라도 return이 최종적으로 실행된다는 경고 문구
+		} finally { // finally절에 return을 기재하는 경우, catch절에 return 값이 있더라도 return이 최종적으로 실행된다는 경고 문구. @SuppressWarnings("finally")로 제거
 			session.removeAttribute("isIdChecked");
 			session.removeAttribute("isHpChecked");
 			return returnPage;
@@ -69,8 +76,7 @@ public class LoginController {
 
 	}
 	
-	@PostMapping("idExistCheck.do")
-	@ResponseBody
+	@PostMapping("idExistCheck.do") @ResponseBody
 	public boolean idExistCheck(String id, HttpServletRequest req) {
 		session = req.getSession();
 		session.setAttribute("isIdChecked", loginDAO.idExistCheck(id));

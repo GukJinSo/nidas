@@ -1,4 +1,4 @@
-package com.nidas.app.etc;
+package com.nidas.app.etc.util;
 
 public class Paging {
     private int pageSize; // 게시 글 수

@@ -6,5 +6,6 @@ public interface LoginService {
 
 	public int memberInsert(LoginVO vo);
 	public boolean idExistCheck(String id);
+	public void LoginAfterMemberInsert(LoginVO vo);
 	
 }

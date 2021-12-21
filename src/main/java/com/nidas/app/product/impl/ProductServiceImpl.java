@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.nidas.app.etc.Paging;
+import com.nidas.app.etc.util.Paging;
 import com.nidas.app.product.mapper.ProductMapper;
 import com.nidas.app.product.service.ProductService;
 import com.nidas.app.product.vo.ProductVO;

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nidas.app.payment.payment-mapper">
+
+
+<select id="selectCart" parameterType="String">
+	select * from cart where id = #{id}
+</select>
+
+<insert id="insertCart" parameterType="Map">
+    {call
+        declare
+        begin
+            delete from cart where id = #{id};
+			<foreach collection="list" item="vo">
+            insert into cart(id, serial, shoesize, quantity) values( #{vo.id}, #{vo.serial}, #{vo.shoesize}, #{vo.quantity});
+			</foreach>
+        end
+    }
+</insert>
+
+<delete id="deleteCart" parameterType="String">
+	delete from cart where id = #{id}
+</delete>
+
+
+
+
+
+</mapper>
