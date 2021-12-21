@@ -9,13 +9,13 @@
 
 	function addCart(){
 		
+		location.href='addCart.do';
         if (confirm("장바구니에 등록되었습니다.\n장바구니 페이지로 이동할까요?") == true) {
         	
         } else {
         	
         }
 		
-		location.href='addCart.do';
 	}
 
 
