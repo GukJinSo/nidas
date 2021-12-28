@@ -6,6 +6,25 @@
 
 <div class="body">
 <div class="container-fluid">
-	카트 성공!
+<div class="cartWrap">
+	<div class="cartHeader">
+		<h2>장바구니</h2>
+		<span class="cartProgress">
+			<span class="cartInProgress"> 장바구니 > </span>주문서 작성/결제 > 주문 완료
+		</span>
+		<div class="clear"></div>
+		<div class="cartLoginGroups">
+			<button class="" onclick="location.href='${pageContext.request.contextPath}/loginForm.do'">로그인
+			</button>
+			<button class="" onclick="location.href='${pageContext.request.contextPath}/registerForm.do'">회원가입
+			</button>
+		</div>
+		<div class="clear"></div>
+		배송 상품(${fn:length(cartList) })
+	</div>
+	<div class="cartBody">
+	awdawdaw
+	</div>
+</div>
 </div>
 </div>

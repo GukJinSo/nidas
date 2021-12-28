@@ -20,16 +20,16 @@
 		console.log(cartList);
 		$.ajax({
 			url:'addCart.do',
-			data:{cartList:cartList},
+			method:'post',
+			contentType: "application/json; charset=utf-8",
+			dataType: 'json',
+			data:JSON.stringify({cartList}),
 			success:function(result){
-				console.log('done');
-				/*
+				console.log('added data : '+result);
 		        if (confirm("장바구니에 등록되었습니다.\n장바구니 페이지로 이동할까요?") == true) {
-		        	
+		        	location.href = 'cart.do';
 		        } else {
-		        	
 		        }
-				*/
 			}, error:function(err){
 				console.log('fail');
 			}

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,45 +28,53 @@ import com.nidas.app.payment.vo.CartVO;
 @Controller
 public class PaymentController {
 
-
-	Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 	@Autowired PaymentService payDAO;
 	
 	@GetMapping("cart.do")
 	private String cart(HttpServletRequest req, Model model){
 		// 회원 처리
+		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 		Object authenObj = authen.getPrincipal();
 		if (authenObj instanceof User) {
 			String userName = ((User)authenObj).getUsername();
-			model.addAttribute(payDAO.selectCart(userName));
+			List<CartVO> cartInfo = payDAO.selectCart(userName);
+			List<ProductVO> prodInfo = 
+			model.addAttribute("cartList", payDAO.selectCart(userName));
+			model.addAttribute("");
 		// 비회원 처리
 		} else {
 			HttpSession session = req.getSession();
 			List<CartVO> anonymCart = (List<CartVO>)session.getAttribute("anonymCart");
-			model.addAttribute(anonymCart);
+			if (anonymCart != null) {
+				model.addAttribute("cartList", anonymCart);
+			}
+				
 		}
 		return "payment/cart";
 	}
 
-	@GetMapping("addCart.do") @ResponseBody
-	private String addCart(HttpServletRequest req, @RequestParam(value="cartList") List<CartVO> inputCart ){
-		
+	@PostMapping("addCart.do") @ResponseBody
+	private String addCart(HttpServletRequest req, @RequestBody CartVO cartVO ){
+		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 		// 회원 처리. DB insert 혹은 update
 		Object authenObj = authen.getPrincipal();
+		System.out.println(cartVO.getCartList().size());
+		int size = 0;
 		if (authenObj instanceof User) {
 			String userName = ((User)authenObj).getUsername();
-			payDAO.insertCart(userName, inputCart);
+			payDAO.insertCart(userName, cartVO.getCartList());
 		// 비회원 처리. 세션에 insert 혹은 update
 		} else {
 			HttpSession session = req.getSession();
 			List<CartVO> anonymCart = (List<CartVO>)session.getAttribute("anonymCart");
 			if (CollectionUtils.isEmpty(anonymCart)) { // 세션값이 없으면
-				session.setAttribute("anonymCart", inputCart);
+				session.setAttribute("anonymCart", cartVO.getCartList());
 			} else { // 있으면 기존 값에 추가 추가
-				session.setAttribute("anonymCart", CartCombiner.combine(anonymCart, inputCart));
+				session.setAttribute("anonymCart", CartCombiner.combine(anonymCart, cartVO.getCartList()));
 			}
+			size = ((List<CartVO> )session.getAttribute("anonymCart")).size();
 		}
-		return "??";
+		return ""+size+"";
 	}
 	
 }

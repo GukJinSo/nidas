@@ -13,4 +13,6 @@ public class CartVO {
 	private String shoeSize;
 	private int quantity;
 	
+	private List<CartVO> cartList;
+	
 }
