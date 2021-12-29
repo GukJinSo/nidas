@@ -23,11 +23,14 @@
 	delete from cart where id = #{id}
 </delete>
 
-<select id="selectProdListBySerial" parameterType="String">
-select v.*
-from v_nowonsale v, cart c
-where v.serial
-in
+<select id="selectCartProdList" parameterType="java.util.ArrayList" resultType="com.nidas.app.product.vo.ProductVO">
+	select *
+	from v_nowonsale
+	where serial
+	in
+	<foreach collection="cartSerial" close=")" open="(" separator="," item="serial">
+		#{serial}
+	</foreach>
 </select>
 
 </mapper>

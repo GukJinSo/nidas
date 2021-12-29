@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nidas.app.etc.util.CartCombiner;
 import com.nidas.app.payment.service.PaymentService;
 import com.nidas.app.payment.vo.CartVO;
+import com.nidas.app.product.vo.ProductVO;
 
 @Controller
 public class PaymentController {
@@ -32,21 +33,29 @@ public class PaymentController {
 	
 	@GetMapping("cart.do")
 	private String cart(HttpServletRequest req, Model model){
+		//TODO 변수 정리, 분기 처리 필요
 		// 회원 처리
 		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 		Object authenObj = authen.getPrincipal();
+		List<CartVO> cartInfo;
+		List<String> cartSerial;
+		List<ProductVO> prodInfo;
 		if (authenObj instanceof User) {
 			String userName = ((User)authenObj).getUsername();
-			List<CartVO> cartInfo = payDAO.selectCart(userName);
-			List<ProductVO> prodInfo = 
-			model.addAttribute("cartList", payDAO.selectCart(userName));
+			cartInfo = payDAO.selectCart(userName);
+			cartSerial = new ArrayList<String>();
+			for(int i = 0; i < cartInfo.size(); i++) {
+				cartSerial.add( cartInfo.get(i).getSerial() );
+			}
+			prodInfo = payDAO.selectCartProdList(cartSerial);
+			model.addAttribute("cartInfo", payDAO.selectCart(userName));
 			model.addAttribute("");
 		// 비회원 처리
 		} else {
 			HttpSession session = req.getSession();
 			List<CartVO> anonymCart = (List<CartVO>)session.getAttribute("anonymCart");
 			if (anonymCart != null) {
-				model.addAttribute("cartList", anonymCart);
+				model.addAttribute("cartInfo", anonymCart);
 			}
 				
 		}

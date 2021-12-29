@@ -11,6 +11,7 @@ import com.nidas.app.etc.util.CartCombiner;
 import com.nidas.app.payment.mapper.PaymentMapper;
 import com.nidas.app.payment.service.PaymentService;
 import com.nidas.app.payment.vo.CartVO;
+import com.nidas.app.product.vo.ProductVO;
 
 @Repository("payDAO")
 public class PaymentServiceImpl implements PaymentService{
@@ -29,6 +30,11 @@ public class PaymentServiceImpl implements PaymentService{
 		map.put("id", id);
 		map.put("list", CartCombiner.combine(OriginalCart, inputCart));
 		mapper.insertCart(map);
+	}
+
+	@Override
+	public List<ProductVO> selectCartProdList(List<String> cartSerial) {
+		return mapper.selectCartProdList(cartSerial);
 	}
 
 
