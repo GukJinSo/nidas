@@ -8,6 +8,7 @@ import com.nidas.app.product.vo.ProductVO;
 public interface PaymentService {
 
 	List<CartVO> selectCart(String id);
+	void deleteCart(String id);
 	List<ProductVO> selectCartProdList(List<String> cartSerial);
 	void insertCart(String id, List<CartVO> inputCart);
 }

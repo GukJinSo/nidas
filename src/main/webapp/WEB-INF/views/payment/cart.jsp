@@ -20,10 +20,15 @@
 			</button>
 		</div>
 		<div class="clear"></div>
-		배송 상품(${fn:length(cartList) })
+		배송 상품(${fn:length(cartInfo) })
 	</div>
 	<div class="cartBody">
-	awdawdaw
+		<c:forEach var="vo" items="ProdInfo">
+			${vo.image }
+		</c:forEach>
+		<div class="">
+			
+		</div>
 	</div>
 </div>
 </div>

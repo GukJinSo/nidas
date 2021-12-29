@@ -37,5 +37,10 @@ public class PaymentServiceImpl implements PaymentService{
 		return mapper.selectCartProdList(cartSerial);
 	}
 
+	@Override
+	public void deleteCart(String id) {
+		mapper.deleteCart(id);
+	}
+
 
 }

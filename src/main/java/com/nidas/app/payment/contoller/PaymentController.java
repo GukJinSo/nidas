@@ -33,32 +33,30 @@ public class PaymentController {
 	
 	@GetMapping("cart.do")
 	private String cart(HttpServletRequest req, Model model){
-		//TODO 변수 정리, 분기 처리 필요
-		// 회원 처리
 		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 		Object authenObj = authen.getPrincipal();
 		List<CartVO> cartInfo;
-		List<String> cartSerial;
+		List<String> cartSerial = new ArrayList<String>();
 		List<ProductVO> prodInfo;
+		// 회원 처리
 		if (authenObj instanceof User) {
 			String userName = ((User)authenObj).getUsername();
 			cartInfo = payDAO.selectCart(userName);
-			cartSerial = new ArrayList<String>();
+		// 비회원 처리
+		} else {
+			HttpSession session = req.getSession();
+			cartInfo = (List<CartVO>)session.getAttribute("anonymCart");
+		}
+		// 공통 처리
+		if (cartInfo != null) {
 			for(int i = 0; i < cartInfo.size(); i++) {
 				cartSerial.add( cartInfo.get(i).getSerial() );
 			}
 			prodInfo = payDAO.selectCartProdList(cartSerial);
-			model.addAttribute("cartInfo", payDAO.selectCart(userName));
-			model.addAttribute("");
-		// 비회원 처리
-		} else {
-			HttpSession session = req.getSession();
-			List<CartVO> anonymCart = (List<CartVO>)session.getAttribute("anonymCart");
-			if (anonymCart != null) {
-				model.addAttribute("cartInfo", anonymCart);
-			}
-				
+			model.addAttribute("prodInfo", prodInfo);
+			model.addAttribute("cartInfo", cartInfo);
 		}
+
 		return "payment/cart";
 	}
 

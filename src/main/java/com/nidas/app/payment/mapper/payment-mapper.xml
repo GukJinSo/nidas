@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.nidas.app.payment.payment-mapper">
+<mapper namespace="com.nidas.app.payment.mapper.PaymentMapper">
 
-
-<select id="selectCart" parameterType="String">
+<select id="selectCart" parameterType="String" resultType="com.nidas.app.payment.vo.CartVO">
 	select * from cart where id = #{id}
 </select>
 
@@ -23,7 +22,7 @@
 	delete from cart where id = #{id}
 </delete>
 
-<select id="selectCartProdList" parameterType="java.util.ArrayList" resultType="com.nidas.app.product.vo.ProductVO">
+<select id="selectCartProdList" parameterType="list" resultType="com.nidas.app.product.vo.ProductVO">
 	select *
 	from v_nowonsale
 	where serial
