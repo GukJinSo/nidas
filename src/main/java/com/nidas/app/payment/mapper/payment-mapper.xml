@@ -12,7 +12,7 @@
         begin
             delete from cart where id = #{id};
 			<foreach collection="list" item="vo">
-            insert into cart(id, serial, shoesize, quantity) values( #{vo.id}, #{vo.serial}, #{vo.shoesize}, #{vo.quantity});
+            insert into cart(id, serial, shoesize, quantity) values( #{vo.id}, #{vo.serial}, #{vo.shoeSize}, #{vo.quantity});
 			</foreach>
         end
     }

@@ -607,7 +607,7 @@
 	}
 	
 	@media (min-width:1681px) {
-		.prodDetailWrap, cartWrap{
+		.prodDetailWrap, .cartWrap{
 			margin-left:300px;
 			margin-right:300px;
 		}
@@ -814,7 +814,6 @@
 	}
 	.cartBody{
 		border-top:2px solid black;
-		padding-top:40px;
 	}
 	.cartInProgress{
 		font-weight:800;
@@ -835,3 +834,8 @@
 	    color: black;
 	    background: white;
 	}
+	.yellowBackground{
+		height:40px;
+		background:#F2EEE2;
+	}
+	.cartBody table td

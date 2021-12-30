@@ -23,12 +23,38 @@
 		배송 상품(${fn:length(cartInfo) })
 	</div>
 	<div class="cartBody">
-		<c:forEach var="vo" items="ProdInfo">
-			${vo.image }
-		</c:forEach>
-		<div class="">
-			
+		<div class="yellowBackground" style="border-bottom: 1px solid #CECECE">
 		</div>
+		<div class="cartProdList">
+			<table>
+			<c:forEach var="vo" items="${prodInfo }">
+				<tr>
+					<td>
+						<img src="${pageContext.request.contextPath}/resources/images/product/${vo.filePath }">
+						<span>
+							${vo.bnameKor }
+						</span>
+						<span>
+							${vo.disPrice }
+						</span>
+						<span>
+						</span>
+					</td>
+					<td>
+						1111111111111
+					</td>
+					<td>
+						2222222222222
+					</td>
+				</tr>
+			</c:forEach>
+			</table>
+		</div>
+		<div class="yellowBackground" style="border-top: 1px solid #CECECE">
+		</div>
+	</div>
+	<div class="cartFooter">
+	
 	</div>
 </div>
 </div>
