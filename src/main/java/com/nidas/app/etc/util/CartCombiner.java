@@ -25,7 +25,7 @@ public class CartCombiner {
 		for (int i=0; i<originalCart.size(); i++) {
 			addStock = originalCart.get(i).getQuantity(); // i의 수량을 기본값으로 초기화
 			for (int j=i+1; j < originalCart.size(); j++) { // i의 다음 인덱스부터 중복값 검사
-				// 시리얼과 사이즈가a 같다면 같은 제품으로 봄
+				// 시리얼과 사이즈가 같다면 같은 제품으로 봄
 				if ( originalCart.get(i).getSerial().equals(originalCart.get(j).getSerial()) && originalCart.get(i).getShoeSize().equals(originalCart.get(j).getShoeSize()) ) {
 					addStock += originalCart.get(j).getQuantity(); // (i)의 기본값에 수량을 더해주고 삭제함
 					originalCart.get(i).setQuantity(addStock);
