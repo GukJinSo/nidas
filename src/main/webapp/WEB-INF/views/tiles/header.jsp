@@ -36,7 +36,7 @@
 				</button>
 			</form:form>
 		</sec:authorize>
-		<a href="" title="장바구니"><i class="fas fa-shopping-cart middleIcon"></i></a>
+		<a href="${pageContext.request.contextPath}/cart.do" title="장바구니"><i class="fas fa-shopping-cart middleIcon"></i></a>
 		<a href="" title="매장위치"><i class="far fa-map middleIcon"></i></a>
 	</div>
 	

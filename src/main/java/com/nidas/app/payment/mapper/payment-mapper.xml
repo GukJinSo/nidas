@@ -12,7 +12,7 @@
         begin
             delete from cart where id = #{id};
 			<foreach collection="list" item="vo">
-            insert into cart(id, serial, shoesize, quantity) values( #{vo.id}, #{vo.serial}, #{vo.shoeSize}, #{vo.quantity});
+            insert into cart(id, serial, shoesize, quantity) values( #{id}, #{vo.serial}, #{vo.shoeSize}, #{vo.quantity});
 			</foreach>
         end
     }
@@ -22,14 +22,29 @@
 	delete from cart where id = #{id}
 </delete>
 
-<select id="selectCartProdList" parameterType="list" resultType="com.nidas.app.product.vo.ProductVO">
-	select *
-	from v_nowonsale
-	where serial
+<select id="selectCartProdListByUser" parameterType="Map" resultType="com.nidas.app.product.vo.ProductVO">
+	select v.*, shoesize, quantity
+	from v_nowonsale v, cart c
+	where v.serial = c.serial
+	and id = #{id}
+	and v.serial
 	in
-	<foreach collection="cartSerial" close=")" open="(" separator="," item="serial">
-		#{serial}
+	<foreach collection="list" close=")" open="(" separator="," item="vo">
+		#{vo.serial}
 	</foreach>
 </select>
+
+<select id="selectCartProdListByAnonym" parameterType="list" resultType="com.nidas.app.product.vo.ProductVO">
+	select v.*, quantity, shoesize
+	from v_nowonsale v,
+	(select * from cart where id = ''
+	<foreach collection="list" close=")" open="union" separator="union" item="vo">
+		select null, #{vo.serial}, #{vo.shoeSize}, to_char(#{vo.quantity}) from cart
+	</foreach>
+	c
+	where v.serial = c.serial
+</select>
+
+
 
 </mapper>

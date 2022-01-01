@@ -29,13 +29,22 @@ public class PaymentServiceImpl implements PaymentService{
 		List<CartVO> OriginalCart = mapper.selectCart(id);
 		map.put("id", id);
 		map.put("list", CartCombiner.combine(OriginalCart, inputCart));
+		mapper.deleteCart(id);
 		mapper.insertCart(map);
+		
 	}
 
 	@Override
-	public List<ProductVO> selectCartProdList(List<String> cartSerial) {
-		return mapper.selectCartProdList(cartSerial);
+	public List<ProductVO> selectCartProdList(Map<String, Object> cartSerial) {
+		if (cartSerial.get("id") != "") {
+			return mapper.selectCartProdListByUser(cartSerial);
+		} else {
+			return mapper.selectCartProdListByAnonym( (List<CartVO>)cartSerial.get("list") );
+		}
+		
 	}
+	
+	
 
 	@Override
 	public void deleteCart(String id) {

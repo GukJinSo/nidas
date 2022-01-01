@@ -13,5 +13,6 @@ public interface PaymentMapper {
 	List<CartVO> selectCart(String id);
 	void deleteCart(String id);
 	int insertCart(Map<String, Object> map);
-	List<ProductVO> selectCartProdList(@Param("cartSerial")List<String> cartSerial);
+	List<ProductVO> selectCartProdListByUser(Map<String, Object> map);
+	List<ProductVO> selectCartProdListByAnonym(@Param("list")List<CartVO> list);
 }

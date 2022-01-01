@@ -35,24 +35,24 @@ public class PaymentController {
 	private String cart(HttpServletRequest req, Model model){
 		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 		Object authenObj = authen.getPrincipal();
+		Map<String, Object> map = new HashMap<>();
 		List<CartVO> cartInfo;
-		List<String> cartSerial = new ArrayList<String>();
-		List<ProductVO> prodInfo;
+		List<ProductVO> prodInfo = null;
 		// 회원 처리
 		if (authenObj instanceof User) {
 			String userName = ((User)authenObj).getUsername();
 			cartInfo = payDAO.selectCart(userName);
+			map.put("id", userName);
 		// 비회원 처리
 		} else {
 			HttpSession session = req.getSession();
 			cartInfo = (List<CartVO>)session.getAttribute("anonymCart");
+			map.put("id", "");
 		}
 		// 공통 처리
 		if (cartInfo != null) {
-			for(int i = 0; i < cartInfo.size(); i++) {
-				cartSerial.add( cartInfo.get(i).getSerial() );
-			}
-			prodInfo = payDAO.selectCartProdList(cartSerial);
+			map.put("list", cartInfo);
+			prodInfo = payDAO.selectCartProdList(map);
 			model.addAttribute("prodInfo", prodInfo);
 			model.addAttribute("cartInfo", cartInfo);
 		}
@@ -69,6 +69,7 @@ public class PaymentController {
 		int size = 0;
 		if (authenObj instanceof User) {
 			String userName = ((User)authenObj).getUsername();
+			System.out.println(userName);
 			payDAO.insertCart(userName, cartVO.getCartList());
 		// 비회원 처리. 세션에 insert 혹은 update
 		} else {

@@ -61,6 +61,8 @@ public class ProductVO {
 	private int s285;
 	private int s290;
 	
-	
+	//cartVO
+	private int quantity;
+	private String shoeSize;
 	
 }
