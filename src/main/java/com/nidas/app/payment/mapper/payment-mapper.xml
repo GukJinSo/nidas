@@ -23,7 +23,7 @@
 </delete>
 
 <select id="selectCartProdListByUser" parameterType="Map" resultType="com.nidas.app.product.vo.ProductVO">
-	select v.*, shoesize, quantity
+	select v.*, replace(shoesize, 's', '') as shoesize, quantity
 	from v_nowonsale v, cart c
 	where v.serial = c.serial
 	and id = #{id}
@@ -35,7 +35,7 @@
 </select>
 
 <select id="selectCartProdListByAnonym" parameterType="list" resultType="com.nidas.app.product.vo.ProductVO">
-	select v.*, quantity, shoesize
+	select v.*, quantity, replace(shoesize, 's', '') as shoesize
 	from v_nowonsale v,
 	(select * from cart where id = ''
 	<foreach collection="list" close=")" open="union" separator="union" item="vo">

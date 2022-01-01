@@ -54,7 +54,6 @@ public class PaymentController {
 			map.put("list", cartInfo);
 			prodInfo = payDAO.selectCartProdList(map);
 			model.addAttribute("prodInfo", prodInfo);
-			model.addAttribute("cartInfo", cartInfo);
 		}
 
 		return "payment/cart";
