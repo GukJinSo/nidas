@@ -798,7 +798,7 @@
 		color:white;
 	}
 	.cartWrap{
-		margin-top:118px;
+		margin-top:100px;
 	}
 	.cartHeader{
 		padding-bottom:20px;
@@ -834,69 +834,166 @@
 	    color: black;
 	    background: white;
 	}
-	.yellowBackground{
+	.lightgreyBackground{
 		height:40px;
-		background:#F2EEE2;
+		background:#F2F2F2;
 	}
-	.cartBody table tr:not(:last-child){
+	.cartBody .cartProdList table tr:not(:last-child){
 		border-bottom:1px solid grey;
 	}
-	.cartBody table td img{
+	.cartBody .cartProdList table td img{
 		width:100px;
 	}
-	.cartBody table td {
+	.cartBody .cartProdList table td {
 		vertical-align:middle;
 		height:150px;
 		padding-top: 20px;
 		padding-bottom: 20px;
 	}
-	.cartBody table td div{
+	.cartBody .cartProdList table td:first-child div{
 		display: inline-block;
 		float:left;
 	}
-	.cartBody table td div:nth-child(2){
+	.cartBody .cartProdList table td:first-child div:nth-child(2){
 		margin-left:10px;
 		height: 100px;
 	}
-	.cartBody table td p{
+	.cartBody .cartProdList table td:first-child p{
 		line-height: normal;
 		margin:0px;
 		color:grey;
 	}
-	.cartBody table td:first-child div:nth-child(2) p:first-child{
+	.cartBody .cartProdList table td:first-child div:nth-child(2) p:first-child{
 		color:black;
 		font-weight:800;
 	}
 	
-	.cartBody table td:first-child {
-		width:40%;
+	.cartBody .cartProdList table td:first-child {
+		width:30%;
 		padding-left: 50px;
 	}
-	.cartBody table td:nth-child(2) {
-		width:30%;
+	.cartBody .cartProdList table td:nth-child(2) {
+		text-align:center;
+		width:25%;
 	}
-	.cartBody table td:last-child {
-		width:40%;
-		padding-right: 50px;
+	.cartBody .cartProdList table td:nth-child(3) {
+		text-align:center;
+		width:25%;
 	}
-	.cartBody table td:nth-child(2) div:nth-child(1) {
+	.cartBody .cartProdList table td:nth-child(4) {
+		width:20%;
+	}
+	.cartBody .cartProdList table td:first-child p:not(:first-child){
+		font-size:14px;
+	}	
+	.cartBody .cartProdList table td:nth-child(2) div:nth-child(1) {
 		width:84px;
 		float:none;
+		display:inline-block;
 	}
-	.cartBody table td:nth-child(2) div:nth-child(1) input {
+	.cartBody .cartProdList table td:nth-child(2) div:nth-child(2) {
+		display:inline-block;
+	}
+	.cartBody .cartProdList table td:nth-child(2) div:nth-child(2) button{
+	    border: 1px solid #CECECE;
+	    height: 39px;
+	    background: white;
+	    font-size: 14px;
+	    padding: 0px 10px;
+	}
+	.cartBody .cartProdList table td:nth-child(2) div:nth-child(1) input {
 		text-align:center;
 		width:25px;
 		border:none;
 	}
-	.cartBody table td:nth-child(2) div:nth-child(1) input::-webkit-inner-spin-button, 
-	.cartBody table td:nth-child(2) div:nth-child(1) input::-webkit-outer-spin-button { 
+	.cartBody .cartProdList table td:nth-child(2) div:nth-child(1) input::-webkit-inner-spin-button, 
+	.cartBody .cartProdList table td:nth-child(2) div:nth-child(1) input::-webkit-outer-spin-button { 
 		 -webkit-appearance: none; 
 	}
 		
-	.cartBody table td:nth-child(2) div:nth-child(1) button {
+	.cartBody .cartProdList table td:nth-child(2) div:nth-child(1) button {
 		border:none;
 	}	 	
-	.cartBody table td:nth-child(3) {
+	.cartBody .cartProdList table td:nth-child(3) {
 		font-family: "gmarket";
+	}
+	.cartBody .cartProdList table td:nth-child(3) p:first-child {
+		margin:0px;
+	}
+	.cartBody .cartProdList table td:nth-child(4) button {
+		font-size:14px;
+		padding:8px 40px;
+		border:1px solid black;
+		background:white;
+		
+	}
+	.cartBody .cartTotalPrice table{
+		width:100%;
+	}
+	.cartBody .cartTotalPrice table tr:first-child{
+		border-top:3px solid black;
+	}
+	.cartBody .cartTotalPrice table td div div{
+		display:inline-block;
+	}
+	.cartBody .cartTotalPrice table td{
+		padding:30px 20px;
+		padding-right:30px;
+		width:33%;
+		border-bottom:1px solid #CECECE;
+	}
+	.cartBody .cartTotalPrice table td:not(:last-child){
+		border-right:1px solid #CECECE;
+	}
+	.cartBody .cartTotalPrice table tr:last-child{
+		background:#F2F2F2;
+	}
+	.cartBody .cartTotalPrice table td div{
+	    display: flex;
+	    justify-content: space-between;
+	}
+	.cartBody .cartTotalPrice table td div div:nth-child(1){
+		margin:auto 0px;
+	}
+	.cartBody .cartTotalPrice table td div div:nth-child(2){
+		font-size:22px;
+		font-family:"gmarket";
+	}
+	.won:after{
+		content:'원';
+		color:black;
+		font-size:14px;
+	}
+	.cartBody .explane{
+		text-align: right;
+		font-size: 14px;
+		color: lightslategrey;
+		margin: 10px;
+
+	}
+	
+	
+	.icon-minus, .icon-result{
+		position:relative;
+	}
+	
+	.icon-minus:before{
+		position:absolute;
+		content:'';
+		width:84px;
+		clip: rect(0px, 28px, 28px, -22px);
+		height:28px;
+		margin-top:2px;
+		left:-14px;
+		background: url(../images/comm_icon_payment.png) no-repeat;
+	}
+	.icon-result:before{
+		position:absolute;
+		margin-top:2px;
+		content:'';
+		width:28px;
+		height:28px;
+		left:-14px;
+		background: url(../images/comm_icon_payment.png) no-repeat;
 	}
 }

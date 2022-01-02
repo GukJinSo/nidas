@@ -13,15 +13,7 @@ function selectStock(target){
 
 
 function sumChange(target){
-	var times = $(target).val();
-	var totalPrice = 0;
-	$(target).parent().siblings('.sum').html(addComma('${prod.details.disPrice }'*times)+'원');
-	$(target).next().next().val(times);
-	$.each( $('.addedStockWrap .sum'), function(index, span){
-			totalPrice += removeKorSc(span.innerText);
-		});
-	var comPrice = addComma(totalPrice);
-	$('.sums').text(comPrice);
+	cartStockChange
 }
 
 function sumPlus(target){
@@ -32,9 +24,6 @@ function sumMinus(target){
 	if( $(target).next().val() != 1 ){ // 1 이하로 내려가는 것 방지
 		$(target).next().val( parseInt($(target).next().val())-1 );
 		$(target).next().trigger('onchange');
-	} else {
-		sumChange(target); // target을 찾을 수 없기에 sumChange의 times는 0이 됨. 결국 0을 곱하게 되어 가격이 사라짐 
-		$(target).closest('.addedStock').remove();
 	}
 }
 </script>
@@ -59,7 +48,7 @@ function sumMinus(target){
 		배송 상품(${fn:length(prodInfo) })
 	</div>
 	<div class="cartBody">
-		<div class="yellowBackground" style="border-bottom: 1px solid #CECECE">
+		<div class="lightgreyBackground" style="border-bottom: 1px solid #CECECE">
 		</div>
 		<div class="cartProdList">
 			<table>
@@ -92,6 +81,10 @@ function sumMinus(target){
 							<input type="number" value="${vo.quantity }" onchange="sumChange(this)">
 							<button onclick="sumPlus(this)">+</button>
 						</div>
+						<div>
+							<button onclick="cartStockChange()">변경
+							</button>
+						</div>
 					</td>
 					<td>
 						<c:if test="${vo.disPrice != vo.price }">
@@ -110,11 +103,76 @@ function sumMinus(target){
 							</p>
 						</c:if>
 					</td>
+					<td>
+						<button><i class="fa fa-trash" aria-hidden="true"></i>삭제</button>
+					</td>
 				</tr>
 			</c:forEach>
 			</table>
 		</div>
-		<div class="yellowBackground" style="border-top: 1px solid #CECECE">
+		<div class="explane">
+			비 로그인 상태에서 장바구니에 담은 상품은 저장되지 않습니다.
+		</div>
+		<div class="cartTotalPrice">
+			<table>
+				<tr>
+					<td>
+						<div>
+							<div>
+								주문금액
+							</div>
+							<div>
+								<c:set var="b_sum" value="0"></c:set>
+								<c:forEach items="${prodInfo }" var="vo">
+									<c:set var="b_sum" value="${b_sum + vo.price }"></c:set>
+								</c:forEach>
+								<fmt:formatNumber value="${b_sum}" type="number"/>
+								<span class="won"></span>
+							</div>
+						</div>
+					</td>
+					<td class="icon-minus">
+						<div>
+							<div>
+								총 할인금액
+							</div>
+							<div>
+								<c:set var="d_sum" value="0"></c:set>
+								<c:forEach items="${prodInfo }" var="vo">
+									<c:if test="${vo.disRate ne null }">
+										<c:set var="d_sum" value="${d_sum + vo.disPrice }"></c:set>
+									</c:if>
+								</c:forEach>
+								<fmt:formatNumber value="${d_sum}" type="number"/>
+								<span class="won"></span>
+							</div>
+						</div>
+					</td>
+					<td class="icon-result">
+						<div>
+							<div>
+								결제예정금액
+							</div>
+							<div>
+								<c:set var="a_sum" value="0"></c:set>
+								<c:forEach items="${prodInfo }" var="vo">
+									<c:set var="a_sum" value="${b_sum - d_sum }"></c:set>
+								</c:forEach>
+								<span style="color:red;"><fmt:formatNumber value="${a_sum}" type="number"/></span>
+								<span class="won"></span>
+							</div>
+						</div>					
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 	<div class="cartFooter">
