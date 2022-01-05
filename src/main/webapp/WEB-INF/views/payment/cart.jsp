@@ -98,21 +98,31 @@ $(function(){
 	let width1 = $('.cartFooter > div:nth-child(1)').width();
 	let width2 = $('.cartFooter > div:nth-child(2)').width();
 	let width3 = $('.cartFooter > div:nth-child(3)').width();
-	console.log(width1, width2, width3);
 	$('.cartFooter > div:nth-child(3)').css( 'left', (width1-(width2+width3))-60 );
 });
 
-window.addEventListener('scroll', () => {
-	
-	/* top +1씩 되도록 변경 필요
-	if(document.documentElement.scrollTop >= 
-	(document.querySelector('.cartFooter > div:nth-child(3)').offsetTop-headerSize)-20
-	){
-		target.css('top', headerSize+20);
+var move = 0;
+
+var lastScrollTop = 0;
+$(window).scroll(function(event){
+	var st = $(this).scrollTop();
+	if (st > lastScrollTop){
+		console.log( $('.cartFooter > div:nth-child(2)').height() + $('.cartFooter > div:nth-child(4)').height() )
+	   let headerSize = $('.header').height()+20;
+	   let target = $('.cartFooter > div:nth-child(3)');
+	   if(document.documentElement.scrollTop >= (document.querySelector('.cartFooter > div:nth-child(3)').offsetTop-headerSize)){
+		   if(move < $('.cartFooter > div:nth-child(2)').height() + $('.cartFooter > div:nth-child(4)').height() - $('.cartFooter > div:nth-child(2)').height() ){
+				move = window.scrollY - (document.querySelector('.cartFooter > div:nth-child(2)').offsetTop - headerSize);
+				console.log(move);
+				target.css('top', move);
+		   }
+	   }
+	} else {
+      // upscroll code
+
 	}
-	*/
-	
-})
+	lastScrollTop = st;
+});
 
 </script>
 
