@@ -3,29 +3,91 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-function selectStock(target){
-    $('.addedStock.s'+size+'Div input').trigger('onchange');
-}
-
-
-function sumChange(target){
-	cartStockChange
-}
 
 function sumPlus(target){
 	$(target).prev().val( parseInt($(target).prev().val())+1 );
-	$(target).prev().trigger('onchange');
+	
 }
 function sumMinus(target){
 	if( $(target).next().val() != 1 ){ // 1 이하로 내려가는 것 방지
 		$(target).next().val( parseInt($(target).next().val())-1 );
-		$(target).next().trigger('onchange');
 	}
 }
+function cartStockUpdate(t, serial, shoeSize){
+	let stock = $(t).parent().prev().children('div input').val();
+	console.log(stock);
+	console.log(serial);
+	$.ajax({
+		url:'cartStockUpdate.do',
+		method:'post',
+		data:{quantity:stock, serial:serial, shoeSize:shoeSize},
+		method:'post',
+		success:function(result){
+	        alert('정상적으로 수정되었습니다.');
+	        location.href='${pageContext.request.contextPath}/cart.do';
+		}, error:function(err){
+			console.log('fail');
+		}
+	});
+}
+
+function cartStockDelete(serial, shoeSize){
+	$.ajax({
+		url:'cartStockDelete.do',
+		method:'post',
+		data:{serial:serial, shoeSize:shoeSize},
+		method:'post',
+		success:function(result){
+	        alert('정상적으로 삭제되었습니다.');
+	        location.href='${pageContext.request.contextPath}/cart.do';
+		}, error:function(err){
+			console.log('fail');
+		}
+	});
+}
+
+function needsChange(value){
+	if(value != 'write'){
+		$('#needs').attr('readonly', 'true');
+		$('#needs').val(value);
+	} else {
+		$('#needs').val('');
+		$('#needs').removeAttr('readonly');
+		$('#needs').focus();
+		
+	}	
+}
+
+function getAddress() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+			
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('zipcode').value = data.zonecode;
+            document.getElementById("address").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("addressExtra").focus();
+        }
+    }).open();
+}
+
+
 </script>
 
 
@@ -78,11 +140,11 @@ function sumMinus(target){
 					<td>
 						<div class="border-grey-right padding-5all">
 							<button onclick="sumMinus(this)">-</button>
-							<input type="number" value="${vo.quantity }" onchange="sumChange(this)">
+							<input type="number" value="${vo.quantity }">
 							<button onclick="sumPlus(this)">+</button>
 						</div>
 						<div>
-							<button onclick="cartStockChange()">변경
+							<button onclick="cartStockUpdate(this, '${vo.serial}', '${vo.shoeSize }')">변경
 							</button>
 						</div>
 					</td>
@@ -104,7 +166,7 @@ function sumMinus(target){
 						</c:if>
 					</td>
 					<td>
-						<button><i class="fa fa-trash" aria-hidden="true"></i>삭제</button>
+						<button onclick="cartStockDelete('${vo.serial }','${vo.shoeSize }')"><i class="fa fa-trash" aria-hidden="true"></i>삭제</button>
 					</td>
 				</tr>
 			</c:forEach>
@@ -176,7 +238,75 @@ function sumMinus(target){
 		</div>
 	</div>
 	<div class="cartFooter">
-	
+		<div>
+			<button onclick="">주문하기</button>
+		</div>
+		<div>
+			<span>주문정보</span>
+			<table>
+				<tr>
+					<th>배송지 선택</th>
+					<td>
+						<sec:authorize access="isAnonymous()">
+							<input type="radio" checked="checked" name="isSame">신규 입력
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<input type="radio" checked="checked" name="isSame">주문자와 동일
+							<input type="radio" name="isSame">신규 입력
+						</sec:authorize>
+					</td>
+				</tr>
+				<tr>
+					<th>이름<span class="required"></span></th>
+					<td>
+						<input type="text" name="id" style="width:300px">
+					</td>
+				</tr>
+				
+				<tr>
+					<th>휴대폰 번호<span class="required"></span></th>
+					<td class="cartTels">
+						<input type="text" name="tel" style="width:300px"> 
+					</td>
+				</tr>
+				<tr>
+					<th>주소<span class="required"></span></th>
+					<td  class="cartAddress">
+						<div>
+							<input type="text" id="zipcode" name="id" style="width:185px"  value="우편번호" readonly="readonly"><button onclick="getAddress()" class="findAddrBtn">우편번호 찾기</button>
+						</div>
+						<div>
+							<input type="text" id="address" name="id" readonly>
+						</div>
+						<div>
+							<input type="text" id="addressExtra" name="id">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>배송 시 요청사항</th>
+					<td class="cartNeeds">
+						<div>
+							<select name="needs" onchange="needsChange(this.value)">
+								<option>배송 시 요청사항을 선택하세요.</option>
+								<option>배송 전에 연락주세요.</option>
+								<option>부재 시 문 앞에 놓아주세요.</option>
+								<option>부재 시 경비실에 맡겨주세요.</option>
+								<option>직접 수령하겠습니다.</option>
+								<option value="write">직접 입력</option>
+							</select>
+						</div>
+						<div>
+							<input type="text" id="needs">
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="">
+			계산서
+		</div>
+		<div class="clear"></div>
 	</div>
 </div>
 </div>

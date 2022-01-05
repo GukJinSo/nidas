@@ -64,11 +64,9 @@ public class PaymentController {
 		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
 		// 회원 처리. DB insert 혹은 update
 		Object authenObj = authen.getPrincipal();
-		System.out.println(cartVO.getCartList().size());
 		int size = 0;
 		if (authenObj instanceof User) {
 			String userName = ((User)authenObj).getUsername();
-			System.out.println(userName);
 			payDAO.insertCart(userName, cartVO.getCartList());
 		// 비회원 처리. 세션에 insert 혹은 update
 		} else {
@@ -84,4 +82,45 @@ public class PaymentController {
 		return ""+size+"";
 	}
 	
+	@PostMapping("cartStockUpdate.do") @ResponseBody
+	private String cartStockUpdate(HttpServletRequest req, CartVO cartVO) {
+		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
+		Object authenObj = authen.getPrincipal();
+		if (authenObj instanceof User) {
+			String userName = ((User)authenObj).getUsername();
+			payDAO.updateCart(userName, cartVO);
+		} else {
+			HttpSession session = req.getSession();
+			List<CartVO> anonymCart = (List<CartVO>)session.getAttribute("anonymCart");
+			for(CartVO vo : anonymCart) {
+				if (vo.getSerial().equals(cartVO.getSerial()) && vo.getShoeSize().equals("s"+cartVO.getShoeSize()) ) {
+					vo.setQuantity(cartVO.getQuantity());
+					break;
+				}	
+			}
+			session.setAttribute("anonymCart", anonymCart);
+		}
+		return null;
+	}
+	
+	@PostMapping("cartStockDelete.do") @ResponseBody
+	private String cartStockDelete(HttpServletRequest req, CartVO cartVO) {
+		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
+		Object authenObj = authen.getPrincipal();
+		if (authenObj instanceof User) {
+			String userName = ((User)authenObj).getUsername();
+			payDAO.deleteCart(userName, cartVO);
+		} else {
+			HttpSession session = req.getSession();
+			List<CartVO> anonymCart = (List<CartVO>)session.getAttribute("anonymCart");
+			for(CartVO vo : anonymCart) {
+				if (vo.getSerial().equals(cartVO.getSerial()) && vo.getShoeSize().equals("s"+cartVO.getShoeSize()) ) {
+					anonymCart.remove(vo);
+					break;
+				}
+			}
+			session.setAttribute("anonymCart", anonymCart);
+		}
+		return null;
+	}
 }

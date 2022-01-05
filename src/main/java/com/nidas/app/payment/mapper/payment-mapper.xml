@@ -18,9 +18,13 @@
     }
 </insert>
 
-<delete id="deleteCart" parameterType="String">
-	delete from cart where id = #{id}
+<delete id="deleteCart" parameterType="Map">
+	delete from cart where id = #{id} and shoeSize = #{vo.shoeSize} and serial = #{vo.serial}
 </delete>
+
+<update id="updateCart" parameterType="Map">
+	update cart set quantity = #{vo.quantity} where shoeSize = #{vo.shoeSize} and serial = #{vo.serial}
+</update>
 
 <select id="selectCartProdListByUser" parameterType="Map" resultType="com.nidas.app.product.vo.ProductVO">
 	select v.*, replace(shoesize, 's', '') as shoesize, quantity

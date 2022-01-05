@@ -988,12 +988,126 @@
 		background: url(../images/comm_icon_payment.png) no-repeat;
 	}
 	.icon-result:before{
-		position:absolute;
-		margin-top:2px;
-		content:'';
-		width:28px;
-		height:28px;
-		left:-14px;
-		background: url(../images/comm_icon_payment.png) no-repeat;
+	    position: absolute;
+	    margin-top: 2px;
+	    content: '';
+	    width: 84px;
+	    height: 28px;
+	    left: -42px;
+	    clip: rect(0px, 56px, 28px, 28px);
+	    background: url(
+		../images/comm_icon_payment.png) no-repeat;
+	}
+	.cartFooter{
+		margin-top:30px;
+	}
+	.cartFooter > div:first-child{
+		text-align:center;
+	}
+	.cartFooter > div:nth-child(2),
+	.cartFooter > div:nth-child(3)
+	{
+		margin-top:50px;
+		display:inline-block;
+	}
+	/*
+	.cartFooter > div:nth-child(3){
+		border:3px solid black;
+		margin-top:50px;
+		display:inline-block;
+		width:39%;
+	}
+	*/
+		
+	
+	.cartFooter > div:nth-child(2) > span{
+	    border-bottom: 2px solid black;
+	    display: block;
+	    padding-bottom: 20px;
+	}
+	.cartFooter > div:nth-child(2) > table{
+		margin-top:20px;
+	}
+	.cartFooter > div:nth-child(2){
+		width:50%;
+		float:left;
+	}
+	.cartFooter > div:nth-child(3){
+		padding:30px 30px;
+		border:2px solid black;
+		width:40%;
+		float:right;
+	}
+		
+	.cartFooter > div:first-child button{
+	    width: 200px;
+	    height: 55px;
+	    color: white;
+	    background: black;
+	}
+	.cartFooter > div:nth-child(2) table th{
+	    color: #333;
+	    font-weight: 500;
+	    font-size: 16px;
+	    vertical-align: middle;
+	}
+	.cartFooter > div:nth-child(2) table td{
+		color:darkslategrey;
+		font-size:14px;
+	}
+	
+	.cartFooter > div:nth-child(2) table td input[type="radio"]{
+	    width: 14px;
+	    height: 14px;
+	    vertical-align: middle;
+	    margin-right:5px;
+	}
+	.cartFooter > div:nth-child(2) table th:first-child{
+		width:150px;
+	}
+	.cartFooter > div:nth-child(2) table th:not(:first-child){
+		padding-top:12px;
+	    color: #333;
+	    font-weight: 500;
+	}
+	.cartFooter > div:nth-child(2) table input[type="text"], 
+	.cartFooter > div:nth-child(2) table select
+	{
+		color:darkslategrey;
+		font-size:14px;
+		padding:3px 10px;
+		width:450px;
+		height:38px;
+	}
+	.cartFooter > div:nth-child(2) .findAddrBtn{
+		width:110px;
+		margin-left:5px;
+		border: 1px solid #CECECE;
+	    height: 39px;
+	    background: white;
+	    font-size: 14px;
+	    padding: 0px 10px;
+	}
+	.cartFooter > div:nth-child(2) td{
+		padding-top:12px;
+	}
+	.cartFooter .cartAddress div:not(:first-child),
+	.cartFooter .cartNeeds div:not(:first-child)
+	 {
+		margin-top:12px;
+	}
+	.cartFooter input:read-only{
+	    border: 1px solid black;
+   		background: lightgrey;
+	}
+	.required{
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    margin-left: 3px;
+    border-radius: 50%;
+    background: #ee1c25;
+    vertical-align: middle;
 	}
 }

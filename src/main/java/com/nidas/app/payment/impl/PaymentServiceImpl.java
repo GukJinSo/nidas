@@ -44,12 +44,20 @@ public class PaymentServiceImpl implements PaymentService{
 		
 	}
 	
-	
-
 	@Override
-	public void deleteCart(String id) {
-		mapper.deleteCart(id);
+	public void updateCart(String userName, CartVO cartVO) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", userName);
+		map.put("vo", cartVO);
+		mapper.updateCart(userName, map);
 	}
 
+	@Override
+	public void deleteCart(String userName, CartVO cartVO) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", userName);
+		map.put("vo", cartVO);
+		mapper.deleteCart(userName, map);
+	}
 
 }
