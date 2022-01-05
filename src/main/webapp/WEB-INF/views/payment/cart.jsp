@@ -87,6 +87,11 @@ function getAddress() {
     }).open();
 }
 
+$(function(){ 
+	let ulWidth = Math.floor($('.list-style-none').css('width').replace('px', ''));
+	console.log(ulWidth);
+	$('.list-style-none label').css('width', (ulWidth/5));
+});
 
 </script>
 
@@ -107,7 +112,9 @@ function getAddress() {
 			</button>
 		</div>
 		<div class="clear"></div>
-		배송 상품(${fn:length(prodInfo) })
+		<span style="font-size:18px; font-weight:800;">
+			배송 상품(${fn:length(prodInfo) })
+		</span>
 	</div>
 	<div class="cartBody">
 		<div class="lightgreyBackground" style="border-bottom: 1px solid #CECECE">
@@ -242,7 +249,7 @@ function getAddress() {
 			<button onclick="">주문하기</button>
 		</div>
 		<div>
-			<span>주문정보</span>
+			<span style="font-size:18px; font-weight:800;">주문정보</span>
 			<table>
 				<tr>
 					<th>배송지 선택</th>
@@ -304,7 +311,68 @@ function getAddress() {
 			</table>
 		</div>
 		<div class="">
-			계산서
+			<div style="font-size:18px; font-weight:800;">
+				결제 정보
+			</div>
+			<div>
+				<span>총 정상가</span>
+				
+				<span><fmt:formatNumber value="${b_sum}" type="number"/><span class="won"></span></span>
+			</div>
+			<div>
+				<span>총 배송비</span>
+				<span>0<span class="won"></span></span>
+			</div>
+			<div>
+				<span>총 할인금액</span>
+				<span><fmt:formatNumber value="${d_sum }" type="number"/><span class="won"></span></span>
+			</div>
+			<div>
+				<span>총 결제 예정금액</span>
+				<span style="color:red"><fmt:formatNumber value="${a_sum }" type="number"/><span class="won red"></span></span>
+			</div>
+			<div>
+				<button>결제하기</button>
+			</div>
+		</div>
+		<div>
+			<div style="font-size:18px; font-weight:800;">
+				결제 수단 선택
+			</div>
+			<div>
+				<ul class="list-style-none">
+					<li>
+						<input type="radio" id="kakaopay" style="display:none;">
+						<label for="kakaopay">
+							카카오페이
+						</label>
+					</li>
+					<li>
+						<label for="phone">
+							휴대폰결제
+						</label>
+					</li>
+										<li>
+						<label for="phone">
+							휴대폰결제
+						</label>
+					</li>
+										<li>
+						<label for="phone">
+							휴대폰결제
+						</label>
+					</li>
+										<li>
+						<label for="phone">
+							휴대폰결제
+						</label>
+					</li>
+				</ul>
+				<div>
+					상품 품절로 인해 주문 후 취소될 수 있습니다. 품절 취소 시 결제하신 수단으로 자동 환불됩니다.
+					<br>※ 결제하신 수단으로 환불이 불가능할 경우 별도 안내드립니다.
+				</div>
+			</div>
 		</div>
 		<div class="clear"></div>
 	</div>
