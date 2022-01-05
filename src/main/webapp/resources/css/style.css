@@ -1001,11 +1001,11 @@
 	}
 	.cartFooter > div:first-child{
 		text-align:center;
+		padding-bottom:150px;
 	}
 	.cartFooter > div:nth-child(2),
 	.cartFooter > div:nth-child(3)
 	{
-		margin-top:50px;
 		display:inline-block;
 	}
 	/*
@@ -1030,7 +1030,7 @@
 		width:55%;
 		float:left;
 	}
-	.cartFooter > div:nth-child(3){
+	.cartFooter > div:nth-child(3){	
 		padding:30px 30px;
 		border:2px solid black;
 		width:35%;
@@ -1178,5 +1178,5 @@
 	    padding: 20px;
 	    font-size: 10px;
 	    border: 1px solid grey;
-	}	
+	}
 	

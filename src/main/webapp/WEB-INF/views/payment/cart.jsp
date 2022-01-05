@@ -87,11 +87,26 @@ function getAddress() {
     }).open();
 }
 
+var scrollLocation;
 $(function(){ 
+	scrollLocation = document.querySelector(".cartFooter div:first-child").offsetTop;
+	window.scrollTo({top:scrollLocation, behavior:'smooth'});
 	let ulWidth = Math.floor($('.list-style-none').css('width').replace('px', ''));
 	console.log(ulWidth);
-	$('.list-style-none label').css('width', (ulWidth/5));
+	$('.list-style-none label').css('width', (ulWidth/5)-3);
 });
+
+window.addEventListener('scroll', () => {
+	if(document.documentElement.scrollTop > scrollLocation){
+		let target = $('.cartFooter > div:nth-child(3)');
+		target.css('position','fixed');
+		target.css('top', '150px');
+		target.css('right','200px');
+		let width = $('.cartFooter > div:nth-child(1)').width();
+		target.css('width',width*0.35);
+		console.log('경계경보!!');
+	}
+})
 
 </script>
 
@@ -310,7 +325,7 @@ $(function(){
 				</tr>
 			</table>
 		</div>
-		<div class="">
+		<div>
 			<div style="font-size:18px; font-weight:800;">
 				결제 정보
 			</div>
