@@ -1008,16 +1008,8 @@
 	{
 		display:inline-block;
 	}
-	/*
 	.cartFooter > div:nth-child(3){
-		border:3px solid black;
-		margin-top:50px;
-		display:inline-block;
-		width:39%;
 	}
-	*/
-		
-	
 	.cartFooter > div:nth-child(2) > span{
 	    border-bottom: 2px solid black;
 	    display: block;
@@ -1034,7 +1026,7 @@
 		padding:30px 30px;
 		border:2px solid black;
 		width:35%;
-		float:right;
+		position: relative;
 	}
 		
 	.cartFooter > div:first-child button{

@@ -94,18 +94,24 @@ $(function(){
 	let ulWidth = Math.floor($('.list-style-none').css('width').replace('px', ''));
 	console.log(ulWidth);
 	$('.list-style-none label').css('width', (ulWidth/5)-3);
+	
+	let width1 = $('.cartFooter > div:nth-child(1)').width();
+	let width2 = $('.cartFooter > div:nth-child(2)').width();
+	let width3 = $('.cartFooter > div:nth-child(3)').width();
+	console.log(width1, width2, width3);
+	$('.cartFooter > div:nth-child(3)').css( 'left', (width1-(width2+width3))-60 );
 });
 
 window.addEventListener('scroll', () => {
-	if(document.documentElement.scrollTop > scrollLocation){
-		let target = $('.cartFooter > div:nth-child(3)');
-		target.css('position','fixed');
-		target.css('top', '150px');
-		target.css('right','200px');
-		let width = $('.cartFooter > div:nth-child(1)').width();
-		target.css('width',width*0.35);
-		console.log('경계경보!!');
+	
+	/* top +1씩 되도록 변경 필요
+	if(document.documentElement.scrollTop >= 
+	(document.querySelector('.cartFooter > div:nth-child(3)').offsetTop-headerSize)-20
+	){
+		target.css('top', headerSize+20);
 	}
+	*/
+	
 })
 
 </script>
