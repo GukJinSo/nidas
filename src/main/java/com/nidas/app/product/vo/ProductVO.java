@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter @Setter 
 public class ProductVO {
 
 	private String serial;
@@ -18,13 +18,13 @@ public class ProductVO {
 	private String pnameEng;
 	private String color;
 	private Date relDate;
-	private String price;
-	private String disRate;
+	private int price;
+	private int disPrice;
+	private float disRate;
 	private String pstate;
 	
 	//ParameterVO
 	private String orderBy;
-	private String disPrice;
 	private String search;
 	private int page;
 	private int pagePer;
@@ -64,5 +64,39 @@ public class ProductVO {
 	//cartVO
 	private int quantity;
 	private String shoeSize;
+	
+	public void shoeSizeSet(String shoeSize, int quantity){
+		if(shoeSize.equals("s220")) {
+			setS220(getS220()-quantity);
+		} else if(shoeSize.equals("s225")) {
+			setS220(getS225()-quantity);			
+		} else if(shoeSize.equals("s230")) {
+			setS220(getS230()-quantity);
+		} else if(shoeSize.equals("s235")) {
+			setS220(getS235()-quantity);
+		} else if(shoeSize.equals("s240")) {
+			setS220(getS240()-quantity);
+		} else if(shoeSize.equals("s245")) {
+			setS220(getS245()-quantity);
+		} else if(shoeSize.equals("s250")) {
+			setS220(getS250()-quantity);
+		} else if(shoeSize.equals("s255")) {
+			setS220(getS255()-quantity);
+		} else if(shoeSize.equals("s260")) {
+			setS220(getS260()-quantity);
+		} else if(shoeSize.equals("s265")) {
+			setS220(getS265()-quantity);
+		} else if(shoeSize.equals("s270")) {
+			setS220(getS270()-quantity);
+		} else if(shoeSize.equals("s275")) {
+			setS220(getS275()-quantity);
+		} else if(shoeSize.equals("s280")) {
+			setS220(getS280()-quantity);
+		} else if(shoeSize.equals("s285")) {
+			setS220(getS285()-quantity);
+		} else if(shoeSize.equals("s290")) {
+			setS220(getS290()-quantity);
+		}
+	}
 	
 }

@@ -10,6 +10,7 @@ $(function() {
     spaceBetween: 60,
     freeMode: true,
     loop:true,
+    allowTouchMove: true,
     autoplay: {
         delay: 3000,
       }

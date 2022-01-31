@@ -4,9 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
+
 
 function sumPlus(target){
 	$(target).prev().val( parseInt($(target).prev().val())+1 );
@@ -25,7 +27,6 @@ function cartStockUpdate(t, serial, shoeSize){
 		url:'cartStockUpdate.do',
 		method:'post',
 		data:{quantity:stock, serial:serial, shoeSize:shoeSize},
-		method:'post',
 		success:function(result){
 	        alert('정상적으로 수정되었습니다.');
 	        location.href='${pageContext.request.contextPath}/cart.do';
@@ -40,7 +41,6 @@ function cartStockDelete(serial, shoeSize){
 		url:'cartStockDelete.do',
 		method:'post',
 		data:{serial:serial, shoeSize:shoeSize},
-		method:'post',
 		success:function(result){
 	        alert('정상적으로 삭제되었습니다.');
 	        location.href='${pageContext.request.contextPath}/cart.do';
@@ -61,6 +61,65 @@ function needsChange(value){
 		
 	}	
 }
+
+function callPayment(){
+	if ($('input[name=name]').val() == ''){
+		alert('이름을 입력하세요');
+		return;
+	}
+	if ($('input[name=tel]').val() == ''){
+		alert('연락처를 입력하세요');
+		return;
+	}
+	if ($('input[name=zipcode]').val() == '' || $('input[name=zipcode]').val() == '우편번호'){
+		alert('주소를 검색하세요');
+		return;
+	}
+	var totalPrice = $('body > div.body > div > div > div.cartFooter > div:nth-child(3) > div:nth-child(5) > span:nth-child(2)').text().replace(',','');
+	if ($('.cartFooter input[name=payment]:checked').length != 0){
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp04708803');
+		// IMP.request_pay(param, callback) 결제창 호출
+		IMP.request_pay({
+			pg : 'kakao',
+			pay_method : 'card',
+			merchant_uid : new Date().getTime(),
+			name : '주문명 : '+new Date().getTime(),
+			amount : totalPrice,
+		}, function(rsp) {
+			if (rsp.success) {
+				var tel = $('.cartFooter input[name=tel]').val();
+				var address = $('.cartFooter input[name=address]').val()+' '+$('.cartFooter input[name=addressExtra]').val()+' '+$('.cartFooter input[name=zipcode]').val();
+				var name = $('.cartFooter input[name=name]').val();
+				var needs = $('.cartFooter input[name=needs]').val();
+				
+				$.ajax({
+					url : "insertOrder.do",
+					data:{
+						tel:tel,
+						address:address,
+						name:name,
+						needs:needs
+					},
+					method : "post",
+					success : function(data) {
+						console.log('주문이 완료되었습니다');
+					},
+					error : function(err) {
+						console.log(err);
+					}
+				})
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+			alert(msg);
+		});
+	} else {
+		alert('결제수단을 선택하세요.');	
+	}
+}
+
 
 function getAddress() {
     new daum.Postcode({
@@ -87,8 +146,19 @@ function getAddress() {
     }).open();
 }
 
-var scrollLocation;
-$(function(){ 
+
+function moveToPayment(){
+
+	$('	.cartFooter > div:nth-child(2)').css('display', 'inline-block');
+	$('	.cartFooter > div:nth-child(3)').css('display', 'inline-block');
+	var right = $('.cartFooter > div:nth-child(3)'); // 스크롤 시 움직일 오른쪽 div
+	right.css('top', 0);
+	$('	.cartFooter > div:nth-child(4)').css('display', 'inline-block');
+	$('	.cartFooter > div:nth-child(5)').css('display', 'block');
+	
+	
+	
+	var scrollLocation;
 	scrollLocation = document.querySelector(".cartFooter div:first-child").offsetTop;
 	window.scrollTo({top:scrollLocation, behavior:'smooth'});
 	let ulWidth = Math.floor($('.list-style-none').css('width').replace('px', ''));
@@ -99,30 +169,64 @@ $(function(){
 	let width2 = $('.cartFooter > div:nth-child(2)').width();
 	let width3 = $('.cartFooter > div:nth-child(3)').width();
 	$('.cartFooter > div:nth-child(3)').css( 'left', (width1-(width2+width3))-60 );
+}
+
+$(function(){
+	$('.cartFooter > div:not(:first-child)').css('display', 'none');	
 });
 
-var move = 0;
 
+// 얼마만큼 움직일 지 저장하는 변수
+var move = 0;
 var lastScrollTop = 0;
 $(window).scroll(function(event){
-	var st = $(this).scrollTop();
+
+	var headerSize = $('.header').height(); // 헤더 높이
+	var blankSpace = 20; // 헤더로부터 떨어져 보일 여백
+	var left = $('.cartFooter > div:nth-child(2)'); // 스크롤의 왼쪽 div
+	var left2 = $('.cartFooter > div:nth-child(4)'); // 스크롤 왼쪽의 두번째 div
+	var right = $('.cartFooter > div:nth-child(3)'); // 스크롤 시 움직일 오른쪽 div
+	var limitDistance = left.height() + left2.height() - right.height();
+	var scrollTop = $(document).scrollTop(); // 상단으로부터 스크롤 된 거리
+	
+	var st = $(this).scrollTop(); // 스크롤의 방향을 알아내기 위한 변수
 	if (st > lastScrollTop){
-		console.log( $('.cartFooter > div:nth-child(2)').height() + $('.cartFooter > div:nth-child(4)').height() )
-	   let headerSize = $('.header').height()+20;
-	   let target = $('.cartFooter > div:nth-child(3)');
-	   if(document.documentElement.scrollTop >= (document.querySelector('.cartFooter > div:nth-child(3)').offsetTop-headerSize)){
-		   if(move < $('.cartFooter > div:nth-child(2)').height() + $('.cartFooter > div:nth-child(4)').height() - $('.cartFooter > div:nth-child(2)').height() ){
-				move = window.scrollY - (document.querySelector('.cartFooter > div:nth-child(2)').offsetTop - headerSize);
-				console.log(move);
-				target.css('top', move);
-		   }
+		// 스크롤이 downside
+		// 스크롤이 시작될 위치를 지났으면
+		if(scrollTop >= right.offset().top - (headerSize + blankSpace) ){
+			// 움직일 수 있는 여백 값은 좌측편 div 높이 - 우측편 div 높이를 하면 산출 가능
+			// 움직일 수 있는 여백 값이 남아 있다면
+			if(move <= limitDistance ){
+				move = scrollTop - (left.offset().top - (headerSize + blankSpace));
+				// move가 319이고 limitDistance가 320인 경우 위 if는 통과 가능한 경우가 있다.
+				// 따라서 첫 if문 안에서 move를 계산하여 320을 넘는 경우 move는 limitDistance의 최대값을 넣어준다.
+				if (move > limitDistance){
+					move = limitDistance;
+				}
+				console.log("downside :"+move);
+				right.css('top', move);
+			}
 	   }
 	} else {
-      // upscroll code
-
+		// 스크롤이 upside
+		// 스크롤이 시작될 위치를 지났으면
+		if(scrollTop <= right.offset().top - (headerSize + blankSpace) ){
+			// 움직일 수 있는 여백 값은 좌측편 div 높이 - 우측편 div 높이를 하면 산출 가능
+			// 움직일 수 있는 여백 값이 남아 있다면
+			if(move > 0){
+				move = scrollTop - (left.offset().top - (headerSize + blankSpace));
+				// 사용자가 화면을 확 올리는 경우를 대비한 코드
+				if (move < 0){
+					move = 0;
+				}
+				console.log("downside :"+move);
+				right.css('top', move);
+			}
+	   }
 	}
 	lastScrollTop = st;
 });
+
 
 </script>
 
@@ -132,9 +236,12 @@ $(window).scroll(function(event){
 <div class="cartWrap">
 	<div class="cartHeader">
 		<h2>장바구니</h2>
+		
+		<!-- 
 		<span class="cartProgress">
 			<span class="cartInProgress"> 장바구니 > </span>주문서 작성/결제 > 주문 완료
 		</span>
+		 -->
 		<div class="clear"></div>
 		<div class="cartLoginGroups">
 			<button class="" onclick="location.href='${pageContext.request.contextPath}/loginForm.do'">로그인
@@ -152,6 +259,9 @@ $(window).scroll(function(event){
 		</div>
 		<div class="cartProdList">
 			<table>
+			<c:if test="${fn:length(prodInfo) == 0 }">
+				<span class="noProdList">등록된 상품이 없습니다</span>
+			</c:if>
 			<c:forEach var="vo" items="${prodInfo }">
 				<tr>
 					<td>
@@ -212,6 +322,8 @@ $(window).scroll(function(event){
 		</div>
 		<div class="explane">
 			비 로그인 상태에서 장바구니에 담은 상품은 저장되지 않습니다.
+			<br>
+			수량 변경 후 변경 버튼을 눌러야 정상적으로 결제 항목이 변경됩니다.
 		</div>
 		<div class="cartTotalPrice">
 			<table>
@@ -224,7 +336,7 @@ $(window).scroll(function(event){
 							<div>
 								<c:set var="b_sum" value="0"></c:set>
 								<c:forEach items="${prodInfo }" var="vo">
-									<c:set var="b_sum" value="${b_sum + vo.price }"></c:set>
+									<c:set var="b_sum" value="${b_sum + vo.price*vo.quantity }"></c:set>
 								</c:forEach>
 								<fmt:formatNumber value="${b_sum}" type="number"/>
 								<span class="won"></span>
@@ -240,7 +352,7 @@ $(window).scroll(function(event){
 								<c:set var="d_sum" value="0"></c:set>
 								<c:forEach items="${prodInfo }" var="vo">
 									<c:if test="${vo.disRate ne null }">
-										<c:set var="d_sum" value="${d_sum + vo.disPrice }"></c:set>
+										<c:set var="d_sum" value="${d_sum + (vo.price-vo.disPrice)*vo.quantity }"></c:set>
 									</c:if>
 								</c:forEach>
 								<fmt:formatNumber value="${d_sum}" type="number"/>
@@ -275,11 +387,12 @@ $(window).scroll(function(event){
 			</table>
 		</div>
 	</div>
+	<c:if test="${fn:length(prodInfo) != 0 }">
 	<div class="cartFooter">
 		<div>
-			<button onclick="">주문하기</button>
+			<button onclick="moveToPayment()">주문하기</button>
 		</div>
-		<div>
+		<div style="display:none;">
 			<span style="font-size:18px; font-weight:800;">주문정보</span>
 			<table>
 				<tr>
@@ -297,7 +410,7 @@ $(window).scroll(function(event){
 				<tr>
 					<th>이름<span class="required"></span></th>
 					<td>
-						<input type="text" name="id" style="width:300px">
+						<input type="text" name="name" style="width:300px">
 					</td>
 				</tr>
 				
@@ -309,15 +422,15 @@ $(window).scroll(function(event){
 				</tr>
 				<tr>
 					<th>주소<span class="required"></span></th>
-					<td  class="cartAddress">
+					<td class="cartAddress">
 						<div>
-							<input type="text" id="zipcode" name="id" style="width:185px"  value="우편번호" readonly="readonly"><button onclick="getAddress()" class="findAddrBtn">우편번호 찾기</button>
+							<input type="text" id="zipcode" name="zipcode" style="width:185px"  value="우편번호" readonly="readonly"><button onclick="getAddress()" class="findAddrBtn">우편번호 찾기</button>
 						</div>
 						<div>
-							<input type="text" id="address" name="id" readonly>
+							<input type="text" id="address" name="address" readonly>
 						</div>
 						<div>
-							<input type="text" id="addressExtra" name="id">
+							<input type="text" id="addressExtra" name="addressExtra">
 						</div>
 					</td>
 				</tr>
@@ -335,13 +448,13 @@ $(window).scroll(function(event){
 							</select>
 						</div>
 						<div>
-							<input type="text" id="needs">
+							<input type="text" id="needs" name="needs">
 						</div>
 					</td>
 				</tr>
 			</table>
 		</div>
-		<div>
+		<div style="display:none;">
 			<div style="font-size:18px; font-weight:800;">
 				결제 정보
 			</div>
@@ -363,39 +476,19 @@ $(window).scroll(function(event){
 				<span style="color:red"><fmt:formatNumber value="${a_sum }" type="number"/><span class="won red"></span></span>
 			</div>
 			<div>
-				<button>결제하기</button>
+				<button onclick="callPayment()">결제하기</button>
 			</div>
 		</div>
-		<div>
+		<div style="display:none;">
 			<div style="font-size:18px; font-weight:800;">
 				결제 수단 선택
 			</div>
 			<div>
 				<ul class="list-style-none">
 					<li>
-						<input type="radio" id="kakaopay" style="display:none;">
+						<input type="radio" name="payment" id="kakaopay" style="display:none;">
 						<label for="kakaopay">
 							카카오페이
-						</label>
-					</li>
-					<li>
-						<label for="phone">
-							휴대폰결제
-						</label>
-					</li>
-										<li>
-						<label for="phone">
-							휴대폰결제
-						</label>
-					</li>
-										<li>
-						<label for="phone">
-							휴대폰결제
-						</label>
-					</li>
-										<li>
-						<label for="phone">
-							휴대폰결제
 						</label>
 					</li>
 				</ul>
@@ -405,8 +498,9 @@ $(window).scroll(function(event){
 				</div>
 			</div>
 		</div>
-		<div class="clear"></div>
+		<div class="clear" style="display:none;"></div>
 	</div>
+	</c:if>
 </div>
 </div>
 </div>

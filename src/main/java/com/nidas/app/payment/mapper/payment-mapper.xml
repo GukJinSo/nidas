@@ -22,6 +22,10 @@
 	delete from cart where id = #{id} and shoeSize = #{vo.shoeSize} and serial = #{vo.serial}
 </delete>
 
+<delete id="deleteCartAll" parameterType="String">
+	delete from cart where id = #{id}
+</delete>
+
 <update id="updateCart" parameterType="Map">
 	update cart set quantity = #{vo.quantity} where shoeSize = #{vo.shoeSize} and serial = #{vo.serial}
 </update>
@@ -42,13 +46,42 @@
 	select v.*, quantity, replace(shoesize, 's', '') as shoesize
 	from v_nowonsale v,
 	(select * from cart where id = ''
-	<foreach collection="list" close=")" open="union" separator="union" item="vo">
+	<foreach collection="list" open="union" separator="union" item="vo">
 		select null, #{vo.serial}, #{vo.shoeSize}, to_char(#{vo.quantity}) from cart
 	</foreach>
+	)
 	c
 	where v.serial = c.serial
 </select>
 
 
+<select id="insertOrders" parameterType="Map" resultType="int">
+declare
+  seq_val varchar2(30);
+begin
+  select get_orno_seq('now')
+  into seq_val
+  from dual;
+  
+  <if test='id != ""'>
+  insert into orders values(seq_val, #{memNo}, sysdate, 'kakaopay', 'ord0101', #{totalPrice}, #{name}, #{address}, #{tel}, #{needs});
+  </if> 
+  <if test='id == ""'>
+  insert into orders values(seq_val, null, sysdate, 'kakaopay', 'ord0101', #{totalPrice}, #{name}, #{address}, #{tel}, #{needs});
+  </if> 
+  
+  <foreach collection="list" item="vo" index="idx">
+  	insert into orders_sub values(seq_val, #{idx}, #{vo.shoeSize}, #{vo.quantity}, #{vo.price}, #{vo.serial});
+  </foreach>
+end;
+</select>
 
+<update id="updateStock" parameterType="Map">
+DECLARE BEGIN
+	<foreach collection="list" item="vo">
+	update stock set ${vo.shoeSize} = ${vo.shoeSize} - #{vo.quantity} where serial = #{vo.serial};
+	</foreach>
+END;
+</update>
+ 
 </mapper>

@@ -49,12 +49,12 @@
 			addHtml += '<td>';
 				addHtml += '<div class="prod">';
 					addHtml += '<a href="${pageContext.request.contextPath}/productDetail.do?serial='+prodList[i].serial+'">';
-						addHtml += '<img src="resources/images/shoes1.jpg">';
+						addHtml += '<img src="${pageContext.request.contextPath}/resources/images/product/'+prodList[i].filePath+'">';
 						addHtml += '<div class="prodText">';
 							addHtml += '<div class="prodBrand">'+prodList[i].bnameKor+'</div>';
 							addHtml += '<div class="prodName">'+prodList[i].pnameKor+'</div>';
 							addHtml += '<div class="prodPrice">';
-								if ( prodList[i].disRate != null ){
+								if ( prodList[i].disRate > 0 ){
 									addHtml += '<span class="prodNormalPrice faint">'+addComma(prodList[i].price)+'원</span>';
 									addHtml += '&nbsp;<span class="prodSalePrice">'+addComma(prodList[i].disPrice)+'원</span>';
 									addHtml += '<span class="prodDisRate">['+prodList[i].disRate*100+'%]</span>'
@@ -90,8 +90,9 @@
 		addHtml += '<a href="javascript:getProdList('+paging.prevPageNo+')" class="prev pagingPrevBtn">←prev</a>';
 		addHtml += '<span>';
 		for(i = paging.startPageNo; i <= paging.endPageNo; i++){
-			if (nowPage == paging.pageNo){
-				addHtml += '<a href="javascript:" class="active">'+i+'</a>';
+			console.log(paging.pageNo);
+			if (i == paging.pageNo){
+				addHtml += '<a href="javascript:getProdList('+i+')" class="active">'+i+'</a>';
 			} else {
 				addHtml += '<a href="javascript:getProdList('+i+')">'+i+'</a>';
 			} 

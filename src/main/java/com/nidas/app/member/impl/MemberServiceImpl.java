@@ -13,4 +13,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired MemberMapper memberMapper;
 
+	@Override
+	public int selectMemNo(String id) {
+		return selectMemNo(id);
+	}
+
+	
 }

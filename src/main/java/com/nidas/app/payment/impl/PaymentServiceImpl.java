@@ -1,13 +1,17 @@
 package com.nidas.app.payment.impl;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.nidas.app.etc.util.CartCombiner;
+import com.nidas.app.member.mapper.MemberMapper;
 import com.nidas.app.payment.mapper.PaymentMapper;
 import com.nidas.app.payment.service.PaymentService;
 import com.nidas.app.payment.vo.CartVO;
@@ -17,6 +21,8 @@ import com.nidas.app.product.vo.ProductVO;
 public class PaymentServiceImpl implements PaymentService{
 
 	@Autowired PaymentMapper mapper;
+	@Autowired MemberMapper memMapper;
+	
 	
 	@Override
 	public List<CartVO> selectCart(String id) {
@@ -59,5 +65,39 @@ public class PaymentServiceImpl implements PaymentService{
 		map.put("vo", cartVO);
 		mapper.deleteCart(userName, map);
 	}
+
+	@Override
+	@Transactional
+	public void insertOrder(Map<String, Object> map) {
+		int totalPrice = 0;
+		List<CartVO> clist;
+		List<ProductVO> list;
+		
+		if(map.get("id").equals("")) { // 비회원이면
+			clist = (List<CartVO>) map.get("list");
+			list = mapper.selectCartProdListByAnonym(clist);
+		} else { // 회원이면
+			list = mapper.selectCartProdListByUser(map);
+			map.put("memNo", memMapper.selectMemNo((String)map.get("id")));
+		}
+		// 위의꺼 체크 필요
+		for(ProductVO vo : list) {
+			vo.setShoeSize("s"+vo.getShoeSize());
+			totalPrice += vo.getPrice();
+		}
+		
+		map.remove("list");
+		map.put("list", list);
+		map.put("totalPrice", totalPrice);
+		mapper.insertOrders(map);
+		mapper.updateStock(map);
+		
+		if(!map.get("id").equals("")) { // 회원이면
+			mapper.deleteCartAll((String)map.get("id"));
+		}
+		
+	}
+
+	
 
 }

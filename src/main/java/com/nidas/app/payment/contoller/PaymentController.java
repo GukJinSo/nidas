@@ -123,4 +123,37 @@ public class PaymentController {
 		}
 		return null;
 	}
+	
+	@PostMapping("insertOrder.do") @ResponseBody
+	private int insertOrder(HttpServletRequest req) {
+		String address = req.getParameter("address");
+		String name = req.getParameter("name");
+		String tel = req.getParameter("tel");
+		String needs = req.getParameter("needs");
+		HttpSession session = req.getSession();
+		
+		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
+		Object authenObj = authen.getPrincipal();
+		Map<String, Object> map = new HashMap<>();
+		// 회원 처리
+		if (authenObj instanceof User) {
+			String userName = ((User)authenObj).getUsername();
+			map.put("id", userName);
+		// 비회원 처리
+		} else {
+			List<CartVO> anonymCart = (List<CartVO>)session.getAttribute("anonymCart");
+			map.put("id", "");
+			map.put("list", anonymCart);
+			session.removeAttribute(name);
+		}
+		map.put("tel", tel);
+		map.put("needs", needs);
+		map.put("address", address);
+		map.put("name", name);
+		payDAO.insertOrder(map);
+		session.removeAttribute("anonymCart");
+		
+		return 0;
+	}
+	
 }

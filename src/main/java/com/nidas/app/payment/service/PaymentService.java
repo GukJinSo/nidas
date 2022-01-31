@@ -13,5 +13,5 @@ public interface PaymentService {
 	List<ProductVO> selectCartProdList(Map<String, Object> map);
 	void updateCart(String userName, CartVO cartVO);
 	void deleteCart(String userName, CartVO cartVO);
-	
+	void insertOrder(Map<String, Object> map);
 }

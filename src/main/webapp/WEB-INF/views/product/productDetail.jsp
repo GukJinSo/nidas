@@ -141,12 +141,12 @@
 						</div>
 					</div>
 					<div class="price">
-						<c:if test="${prod.details.disRate ne null }">
+						<c:if test="${prod.details.disRate != 0 }">
 							<span class="prodNormalPrice faint"><fmt:formatNumber value="${prod.details.price }" type="number"/>원</span>
 							<span class="prodSalePrice lastPrice"><fmt:formatNumber value="${prod.details.disPrice }"/>원</span>
 							<span class="prodDisRate">[<fmt:formatNumber value="${prod.details.disRate*100 }" type="number"/>%]</span>
 						</c:if>
-						<c:if test="${prod.details.disRate eq null }">
+						<c:if test="${prod.details.disRate == 0 }">
 							<span class="prodNormalPrice lastPrice"><fmt:formatNumber value="${prod.details.disPrice }" type="number"/>원</span>
 						</c:if>
 					</div>
@@ -157,7 +157,9 @@
 								<th style="word-break:break-all" width="29%">스타일 컬러</th>
 								<th style="word-break:break-all" width="70%">
 									<c:forEach items="${prod.styleCodes }" var="vo">
+									<a href="${pageContext.request.contextPath}/productDetail.do?serial=${vo.serial}" title="${vo.filePath }">
 										<img src="${pageContext.request.contextPath}/resources/images/product/${vo.filePath }">
+									</a>
 									</c:forEach>
 								</th>
 							</tr>

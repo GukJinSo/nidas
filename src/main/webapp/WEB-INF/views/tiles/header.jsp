@@ -51,20 +51,19 @@
 </div>
 		<div class="hCateWrap">
 			<div class="hCateDiv cateAll">
-				<p class="seeAll"><a href=""><i class="fas fa-chevron-right smallIcon"></i>모두 보기</a></p>
+				<p class="seeAll"><a href="${pageContext.request.contextPath}/productList.do"><i class="fas fa-chevron-right smallIcon"></i>모두 보기</a></p>
 				<div class="hCateInDiv">
 					<ul class="ul">
 					<li>신발</li>
-					<li><a href="">캔버스/스웨이드</a>
-					<li><a href="">캐주얼</a>
-					<li><a href="">러닝/스포츠</a></li>
-					<li><a href="">농구화</a>
-					<li><a href="">슬리퍼</a>
+					<li><a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01cv">캔버스/스웨이드</a></li>
+					<li><a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01ca">캐주얼</a></li>
+					<li><a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01rn">러닝/스포츠</a></li>
+					<li><a href="${pageContext.request.contextPath}/productList.do?pCategory=cate01sl">슬리퍼</a></li>
 					</ul>
 				</div>
 				<div class="hCateInDiv">
 					<ul class="ul">
-					<li>의류</li>
+					<li>의류(준비중)</li>
 					<li><a href="">티셔츠</a></li>
 					<li><a href="">맨투맨/후드</a></li>
 					<li><a href="">바지</a></li>
@@ -76,7 +75,7 @@
 				</div>
 				<div class="hCateInDiv">
 					<ul class="ul">
-					<li>악세서리</li>
+					<li>악세서리(준비중)</li>
 					<li><a href="">모자</a></li>
 					<li><a href="">가방</a></li>
 					<li><a href="">스포츠 장비</a></li>
@@ -84,7 +83,7 @@
 				</div>
 				<div class="hCateInDiv">
 					<ul class="ul">
-					<li>아이콘</li>
+					<li>아이콘(준비중)</li>
 					<li><a href="">나이키 에어 포스</a></li>
 					<li><a href="">나이키 에어 맥스</a></li>
 					<li><a href="">아디다스 스탠 스미스</a></li>
