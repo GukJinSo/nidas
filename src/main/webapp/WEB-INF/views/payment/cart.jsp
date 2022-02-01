@@ -103,17 +103,17 @@ function callPayment(){
 					},
 					method : "post",
 					success : function(data) {
-						console.log('주문이 완료되었습니다');
+						alert('주문이 완료되었습니다');
 					},
 					error : function(err) {
-						console.log(err);
+						alert(err);
 					}
 				})
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
+				alert(msg);
 			}
-			alert(msg);
 		});
 	} else {
 		alert('결제수단을 선택하세요.');	

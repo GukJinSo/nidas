@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script>
 	var nowPage;
@@ -74,7 +75,7 @@
 		addHtml += '</tr>';
 		$('.prodWrap table').append(addHtml);
 	}
-	
+
 	function drawPaging(paging){
 		$('.prodCount').text(paging.totalCount);
 		$('.paging').html('');
@@ -84,13 +85,12 @@
 			$('.prodWrap').append('<span class="noProdList">등록된 상품이 없습니다</span>');
 			return false;
 		}
-		
+
 		var addHtml = '';
-		addHtml += '<a href="javascript:getProdList('+paging.firstPageNo+')" class="first pagingFirstBtn">first</a>';
-		addHtml += '<a href="javascript:getProdList('+paging.prevPageNo+')" class="prev pagingPrevBtn">←prev</a>';
+		addHtml += '<a href="javascript:getProdList('+paging.firstPageNo+')" class="first pagingFirstBtn"><i class="fas fa-angle-double-left"></i></a>';
+		addHtml += '<a href="javascript:getProdList('+paging.prevPageNo+')" class="prev pagingPrevBtn"><i class="fas fa-angle-left"></i></a>';
 		addHtml += '<span>';
 		for(i = paging.startPageNo; i <= paging.endPageNo; i++){
-			console.log(paging.pageNo);
 			if (i == paging.pageNo){
 				addHtml += '<a href="javascript:getProdList('+i+')" class="active">'+i+'</a>';
 			} else {
@@ -98,13 +98,20 @@
 			} 
 		}
 		addHtml += '</span>';
-		addHtml += '<a href="javascript:getProdList('+paging.nextPageNo+')" class="next pagingNextBtn">next→</a>';
-		addHtml += '<a href="javascript:getProdList('+paging.finalPageNo+')" class="next pagingFinalBtn">last</a>';
+		addHtml += '<a href="javascript:getProdList('+paging.nextPageNo+')" class="next pagingNextBtn"><i class="fas fa-angle-right"></i></a>';
+		addHtml += '<a href="javascript:getProdList('+paging.finalPageNo+')" class="next pagingFinalBtn"><i class="fas fa-angle-double-right"></i></a>';
 		$('.paging').append(addHtml);
-		
 	}
 	
-	function getProdList(page){
+	function getProdList(page, action = 'update'){
+		console.log(action);
+		if (action == 'update'){
+			var pagingOptions = document.querySelector(".pagingOptions").offsetTop;
+			var headerSize = document.querySelector('.header').offsetHeight;
+			var padding = 20;
+			var scrollTo = pagingOptions - headerSize - padding;
+			window.scrollTo({top:scrollTo, behavior:'smooth'});
+		}
 		nowPage = page;
 		var param = {};
 		var priceRange = [];
@@ -138,7 +145,6 @@
 			url:'productListAjax.do',
 			data:param,
 			success:function(data){
-				console.log(data);
 				drawProdList(data.prodList);
 				drawPaging(data.paging);
 			},
@@ -157,7 +163,7 @@
 			filterShow('search', 'show', $('.searchShowBtn'));
 		}
 			
-		getProdList(1);
+		getProdList(1, 'init');
 		
 	});
 	
@@ -278,7 +284,7 @@
 		</div>
 		<div class="filterBtns">
 			<button type="button" class="btn btn-light filterBtn" onclick="filterSelectedReset()">초기화</button>
-			<button type="button" class="btn btn-dark filterBtn" onclick="getProdList('1')">검색</button>
+			<button type="button" class="btn btn-dark filterBtn" onclick="getProdList('1', 'init')">검색</button>
 		</div>
 	</div>
 	<div class="prodList eqHeight">

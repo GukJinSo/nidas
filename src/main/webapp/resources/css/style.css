@@ -76,6 +76,10 @@
 		padding-bottom: 4px;
 	}
 	.notice{
+		padding-left:20px;
+		text-align:left;
+		font-size:14px;
+		letter-spacing:-1px;
 		color: red;
 	}
 	.smallIcon{
@@ -214,9 +218,10 @@
 		}
 	}
 	
-	.mainProductImage img{
-		width:100%;
-		height:100%;
+	.mainProduct img{
+		border: 1px solid rgba(234, 234, 234, 0.5);
+		width:250px;
+		height:250px;
 	}
 	.mainProductText{
 		text-align:left;
@@ -409,6 +414,7 @@
 	}
 	
 	.prod img{
+		border: 1px solid rgba(234, 234, 234, 0.5);
 		width:236px;
 	}
 	.prodBrand{
@@ -587,14 +593,11 @@
 	  padding: 8px 16px;
 	  text-decoration: none;
 	  transition: background-color .3s;
-	  border: 1px solid #ddd;
-	  border-radius: 5px;
 	}
 	
 	.paging a.active {
-	  background-color: cornflowerblue;
+	  background-color: grey;
 	  color: white;
-	  border-radius: 5px;
 	}
 	
 	.paging a:hover:not(.active) {background-color: #ddd;}
@@ -1180,4 +1183,145 @@
 	    padding: 20px;
 	    font-size: 10px;
 	}
+	.login, .register{
+	    margin: auto;
+	    margin-top: 100px;
+	    text-align: center;
+	    width: 40%;
+	}
+	.register{
+		width:45%;
+	}
+	.login > h2, .register > h2{
+	    margin-bottom: 40px;
+	    font-weight: 800;
+	    text-align: center;
+	}
+	.login .btnGroups{
+		margin-bottom:30px;
+	}
+	.login .btnGroups button:first-child{
+		cursor:pointer;
+	    letter-spacing: -1px;
+	    height: 50px;
+	    border: none;
+	    border-top: 3px solid black;
+	    border-right: 3px solid black;
+	    border-left: 3px solid black;
+	    width: 49%;
+	    /* transform: translateX(0px); */
+	    background: white;
+	}
+	.login .btnGroups button:last-child{
+	    height: 50px;
+	    border: none;
+	    border-top: 1px solid grey;
+	    padding-top: 5px;
+	    border-right: 1px solid grey;
+	    border-left: 3px solid black;
+	    border-bottom: 3px solid black;
+	    width: 49%;
+	    transform: translateX(-6px);
+	    background: white;
+	}
+	.login input, .register input:not([type='radio']){
+		transform: translateY(10px);
+	    margin-bottom: 10px;
+	    padding: 10px 20px;
+	    width: 100%;
+	    height: 44px;
+	    /* padding: 0 10px; */
+	    border: none;
+	    border-bottom: 1px solid grey;
+	    font-size: 15px;
+	    /* line-height: 43px; */
+	}
+	.login input:focus, .register input:focus{
+		outline:none;
+	}
+	.login .loginForm a{
+		display:inline-block;
+		cursor:pointer;
+		margin-top:20px;
+		font-size:14px;
+		letter-spacing: -1px;
+		color:grey;
+		
+	}
+	.login .loginForm a:hover{
+		color:#BC4747;
+		border:none;
+		text-decoration: none;
+	}
+	.login .loginForm p{
+		text-align:left;
+		color:red;
+		letter-spacing: -1px;
+		font-size:14px;
+	}
+	.login .billForm{
+		display:none;
+	}
+	.login .loginForm input:nth-of-type(2),
+	.login .billForm input:nth-of-type(2)
+	{
+	    margin-bottom: 30px;
+	}
+	.login .loginForm button, .login .billForm button{
+		padding:10px;
+		width:100%;
+		color:white;
+		background:black;
+		border:none;
+		height:50px;
+	}
+	.register > p {
+	    letter-spacing: -1px;
+	    color: dimgray;
+	    padding-bottom: 20px;
+	}
+	.register input[name=hp]{
+		width:65%;
+	}
+	.register input[name=hp]{
+		width:65%;
+	}
+	.register #sendSMSBtn{
+	    transform: translateY(10px);
+	    color: black;
+	    width: 34%;
+	    border-radius: 0;
+	    border: 1px solid black;
+	    background: white;
+	}
+	.register th{
+		text-align:left;
+		letter-spacing: -1px;
+	}
+	.register #registerBtn{
+		margin-top:50px;
+		border-radius: 0;
+	    padding: 10px;
+	    width: 50%;
+	    color: white;
+	    background: black;
+	    border: none;
+	    height: 50px;
+	}
+	.register .genderDiv{
+		transform:translateY(10px);
+		padding-left:10px;
+	}
+	.register > div:nth-of-type(1) {
+		border-top:3px solid black;
+		margin-top:30px;
+		margin-bottom:30px;
+				
+	}
+	.register > div:nth-of-type(3) {
+		border-bottom:1px solid grey;
+		margin-top:30px;
+		margin-bottom:30px;
+	}
 	
+}

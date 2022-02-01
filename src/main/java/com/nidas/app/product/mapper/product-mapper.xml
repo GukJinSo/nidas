@@ -123,4 +123,22 @@ and pi.serial = v_nowonsale.serial
 order by decode (pi.filename, 'main', 1)
 </select>
 
+<select id="selectProdBestSeller" resultType="com.nidas.app.product.vo.ProductVO">
+select *
+from
+
+(select * from v_nowonsale) a,
+
+(select *
+from
+  (select serial, sum(stocks) ranking
+  from orders_sub
+  group by serial
+  order by 2 desc)
+where rownum between 1 and 10) b
+
+where a.serial = b.serial
+order by ranking desc
+</select>
+
 </mapper>

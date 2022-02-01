@@ -72,5 +72,10 @@ public class ProductServiceImpl implements ProductService {
 		map.put("styleCodes", mapper.selectSameLine(serial));
 		return map;
 	}
+
+	@Override
+	public List<ProductVO> selectProdBestSeller() {
+		return mapper.selectProdBestSeller();
+	}
 	
 }

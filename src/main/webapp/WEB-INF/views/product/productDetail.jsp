@@ -121,7 +121,6 @@
 					<img src="${pageContext.request.contextPath}/resources/images/product/${prod.details.filePath }">
 				</div>
 				<div class="sliders">
-					슬라이더
 				</div>
 			</div>
 			<div class="detailsRight">
@@ -157,7 +156,7 @@
 								<th style="word-break:break-all" width="29%">스타일 컬러</th>
 								<th style="word-break:break-all" width="70%">
 									<c:forEach items="${prod.styleCodes }" var="vo">
-									<a href="${pageContext.request.contextPath}/productDetail.do?serial=${vo.serial}" title="${vo.filePath }">
+									<a href="${pageContext.request.contextPath}/productDetail.do?serial=${vo.serial}" title="${vo.serial }">
 										<img src="${pageContext.request.contextPath}/resources/images/product/${vo.filePath }">
 									</a>
 									</c:forEach>

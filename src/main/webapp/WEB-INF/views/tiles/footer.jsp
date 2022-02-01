@@ -3,8 +3,10 @@
 
 <div class="footer">
 <div class="container-fluid">
-
-bottom
-
 </div>
+
+<p>
+COPYRIGHT Ⓒ NIDAS CO,LTD. ALL RIGHTS RESERVED
+</p>
+
 </div>

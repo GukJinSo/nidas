@@ -19,7 +19,7 @@
 	
 	<div class="col-lg-8 hSearchDiv">
 		<form action="${pageContext.request.contextPath}/productList.do" method="get">
-			<input type="text" class="hSearchBar" name="search" placeholder="누오보 윈터 컬렉션" onfocus="this.placeholder=''"/>
+			<input type="text" class="hSearchBar" name="search" placeholder="오즈위고 시리즈 입고!" onfocus="this.placeholder=''"/>
 			<button type="submit" class="hSearchBtn"><i class="fas fa-search"></i></button>
 		</form>
 	</div>

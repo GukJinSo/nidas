@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page session="false" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script>
 $(function() {
@@ -56,148 +56,33 @@ $(function() {
 		<a href="productList.do" class="seeMore" title="더 보기">MORE</a>
 	</p>
 	<div class="bestSellerWrap">
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes1.jpg">
+		<c:forEach var="vo" items="${list }">
+			<a href="${pageContext.request.contextPath}/productDetail.do?serial=${vo.serial}">
+				<div class="mainProduct">
+					<img src="${pageContext.request.contextPath}/resources/images/product/${vo.filePath }">
 				</div>
 				<div class="mainProductText">
-					<div class="prodBrand">나이키</div>
-					<div class="prodName">와플 트레이너</div>
+					<div class="prodBrand">${vo.bnameKor }</div>
+					<div class="prodName">${vo.pnameKor }</div>
 					<div class="prodPrice">
-						<span class="prodNormalPrice">59,000</span>
-						<span class="prodSalePrice">53,100</span>원
+						<c:if test="${vo.disRate != 0 }">
+							<span class="prodNormalPrice faint">
+								<fmt:formatNumber value="${vo.price }" pattern="#,###" />원
+							</span>
+							<span class="prodSalePrice">
+								<fmt:formatNumber value="${vo.disPrice }" pattern="#,###" />원
+							</span>
+							<span class="prodDisRate">
+							 [<fmt:formatNumber type="number" maxFractionDigits="0" value="${vo.disRate*100 }" />%]
+							</span>
+						</c:if>
+						<c:if test="${vo.disRate == 0 }">
+							<span class="prodNormalPrice">${vo.price }</span>원
+						</c:if>
 					</div>
 				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes2.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">아디다스</div>
-					<div class="prodName">스탠 스미스</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">109,000</span>원
-					</div>
-				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes3.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">반스</div>
-					<div class="prodName">올드스쿨</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">69,000</span>원
-					</div>
-				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes4.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">컨버스</div>
-					<div class="prodName">척 테일러 70</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">89,000</span>
-					</div>
-				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes5.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">나이키</div>
-					<div class="prodName">에어 포스 1</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">129,000</span>원
-					</div>
-				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes1.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">나이키</div>
-					<div class="prodName">와플 트레이너</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">59,000</span>
-						<span class="prodSalePrice">53,100</span>원
-					</div>
-				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes2.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">아디다스</div>
-					<div class="prodName">스탠 스미스</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">109,000</span>원
-					</div>
-				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes3.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">반스</div>
-					<div class="prodName">올드스쿨</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">69,000</span>원
-					</div>
-				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes4.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">컨버스</div>
-					<div class="prodName">척 테일러 70</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">89,000</span>
-					</div>
-				</div>
-			</div>
-		</a>
-		<a href="">
-			<div class="mainProduct">
-				<div class="mainProductImage">
-					<img src="resources/images/shoes5.jpg">
-				</div>
-				<div class="mainProductText">
-					<div class="prodBrand">나이키</div>
-					<div class="prodName">에어 포스 1</div>
-					<div class="prodPrice">
-						<span class="prodNormalPrice">129,000</span>원
-					</div>
-				</div>
-			</div>
-		</a>
+			</a>
+		</c:forEach>
 		<div class="clear"></div>
 	</div>
 </div>
@@ -212,21 +97,21 @@ $(function() {
 	<p>베스트 브랜드</p>
 	<div class="imgDivWrap">
 		<div class="imgDiv">
-			<a href="">
+			<a href="${pageContext.request.contextPath}/productList.do?search=NIKE">
 			<img src="resources/images/mainNike.jpg" width="30%;" height="400px;">
 			<span class="imgFont">NIKE</span>
 			<span class="imgsubFont">Just Do It!</span>
 			</a>
 		</div>
 		<div class="imgDiv">
-			<a href="">
+			<a href="${pageContext.request.contextPath}/productList.do?search=VANS">
 			<img src="resources/images/mainVans.jpg" width="30%;" height="400px;">
 			<span class="imgFont">VANS</span>
 			<span class="imgsubFont">스케이트 슈즈에서 클래식으로</span>
 			</a>
 		</div>
 		<div class="imgDiv">
-			<a href="">
+			<<a href="${pageContext.request.contextPath}/productList.do?search=CONVERSE">
 			<img src="resources/images/mainConverse.jpg" width="30%;" height="400px;">
 			<span class="imgFont">CONVERSE</span>
 			<span class="imgsubFont">디자인 헤리티지를 더한 프리미엄 컴포트 스니커즈</span>
