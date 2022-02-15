@@ -36,9 +36,8 @@
 			gstBtn.css('border-top', '3px solid black');
 			gstBtn.css('border-bottom', 'none');
 			gstBtn.css('border-right', '3px solid black');
-			
-			
 		}
+		
 	}
 	
 </script>
@@ -72,13 +71,13 @@
 		</form>
 	</div>
 	<div class="billForm">
-		<input type="text" name="tel" placeholder="받으시는 분 연락처를 입력해주세요">
-		<br>
-		<input type="text" placeholder="주문번호를 입력해주세요">
-		<p></p>
-		<button>
-			주문/배송조회
-		</button>
+		<form action="${pageContext.request.contextPath}/selectOrder.do" method="post">
+			<input type="text" name="name" placeholder="받으시는 분 성함을 입력해주세요">
+			<br>
+			<input type="text" name="orderNo" placeholder="주문번호를 입력해주세요">
+			<p></p>
+			<button type="submit">주문/배송조회</button>
+		</form>
 	</div>	
 
 </div>

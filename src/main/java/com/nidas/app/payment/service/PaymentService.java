@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.nidas.app.payment.vo.CartVO;
+import com.nidas.app.payment.vo.OrderVO;
 import com.nidas.app.product.vo.ProductVO;
 
 public interface PaymentService {
@@ -13,5 +14,6 @@ public interface PaymentService {
 	List<ProductVO> selectCartProdList(Map<String, Object> map);
 	void updateCart(String userName, CartVO cartVO);
 	void deleteCart(String userName, CartVO cartVO);
-	void insertOrder(Map<String, Object> map);
+	OrderVO insertOrder(Map<String, Object> map);
+	List<OrderVO> selectOrder(Map<String, Object> map);
 }

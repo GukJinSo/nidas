@@ -1323,5 +1323,14 @@
 		margin-top:30px;
 		margin-bottom:30px;
 	}
-	
+	.orderWrap{
+		margin-top: 100px;
+	    margin-left: 200px;
+	    margin-right: 200px;
+	    text-align:center;
+	}
+	.orderWrap h2{
+	    font-weight: 800;
+	    display: inline-block;
+	}
 }

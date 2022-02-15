@@ -83,5 +83,27 @@ DECLARE BEGIN
 	</foreach>
 END;
 </update>
+
+
+<select id="selectOrder" parameterType="Map" resultType="com.nidas.app.payment.vo.OrderVO">
+
+select d.*, c.bnamekor, pnamekor, color, disrate, disprice, filepath
+from
+  v_nowonsale c,
+  (select a.orderno, a.memno, odate, payment, ostatus, name, address, tel, needs, subno, b.serial, shoesize, stocks, b.price
+  from
+  orders a, orders_sub b
+  where a.ORDERNO = b.orderno
+  <if test='id==""'>
+  and name = #{name} and a.orderNO = #{orderNo}
+  </if>
+  <if test='id!=""'>
+  and memNo = #{memNo}
+  </if>
+  ) d
+where c.serial = d.serial
+order by orderno desc, subno
+
+</select>
  
 </mapper>

@@ -22,14 +22,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nidas.app.etc.util.CartCombiner;
+import com.nidas.app.member.service.MemberService;
 import com.nidas.app.payment.service.PaymentService;
 import com.nidas.app.payment.vo.CartVO;
+import com.nidas.app.payment.vo.OrderVO;
 import com.nidas.app.product.vo.ProductVO;
 
 @Controller
 public class PaymentController {
 
 	@Autowired PaymentService payDAO;
+	@Autowired MemberService memberDAO;
+	
 	
 	@GetMapping("cart.do")
 	private String cart(HttpServletRequest req, Model model){
@@ -125,7 +129,7 @@ public class PaymentController {
 	}
 	
 	@PostMapping("insertOrder.do") @ResponseBody
-	private int insertOrder(HttpServletRequest req) {
+	private String insertOrder(HttpServletRequest req) {
 		String address = req.getParameter("address");
 		String name = req.getParameter("name");
 		String tel = req.getParameter("tel");
@@ -150,10 +154,39 @@ public class PaymentController {
 		map.put("needs", needs);
 		map.put("address", address);
 		map.put("name", name);
-		payDAO.insertOrder(map);
+		OrderVO vo = payDAO.insertOrder(map);
+		
 		session.removeAttribute("anonymCart");
 		
-		return 0;
+		return vo.getOrderNo();
+	}
+	
+	@PostMapping("selectOrder.do")
+	private String selectOrder(HttpServletRequest req, Model model, OrderVO vo) {
+		Authentication authen = SecurityContextHolder.getContext().getAuthentication();
+		Object authenObj = authen.getPrincipal();
+		boolean isMember = false;
+		Map<String, Object> map = new HashMap<>();
+		if (authenObj instanceof User) {
+			String userName = ((User)authenObj).getUsername();
+			int memNo = memberDAO.selectMemNo(userName);
+			map.put("id", userName);
+			map.put("memNo", memNo);
+			isMember = true;
+		} else {	
+			map.put("id", "");
+			map.put("name", vo.getName());
+			map.put("orderNo", vo.getOrderNo());
+		}
+
+		List<OrderVO> list = payDAO.selectOrder(map);
+		model.addAttribute("list", list);
+		
+		if (isMember) {
+			return "payment/memberOrder";
+		} else {
+			return "payment/guestOrder";
+		}
 	}
 	
 }

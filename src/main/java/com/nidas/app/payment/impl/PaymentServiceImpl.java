@@ -15,6 +15,7 @@ import com.nidas.app.member.mapper.MemberMapper;
 import com.nidas.app.payment.mapper.PaymentMapper;
 import com.nidas.app.payment.service.PaymentService;
 import com.nidas.app.payment.vo.CartVO;
+import com.nidas.app.payment.vo.OrderVO;
 import com.nidas.app.product.vo.ProductVO;
 
 @Repository("payDAO")
@@ -68,7 +69,7 @@ public class PaymentServiceImpl implements PaymentService{
 
 	@Override
 	@Transactional
-	public void insertOrder(Map<String, Object> map) {
+	public OrderVO insertOrder(Map<String, Object> map) {
 		int totalPrice = 0;
 		List<CartVO> clist;
 		List<ProductVO> list;
@@ -95,9 +96,13 @@ public class PaymentServiceImpl implements PaymentService{
 		if(!map.get("id").equals("")) { // 회원이면
 			mapper.deleteCartAll((String)map.get("id"));
 		}
+		return mapper.selectOrder(map).get(0);
 		
 	}
 
+	@Override
+	public List<OrderVO> selectOrder(Map<String, Object> map) {
+		return mapper.selectOrder(map);
+	}
 	
-
 }

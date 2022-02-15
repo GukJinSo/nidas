@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.nidas.app.payment.vo.CartVO;
+import com.nidas.app.payment.vo.OrderVO;
 import com.nidas.app.product.vo.ProductVO;
 
 public interface PaymentMapper {
@@ -20,4 +21,5 @@ public interface PaymentMapper {
 	void updateCart(String id, Map<String, Object> map);
 	void insertOrders(Map<String, Object> map);
 	void updateStock(Map<String, Object> map);
+	List<OrderVO> selectOrder(Map<String, Object> map);
 }
