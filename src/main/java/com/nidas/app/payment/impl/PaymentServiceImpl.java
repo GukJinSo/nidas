@@ -70,7 +70,6 @@ public class PaymentServiceImpl implements PaymentService{
 	@Override
 	@Transactional
 	public OrderVO insertOrder(Map<String, Object> map) {
-		int totalPrice = 0;
 		List<CartVO> clist;
 		List<ProductVO> list;
 		
@@ -84,12 +83,10 @@ public class PaymentServiceImpl implements PaymentService{
 		// 위의꺼 체크 필요
 		for(ProductVO vo : list) {
 			vo.setShoeSize("s"+vo.getShoeSize());
-			totalPrice += vo.getPrice();
 		}
 		
 		map.remove("list");
 		map.put("list", list);
-		map.put("totalPrice", totalPrice);
 		mapper.insertOrders(map);
 		mapper.updateStock(map);
 		

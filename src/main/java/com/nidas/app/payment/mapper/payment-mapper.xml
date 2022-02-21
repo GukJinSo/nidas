@@ -64,10 +64,10 @@ begin
   from dual;
   
   <if test='id != ""'>
-  insert into orders values(seq_val, #{memNo}, sysdate, 'kakaopay', 'ord0101', #{totalPrice}, #{name}, #{address}, #{tel}, #{needs});
+  insert into orders values(seq_val, #{memNo}, sysdate, 'kakaopay', 'ord0101', #{name}, #{address}, #{tel}, #{needs});
   </if> 
   <if test='id == ""'>
-  insert into orders values(seq_val, null, sysdate, 'kakaopay', 'ord0101', #{totalPrice}, #{name}, #{address}, #{tel}, #{needs});
+  insert into orders values(seq_val, null, sysdate, 'kakaopay', 'ord0101', #{name}, #{address}, #{tel}, #{needs});
   </if> 
   
   <foreach collection="list" item="vo" index="idx">

@@ -24,8 +24,10 @@ public class OrderVO {
 	private String bnameKor;
 	private String pnameKor;
 	private String color;
-	private float disrate;
+	private float disRate;
 	private int disPrice;
 	private String filePath;
+	private int price;
+	private String pnameEng;
 	
 }
