@@ -42,9 +42,9 @@
 	
 	<div class="col-lg-12 hCateBar">
 		<Button class="hCateBtn" onmouseover="cateFade()">카테고리</Button>
-		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='${pageContext.request.contextPath}/customPage.do'">커스터마이즈</Button>
-		<Button class="hCateBtn" onmouseover="cateFadeOut()">랭킹</Button>
-		<Button class="hCateBtn" onmouseover="cateFadeOut()" onclick="location.href='${pageContext.request.contextPath}/sales.do'">세일</Button>
+		<Button class="hCateBtn text-deco-line-th" onmouseover="cateFadeOut()">커스터마이즈</Button>
+		<Button class="hCateBtn text-deco-line-th" onmouseover="cateFadeOut()">랭킹</Button>
+		<Button class="hCateBtn text-deco-line-th" onmouseover="cateFadeOut()">세일</Button>
 	</div>
 	
 </div>

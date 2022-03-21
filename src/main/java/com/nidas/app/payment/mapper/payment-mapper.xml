@@ -62,7 +62,6 @@ begin
   select get_orno_seq('now')
   into seq_val
   from dual;
-  
   <if test='id != ""'>
   insert into orders values(seq_val, #{memNo}, sysdate, 'kakaopay', 'ord0101', #{name}, #{address}, #{tel}, #{needs});
   </if> 
@@ -105,5 +104,15 @@ where c.serial = d.serial
 order by orderno desc, subno
 
 </select>
+ 
+ 
+<select id="selectOrderLast" resultType="com.nidas.app.payment.vo.OrderVO">
+
+select * from
+(select orderNo from orders order by odate desc)
+where rownum = 1
+
+</select> 
+
  
 </mapper>

@@ -19,7 +19,8 @@ public interface PaymentMapper {
 	void deleteCart(String id, Map<String, Object> map);
 	void deleteCartAll(String id);
 	void updateCart(String id, Map<String, Object> map);
-	void insertOrders(Map<String, Object> map);
+	String insertOrders(Map<String, Object> map);
 	void updateStock(Map<String, Object> map);
 	List<OrderVO> selectOrder(Map<String, Object> map);
+	OrderVO selectOrderLast();
 }

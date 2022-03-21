@@ -72,10 +72,11 @@
 	</div>
 	<div class="billForm">
 		<form action="${pageContext.request.contextPath}/selectOrder.do" method="post">
-			<input type="text" name="name" placeholder="받으시는 분 성함을 입력해주세요">
+			<input type="text" name="name" placeholder="이름을 입력해주세요">
 			<br>
 			<input type="text" name="orderNo" placeholder="주문번호를 입력해주세요">
 			<p></p>
+			<br>
 			<button type="submit">주문/배송조회</button>
 		</form>
 	</div>	

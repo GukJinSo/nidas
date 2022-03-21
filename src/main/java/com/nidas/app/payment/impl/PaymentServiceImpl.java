@@ -93,13 +93,19 @@ public class PaymentServiceImpl implements PaymentService{
 		if(!map.get("id").equals("")) { // 회원이면
 			mapper.deleteCartAll((String)map.get("id"));
 		}
-		return mapper.selectOrder(map).get(0);
+		
+		return selectOrderLast();
 		
 	}
 
 	@Override
 	public List<OrderVO> selectOrder(Map<String, Object> map) {
 		return mapper.selectOrder(map);
+	}
+
+	@Override
+	public OrderVO selectOrderLast() {
+		return mapper.selectOrderLast();
 	}
 	
 }

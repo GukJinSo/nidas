@@ -798,12 +798,12 @@
 		width:100%;
 		margin:0px 3px;
 	}
-	.totalPriceBtns button:first-child{
+	.totalPriceBtns button:last-child{
 		border:none;
 		background: grey;
 		color:white;
 	}
-	.totalPriceBtns button:last-child{
+	.totalPriceBtns button:first-child{
 		background:#111;
 		border:none;
 		color:white;
@@ -1393,4 +1393,12 @@
 	.height-50px{
 		height:50px;
 	}
+	.display-none{
+		display:none;
+	}
+	.text-deco-line-th{
+		color:grey;
+		text-decoration: line-through solid grey;
+	}
+	
 }

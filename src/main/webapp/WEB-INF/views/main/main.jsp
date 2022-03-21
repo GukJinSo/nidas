@@ -25,14 +25,10 @@ $(function() {
 	<!-- 슬라이드 쇼 -->
 	<div class="carousel-inner"> 
 		<div class="carousel-item active">
-			<a href=""> 
 				<img class="d-block w-100" src="resources/images/mainBanner2.jpg">
-			</a> 
 		</div>
 		<div class="carousel-item">
-			<a href="">
 				<img class="d-block w-100" src="resources/images/mainBanner1.jpg">
-      		</a>
 		</div> 
 		<!-- 왼쪽 오른쪽 화살표 버튼 -->
 		<a class="carousel-control-prev slideArrBtn" href="#slide" data-slide="prev"> 
@@ -88,9 +84,7 @@ $(function() {
 </div>
 
 <div class="saleBanner">
-	<a href="">
 	<img src="resources/images/saleBanner.png" width="100%;" height="150px;">
-	</a>
 </div>
 
 <div class="mainBestBrand">
@@ -121,7 +115,7 @@ $(function() {
 	<div class="clear"></div>
 </div>
 
-<div class="mainReview">
+<div class="mainReview display-none" >
 	<p>새로운 리뷰<p>
 	<div class="swiper mySwiper">
 	  <div class="swiper-wrapper">

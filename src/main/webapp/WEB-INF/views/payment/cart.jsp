@@ -75,6 +75,8 @@ function callPayment(){
 		alert('주소를 검색하세요');
 		return;
 	}
+	alert('원활한 결제를 위해 \'카톡결제\' 선택 바랍니다');
+	
 	var totalPrice = $('body > div.body > div > div > div.cartFooter > div:nth-child(3) > div:nth-child(5) > span:nth-child(2)').text().replace(',','');
 	if ($('.cartFooter input[name=payment]:checked').length != 0){
 		var IMP = window.IMP; // 생략가능
@@ -103,7 +105,7 @@ function callPayment(){
 					},
 					method : "post",
 					success : function(data) {
-						alert('주문이 완료되었습니다');
+						alert('주문이 완료되었습니다 \n주문 번호 : '+data);
 					},
 					error : function(err) {
 						alert(err);
@@ -180,7 +182,7 @@ $(function(){
 var move = 0;
 var lastScrollTop = 0;
 $(window).scroll(function(event){
-
+	
 	var headerSize = $('.header').height(); // 헤더 높이
 	var blankSpace = 20; // 헤더로부터 떨어져 보일 여백
 	var left = $('.cartFooter > div:nth-child(2)'); // 스크롤의 왼쪽 div
@@ -396,18 +398,6 @@ $(window).scroll(function(event){
 			<span style="font-size:18px; font-weight:800;">주문정보</span>
 			<table>
 				<tr>
-					<th>배송지 선택</th>
-					<td>
-						<sec:authorize access="isAnonymous()">
-							<input type="radio" checked="checked" name="isSame">신규 입력
-						</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
-							<input type="radio" checked="checked" name="isSame">주문자와 동일
-							<input type="radio" name="isSame">신규 입력
-						</sec:authorize>
-					</td>
-				</tr>
-				<tr>
 					<th>이름<span class="required"></span></th>
 					<td>
 						<input type="text" name="name" style="width:300px">
@@ -417,7 +407,7 @@ $(window).scroll(function(event){
 				<tr>
 					<th>휴대폰 번호<span class="required"></span></th>
 					<td class="cartTels">
-						<input type="text" name="tel" style="width:300px"> 
+						<input type="text" name="tel" style="width:300px" placeholder="하이픈(-) 없이 입력하세요" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="11">
 					</td>
 				</tr>
 				<tr>

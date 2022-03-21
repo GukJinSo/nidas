@@ -191,7 +191,7 @@
 					<div class="totalPriceBtns flex">
 						<button class="" onclick="addCart()">장바구니
 						</button>
-						<button class="">바로구매
+						<button class="" disabled="disabled">바로구매
 						</button>
 					</div>
 				</div>
