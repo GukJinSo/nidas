@@ -21,8 +21,6 @@ local.properties
 
 
 #properties
-db.properties
-coolSMS.properties
 pom.properties
 
 #target folder
