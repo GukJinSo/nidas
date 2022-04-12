@@ -18,9 +18,7 @@ local.properties
 #classpath
 .classpath
 
-
-
-#properties
+#pom.properties
 pom.properties
 
 #target folder
@@ -48,6 +46,7 @@ target
 .buildpath
 
 # sbteclipse plugin
+.target
 
 # Tern plugin
 .tern-project
@@ -92,6 +91,8 @@ target
 .mtj.tmp/
 
 # Package Files #
+*.jar
+*.war
 *.nar
 *.ear
 *.zip
