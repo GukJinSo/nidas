@@ -48,7 +48,6 @@ target
 .buildpath
 
 # sbteclipse plugin
-.target
 
 # Tern plugin
 .tern-project
