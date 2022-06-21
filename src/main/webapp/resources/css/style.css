@@ -20,6 +20,8 @@
 	.container-fluid{
 	    padding-left: 0px;
 	    padding-right: 0px;
+	    box-sizing: border-box;
+	    width:100vw;
 	}
 	.header{
 		width: 100%;
@@ -198,9 +200,12 @@
 		width:100%;
 	}
 	.bestSellerWrap{
-		text-align: center;
-		padding:20xp;
-	}
+    text-align: center;
+    display: grid;
+    grid-gap:10px;
+    padding: 20px;
+    grid-template-columns: repeat(5, 1fr);
+}
 	.bestSellerWrap a:hover{
 		text-decoration: none;
 		color:black;
@@ -399,9 +404,12 @@
 		height:100%;
 	}
 	
-	.prodWrap{
-		padding:0px 30px;
-	}
+.prodWrap {
+    padding: 0px 30px;
+    display: grid;
+    grid-gap:5px;
+    grid-template-columns: repeat(4, 1fr);
+}
 	.prod{
 		margin-bottom:30px;
 		display:inline-block;
@@ -415,7 +423,7 @@
 	
 	.prod img{
 		border: 1px solid rgba(234, 234, 234, 0.5);
-		width:236px;
+		width:100%;
 	}
 	.prodBrand{
 		margin-bottom:5px;
@@ -582,9 +590,6 @@
 		font-family: "gmarket";
 		color:red;
 		font-weight:800;
-	}
-	.prodWrap table td{
-		display: inline-block;
 	}
 
 	.paging a {
@@ -853,7 +858,6 @@
 		border-bottom:1px solid grey;
 	}
 	.cartBody .cartProdList table td img{
-		width:100px;
 	}
 	.cartBody .cartProdList table td {
 		vertical-align:middle;

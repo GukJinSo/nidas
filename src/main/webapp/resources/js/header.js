@@ -7,7 +7,7 @@ function cateFadeOut(){
 	let reset = $('.hCateWrap').children();
 	reset.fadeOut();
 }
-
+/*
 $(function() {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let thisPage = document.location.href;
@@ -18,3 +18,4 @@ $(function() {
     	location.href='http://www.nidas.shop';
     }
 });
+*/

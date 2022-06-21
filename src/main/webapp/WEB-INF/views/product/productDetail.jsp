@@ -34,11 +34,7 @@
 				console.log('fail');
 			}
 		});
-		
-
-		
 	}
-
 
 
 	function selectStock(target){

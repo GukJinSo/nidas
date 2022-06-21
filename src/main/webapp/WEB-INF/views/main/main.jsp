@@ -83,10 +83,13 @@ $(function() {
 	</div>
 </div>
 
+
+<!-- 
 <div class="saleBanner">
 	<img src="resources/images/saleBanner.png" width="100%;" height="150px;">
 </div>
-
+ -->
+ 
 <div class="mainBestBrand">
 	<p>베스트 브랜드</p>
 	<div class="imgDivWrap">

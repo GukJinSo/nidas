@@ -45,9 +45,7 @@
 	function drawProdList(prodList){
 		$('.prodWrap table').html('');
 		var addHtml = '';
-		addHtml += '<tr>';
 		for(var i = 0; i < prodList.length; i++){
-			addHtml += '<td>';
 				addHtml += '<div class="prod">';
 					addHtml += '<a href="${pageContext.request.contextPath}/productDetail.do?serial='+prodList[i].serial+'">';
 						addHtml += '<img src="${pageContext.request.contextPath}/resources/images/product/'+prodList[i].filePath+'">';
@@ -67,13 +65,8 @@
 						//addHtml += '<img src="resources/images/'+data.prodList[i].img+'">';
 					addHtml += '</a>';
 				addHtml += '</div>';
-			addHtml += '</td>';
-			if ((i+1) % 4 == 0 ){ // 4건 마다 개행
-				addHtml += '</tr><tr>';
-			}
 		}
-		addHtml += '</tr>';
-		$('.prodWrap table').append(addHtml);
+		$('.prodWrap').append(addHtml);
 	}
 
 	function drawPaging(paging){
@@ -371,8 +364,6 @@
 	    	<div class="clear"></div>
 		</div>
 		<div class="prodWrap">
-			<table>
-			</table>
 		</div>
 		<div class="paging textCenter">
 		</div>
