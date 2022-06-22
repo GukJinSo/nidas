@@ -858,6 +858,7 @@
 		border-bottom:1px solid grey;
 	}
 	.cartBody .cartProdList table td img{
+		width:48px;
 	}
 	.cartBody .cartProdList table td {
 		vertical-align:middle;
