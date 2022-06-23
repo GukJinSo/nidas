@@ -19,3 +19,5 @@ jQuery
 Eclipse
 coolSMS API(문자 전송)
 daumPostcode API(주소 확인)
+
+db.properties와 sms.properties는 비밀번호가 있어 gitignore로 업로드 하지 않았습니다. 위의 사이트에서 확인해주세요
