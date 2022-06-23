@@ -6,8 +6,8 @@ http://nidas.shop
 
 사용된 작업 툴 및 라이브러리, API
 
-Java
-Spring
+Java\n
+Spring\n
 Mybatis
 tiles
 Oracle, AWS
