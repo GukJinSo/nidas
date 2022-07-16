@@ -11,20 +11,20 @@
 		
 <div class="header" onmouseleave="cateFadeOut()" >
 <div class="container">
-<div class="row">
+<div class="headerRow">
 	
-	<div class="col-lg-2 hLogoDiv">
+	<div class="hLogoDiv">
 		<a href="${pageContext.request.contextPath}/main.do"> <img src="${pageContext.request.contextPath}/resources/images/headerlogo.png"> </a>
 	</div> 
 	
-	<div class="col-lg-8 hSearchDiv">
+	<div class="hSearchDiv">
 		<form action="${pageContext.request.contextPath}/productList.do" method="get">
 			<input type="text" class="hSearchBar" name="search" placeholder="오즈위고 시리즈 입고!" onfocus="this.placeholder=''"/>
 			<button type="submit" class="hSearchBtn"><i class="fas fa-search"></i></button>
 		</form>
 	</div>
 
-	<div class="col-lg-2 hMenuDiv">
+	<div class="hMenuDiv">
 		<sec:authorize access="isAnonymous()">
 			<a href="${pageContext.request.contextPath}/loginForm.do" title="로그인"><i class="far fa-user middleIcon"></i></a>
 			<a href="${pageContext.request.contextPath}/registerForm.do" title="회원가입"><i class="fas fa-user-plus middleIcon"></i></a>
@@ -40,14 +40,15 @@
 		<a href="" title="매장위치"><i class="far fa-map middleIcon"></i></a>
 	</div>
 	
-	<div class="col-lg-12 hCateBar">
+
+	
+</div>
+	<div class="hCateBar">
 		<Button class="hCateBtn" onmouseover="cateFade()">카테고리</Button>
 		<Button class="hCateBtn text-deco-line-th" onmouseover="cateFadeOut()">커스터마이즈</Button>
 		<Button class="hCateBtn text-deco-line-th" onmouseover="cateFadeOut()">랭킹</Button>
 		<Button class="hCateBtn text-deco-line-th" onmouseover="cateFadeOut()">세일</Button>
 	</div>
-	
-</div>
 </div>
 		<div class="hCateWrap">
 			<div class="hCateDiv cateAll">

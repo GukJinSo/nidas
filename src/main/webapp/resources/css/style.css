@@ -23,12 +23,22 @@
 	    box-sizing: border-box;
 	    width:100vw;
 	}
+	
+	.headerRow{
+		display:flex
+
+	}
+	
 	.header{
-		width: 100%;
+			width: 100vw;
 		position: fixed;
 		background: white;
 		border-bottom: 1px solid #CECECE;
 		z-index: 99;
+	}
+	.hLogoDiv{
+	    flex: 1;
+    text-align-last: center;
 	}
 	.body{
 		padding-top: 127px;
@@ -45,6 +55,7 @@
 		text-align:le;
 		margin:auto;
 		font-size: 12px;
+		flex:1
 	}
 	.hMenuDiv a{
 		margin-left:3px;
@@ -52,7 +63,8 @@
 	}
 	.hSearchDiv{
 		margin-top:25px;
-		text-align: center;		
+		text-align: center;
+		flex:2		
 	}
 	.hSearchBar{
 		border: none;
@@ -200,11 +212,13 @@
 		width:100%;
 	}
 	.bestSellerWrap{
+	
+	    box-sizing: border-bx;
     text-align: center;
     display: grid;
-    grid-gap:10px;
+    grid-gap: 50px;
     padding: 20px;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 	.bestSellerWrap a:hover{
 		text-decoration: none;
