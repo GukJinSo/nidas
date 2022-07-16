@@ -18,7 +18,10 @@ local.properties
 #classpath
 .classpath
 
+#project
+.project
 
+*.properties
 
 #properties
 pom.properties

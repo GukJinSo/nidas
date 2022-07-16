@@ -23,13 +23,16 @@ $(function() {
 
 <div id="slide" class="carousel slide" data-ride="carousel">
 	<!-- 슬라이드 쇼 -->
-	<div class="carousel-inner"> 
+	<div class="carousel-inner">
+		<!--
 		<div class="carousel-item active">
 				<img class="d-block w-100" src="resources/images/mainBanner2.jpg">
 		</div>
-		<div class="carousel-item">
-				<img class="d-block w-100" src="resources/images/mainBanner1.jpg">
-		</div> 
+		 -->
+		<div class="carousel-item active">
+				<img class="" src="resources/images/mainBanner1.jpg">
+		</div>
+		 
 		<!-- 왼쪽 오른쪽 화살표 버튼 -->
 		<a class="carousel-control-prev slideArrBtn" href="#slide" data-slide="prev"> 
 			<span class="carousel-control-prev-icon" aria-hidden="true">
@@ -42,7 +45,9 @@ $(function() {
 		<!-- 인디케이터 -->
 		<ul class="carousel-indicators" style="z-index: 0;">
 	 		<li data-target="#slide" data-slide-to="0" class="active"></li>
-	  		<li data-target="#slide" data-slide-to="1"></li> 
+	 		<!-- 
+	  		<li data-target="#slide" data-slide-to="1"></li>
+	  		 --> 
  		</ul>
 	</div>
 </div>
